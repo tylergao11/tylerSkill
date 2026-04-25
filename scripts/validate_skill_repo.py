@@ -10,6 +10,7 @@ from pathlib import Path
 FORBIDDEN_PATTERNS = ("TO" + "DO", "T" + "BD", "FIX" + "ME")
 REQUIRED_FILES = (
     "SKILL.md",
+    "skill-manifest.json",
     "VERSION",
     "CHANGELOG.md",
     "agents/openai.yaml",
@@ -92,6 +93,28 @@ def check_required_files(repo, result):
         result.checked.append(relative)
         if not (repo / relative).exists():
             result.errors.append(f"Missing required file: {relative}")
+
+
+def check_skill_manifest(repo, result):
+    path = repo / "skill-manifest.json"
+    result.checked.append("skill-manifest.json")
+    if not path.exists():
+        return
+    try:
+        manifest = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        result.errors.append(f"Invalid skill-manifest.json: {exc}")
+        return
+
+    version = (repo / "VERSION").read_text(encoding="utf-8").strip()
+    if manifest.get("version") != version:
+        result.errors.append("skill-manifest.json version does not match VERSION")
+
+    for key in ("protocols", "tools"):
+        for item in manifest.get(key, []):
+            result.checked.append(f"manifest:{item}")
+            if not (repo / item).exists():
+                result.errors.append(f"skill-manifest.json references missing {key[:-1]}: {item}")
 
 
 def check_no_runtime_outputs(repo, result):
@@ -210,6 +233,7 @@ def validate_repo(repo, run_tests=True):
     repo = Path(repo).resolve()
     result = ValidationResult()
     check_required_files(repo, result)
+    check_skill_manifest(repo, result)
     check_no_runtime_outputs(repo, result)
     check_frontmatter(repo, result)
     check_reference_links(repo, result)

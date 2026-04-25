@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.1.5 - 2026-04-26
+
+### Added
+
+- 新增 `skill-manifest.json`，记录 Skill 版本、兼容性、协议和工具清单。
+- 新增兼容性/registry、上下文隔离、层级边界、依赖与素材审计协议。
+- 新增 `layer_map_validator.py` 与 `dependency_asset_audit.py` 工具。
+
+### Changed
+
+- 将外部 GitHub skill/tool 经验收敛为可执行、可验证的 Agent Collaboration OS 能力。
+
+### Fixed
+
+- N/A
+
+### Deprecated
+
+- N/A
+
 ## 0.1.4 - 2026-04-26
 
 ### Added

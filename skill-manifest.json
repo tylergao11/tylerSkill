@@ -1,0 +1,38 @@
+{
+  "name": "agent-collaboration-os",
+  "version": "0.1.5",
+  "entry": "SKILL.md",
+  "language_policy": {
+    "agent_facing_markdown": "precise English",
+    "user_facing_markdown": "Chinese where practical",
+    "encoding": "UTF-8"
+  },
+  "compatibility": {
+    "codex": "supported",
+    "claude_code": "portable-reference",
+    "cursor": "partial-reference",
+    "generic_agent": "reference-only"
+  },
+  "stability": "experimental",
+  "install_modes": [
+    "codex-skill",
+    "vendor",
+    "submodule"
+  ],
+  "protocols": [
+    "references/context-packets.md",
+    "references/agent-context-isolation.md",
+    "references/compatibility-registry.md",
+    "references/dependency-asset-audit.md",
+    "references/layer-map-governance.md",
+    "references/github-governance.md"
+  ],
+  "tools": [
+    "scripts/layer_map_validator.py",
+    "scripts/dependency_asset_audit.py",
+    "scripts/design_packet_validator.py",
+    "scripts/impact_analyzer.py",
+    "scripts/diff_risk_reviewer.py",
+    "scripts/debug_bisection.py"
+  ]
+}

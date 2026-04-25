@@ -141,6 +141,8 @@ stated, and the next owner is named.
 Load only what is needed:
 
 - `references/context-packets.md`: when delegating to any specialist or resuming long work.
+- `references/agent-context-isolation.md`: when role context must be isolated to prevent biased tests, leaked implementation answers, or circular review.
+- `references/compatibility-registry.md`: when publishing, installing, vendoring, or evaluating this skill across agent platforms or project repositories.
 - `references/installation.md`: when installing this skill globally or vendoring it into a consumer project.
 - `references/protocol-routing.md`: when deciding which protocol to load for a situation.
 - `references/response-contract.md`: when a role response may drive automation, completion, handoff, or state transition.
@@ -149,6 +151,7 @@ Load only what is needed:
 - `references/preflight-debug-capture.md`: when designing pre-embedded debug capture, true-device diagnostics, observability plans, or trace-based evidence.
 - `references/development-daily-tools.md`: when Development Agent needs design packet validation, impact analysis, or diff risk review during routine implementation.
 - `references/reusable-modules.md`: when deciding whether code should become reusable, portable, or part of a long-term capability module.
+- `references/layer-map-governance.md`: when checking whether changed files respect model/controller/view/service/config/test layer boundaries.
 - `references/role-development.md`: when planning or reviewing architecture, implementation, cloud/server work, readability, or game engineering.
 - `references/role-art.md`: when handling visuals, UI/UX, motion, audio, assets, experience review, or art vetoes.
 - `references/role-testing.md`: when designing tests, risk maps, code review, numeric balance, observability, release blocks, or release confidence.
@@ -160,6 +163,7 @@ Load only what is needed:
 - `references/release-rollback.md`: when preparing release notes, versioned releases, rollback plans, or post-release checks.
 - `references/data-privacy-trust-boundary.md`: when handling user data, cloud writes, rewards, auth, payments, privacy, or anti-cheat trust boundaries.
 - `references/asset-provenance.md`: when creating, importing, reviewing, or shipping art/audio/assets with source or license concerns.
+- `references/dependency-asset-audit.md`: when dependencies, SDKs, packages, assets, licenses, commercial rights, or package budget may affect shipping risk.
 - `references/runtime-versioning-budget.md`: when tracking skill/runtime versions, loaded protocols, task budgets, package budgets, context budgets, or performance budgets.
 - `references/evolution.md`: when a process failure or reusable workflow improvement should update the skill.
 

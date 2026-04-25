@@ -5,7 +5,9 @@ Use this table to decide which protocol to load for a situation.
 | Situation | Load | Required Output |
 | --- | --- | --- |
 | Delegating to a specialist | `context-packets.md` | `Specialist Context Packet`, `Task Brief` |
+| Role context may bias tests, implementation, refactor, or art review | `agent-context-isolation.md` | `Context Isolation Packet`, `Leakage Block` |
 | Installing globally or vendoring into a game project | `installation.md` | Install command, consumer init command |
+| Publishing, vendoring, or evaluating cross-agent compatibility | `compatibility-registry.md` | `Skill Registry Record` |
 | Specialist response may advance workflow | `response-contract.md` | `Agent Turn Result` |
 | Specialist says "completed", "fixed", or "next step" without evidence | `response-contract.md` | `Invalid Response Notice` |
 | Task is stuck or cannot complete | `blocker-recovery.md` | `Blocker Report`, then `Recovery Decision` |
@@ -21,6 +23,7 @@ Use this table to decide which protocol to load for a situation.
 | Art/dev revision loop repeats | `regression-iteration.md` | `Revision Budget`, `Iteration Decision`, `Acceptance Lock` |
 | Project docs, screenshots, recordings, or evidence need management | `project-assets-governance.md` | `Evidence Note`, `Document Sweep`, `Decision Basis` |
 | Code may become a reusable module | `reusable-modules.md` | `Module Contract`, `Anti-Coupling Review` |
+| Changed files may cross model/controller/view/service/config/test layers | `layer-map-governance.md` | `Layer Placement Review` |
 | Workflow failure should improve the skill | `evolution.md` | `Skill Improvement Note`, `Evolution Filter` |
 | GitHub issues, PRs, CI, CodeQL, Dependabot, CODEOWNERS, releases, or repository protections matter | `github-governance.md` | `GitHub Setup Check`, PR gate evidence, CI gate evidence |
 | GitHub/CI/production incident or hotfix work | `production-operations.md` | `Production Operation Plan`, `Incident Report` |
@@ -28,6 +31,7 @@ Use this table to decide which protocol to load for a situation.
 | Release, rollback, or post-release validation | `release-rollback.md` | `Release Plan`, `Rollback Plan` |
 | User data, rewards, auth, payment, privacy, or anti-cheat boundary | `data-privacy-trust-boundary.md` | `Trust Boundary Review`, `Data Handling Review` |
 | Art/audio/source/license question | `asset-provenance.md` | `Asset Provenance Record` |
+| Dependency, SDK, asset, license, commercial rights, or package budget risk | `dependency-asset-audit.md` | `Dependency Asset Audit Result` |
 | Skill/runtime version, budgets, or loaded protocol tracking | `runtime-versioning-budget.md` | `Runtime Version Record`, `Budget Declaration` |
 
 ## Routing Rules

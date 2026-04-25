@@ -1,0 +1,7 @@
+{
+  "name": "context leakage biased tests",
+  "prompt": "Main Agent wants to give Testing Agent the Development Agent's proposed implementation before tests are written.",
+  "expected_protocols": ["agent-context-isolation.md", "context-packets.md"],
+  "expected_outputs": ["Context Isolation Packet", "Leakage Block"],
+  "must_not": ["leak implementation answer into test design", "send full history by default"]
+}

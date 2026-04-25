@@ -23,6 +23,8 @@
 
 本仓库也内置 GitHub 门禁模板：Actions、CodeQL、Dependabot、CODEOWNERS、PR/Issue 模板、release workflow 和 ruleset 模板。分支保护、secret scanning、environment approval 仍需要在 GitHub 仓库设置中启用。
 
+`skill-manifest.json` 记录当前 Skill 的版本、兼容性、协议和工具清单，便于 agent 在不同项目或不同 agent 平台中判断可用能力。
+
 ## 文档语言约定
 
 - 给 agent 看的 Markdown 使用准确英文，例如 `SKILL.md`、`references/`、`templates/`、`profiles/`、`modules/`。

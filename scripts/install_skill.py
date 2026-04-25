@@ -20,6 +20,7 @@ INCLUDE_FILES = [
     "SKILL.md",
     "VERSION",
     "CHANGELOG.md",
+    "skill-manifest.json",
 ]
 EXCLUDE_NAMES = {
     ".git",
