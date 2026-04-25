@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.1.1 - 2026-04-26
+
+### Added
+
+- Development daily tools for design packet validation, impact analysis, and diff risk review.
+- `development-daily-tools.md` protocol reference and routing entry.
+- Unit tests for Development Agent support tools.
+
+### Changed
+
+- Documented development support tools in the repository README.
+
+### Fixed
+
+- N/A
+
+### Deprecated
+
+- N/A
+
 ## 0.1.0 - 2026-04-26
 
 ### Added

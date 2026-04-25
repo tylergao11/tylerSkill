@@ -140,6 +140,7 @@ Load only what is needed:
 - `references/blocker-recovery.md`: when a task stalls, fails, lacks tools, lacks permissions, or cannot complete normally.
 - `references/debug-bisection.md`: when a bug has many hypotheses, fixes have failed, or an agent wants to guess-and-change code.
 - `references/preflight-debug-capture.md`: when designing pre-embedded debug capture, true-device diagnostics, observability plans, or trace-based evidence.
+- `references/development-daily-tools.md`: when Development Agent needs design packet validation, impact analysis, or diff risk review during routine implementation.
 - `references/reusable-modules.md`: when deciding whether code should become reusable, portable, or part of a long-term capability module.
 - `references/role-development.md`: when planning or reviewing architecture, implementation, cloud/server work, readability, or game engineering.
 - `references/role-art.md`: when handling visuals, UI/UX, motion, audio, assets, experience review, or art vetoes.

@@ -21,6 +21,12 @@ modules/                           Reusable capability module specs
 tests/                             Automated tests for scripts and tools
 ```
 
+Key development support tools:
+
+- `scripts/design_packet_validator.py`: validates Development Agent engineering plans.
+- `scripts/impact_analyzer.py`: maps changed paths to likely risk and regression checks.
+- `scripts/diff_risk_reviewer.py`: reviews diff paths before completion claims.
+
 ## Loading Model
 
 `SKILL.md` is the short kernel. It should stay compact.
