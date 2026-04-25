@@ -13,6 +13,14 @@ REQUIRED_FILES = (
     "VERSION",
     "CHANGELOG.md",
     "agents/openai.yaml",
+    ".github/CODEOWNERS",
+    ".github/PULL_REQUEST_TEMPLATE.md",
+    ".github/dependabot.yml",
+    ".github/workflows/skill-ci.yml",
+    ".github/workflows/codeql.yml",
+    ".github/workflows/release.yml",
+    ".github/rulesets/main-protection.json",
+    ".github/repository-settings.md",
     "templates/task-brief.md",
     "templates/agent-turn-result.md",
     "templates/specialist-context-packet.md",
@@ -168,6 +176,23 @@ def check_pycache_not_tracked(repo, result):
             result.errors.append(f"Tracked Python cache file: {line}")
 
 
+def check_codeowners(repo, result):
+    path = repo / ".github" / "CODEOWNERS"
+    result.checked.append(".github/CODEOWNERS owners")
+    if not path.exists():
+        return
+    text = path.read_text(encoding="utf-8")
+    forbidden = (
+        "@main-agent-owner",
+        "@development-agent-owner",
+        "@testing-agent-owner",
+        "@OWNER_REPLACE_ME",
+    )
+    for item in forbidden:
+        if item in text:
+            result.errors.append(f"CODEOWNERS contains placeholder owner: {item}")
+
+
 def run_unit_tests(repo, result):
     completed = subprocess.run(
         [sys.executable, "-m", "unittest", "discover", "tests"],
@@ -193,6 +218,7 @@ def validate_repo(repo, run_tests=True):
     check_utf8(repo, result)
     check_forbidden_placeholders(repo, result)
     check_pycache_not_tracked(repo, result)
+    check_codeowners(repo, result)
     if run_tests:
         run_unit_tests(repo, result)
     return result

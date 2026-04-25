@@ -1,0 +1,31 @@
+name: Skill CI
+
+on:
+  pull_request:
+  push:
+    branches: ["master", "main"]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate skill repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run unit tests
+        run: python -m unittest discover tests
+
+      - name: Validate skill repository
+        run: python scripts/validate_skill_repo.py
+
+      - name: Verify install plan
+        run: python scripts/install_skill.py --dry-run

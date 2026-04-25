@@ -1,0 +1,11 @@
+# Keep these owners valid for the current GitHub repository. Consumer
+# repositories should replace them with their own maintainers or teams.
+
+* @tylergao0726-design
+
+/SKILL.md @tylergao0726-design
+/references/ @tylergao0726-design
+/templates/ @tylergao0726-design
+/scripts/ @tylergao0726-design
+/tests/ @tylergao0726-design
+/.github/ @tylergao0726-design

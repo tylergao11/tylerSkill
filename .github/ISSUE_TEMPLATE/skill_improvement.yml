@@ -1,0 +1,33 @@
+name: Skill improvement
+description: Record a repeated agent failure that should evolve the skill.
+title: "[Skill Improvement]: "
+labels: ["type:skill-evolution", "needs:evidence"]
+body:
+  - type: textarea
+    id: failure
+    attributes:
+      label: Repeated failure
+      description: What did agents repeatedly get wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Link or paste raw outputs, eval failures, review notes, or command results.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed_change
+    attributes:
+      label: Proposed skill change
+      description: Which protocol, script, template, or eval should change?
+    validations:
+      required: true
+  - type: textarea
+    id: guardrail
+    attributes:
+      label: Regression guardrail
+      description: What test or eval should prevent this from returning?
+    validations:
+      required: true

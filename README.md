@@ -21,6 +21,8 @@
 
 用户不需要记住这些命令。它们是 Skill 的内部能力，主 agent 和责任 agent 会在合适的协议中调用。
 
+本仓库也内置 GitHub 门禁模板：Actions、CodeQL、Dependabot、CODEOWNERS、PR/Issue 模板、release workflow 和 ruleset 模板。分支保护、secret scanning、environment approval 仍需要在 GitHub 仓库设置中启用。
+
 ## 文档语言约定
 
 - 给 agent 看的 Markdown 使用准确英文，例如 `SKILL.md`、`references/`、`templates/`、`profiles/`、`modules/`。

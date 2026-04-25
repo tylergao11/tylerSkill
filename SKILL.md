@@ -155,6 +155,7 @@ Load only what is needed:
 - `references/regression-iteration.md`: when revisions loop, art/dev disagree repeatedly, or a change may break nearby systems.
 - `references/project-assets-governance.md`: when managing project docs, screenshots, recordings, logs, evidence, decision references, archival, or cleanup.
 - `references/production-operations.md`: when triaging production incidents, GitHub/CI fixes, releases, hotfixes, or rollback decisions.
+- `references/github-governance.md`: when GitHub issues, pull requests, CI, CodeQL, Dependabot, CODEOWNERS, releases, rulesets, or repository security settings control the work.
 - `references/permission-environment.md`: when an operation may mutate files, cloud state, production config, data, secrets, or deployment environments.
 - `references/release-rollback.md`: when preparing release notes, versioned releases, rollback plans, or post-release checks.
 - `references/data-privacy-trust-boundary.md`: when handling user data, cloud writes, rewards, auth, payments, privacy, or anti-cheat trust boundaries.

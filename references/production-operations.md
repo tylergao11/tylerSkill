@@ -3,6 +3,9 @@
 Use this for GitHub, CI, production incidents, hotfixes, release candidates, and
 rollback decisions.
 
+For GitHub repository gates, CI, CodeQL, Dependabot, CODEOWNERS, rulesets, and
+release automation, also load `github-governance.md`.
+
 ## Core Rule
 
 Agent may prepare production fixes, but production-impacting operations require

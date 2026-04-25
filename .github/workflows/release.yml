@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Validate and publish release artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run validation
+        run: |
+          python -m unittest discover tests
+          python scripts/validate_skill_repo.py
+
+      - name: Build installable skill directory
+        run: |
+          python scripts/install_skill.py --dest dist --force
+          cd dist
+          zip -r agent-collaboration-os.zip agent-collaboration-os
+
+      - name: Create GitHub release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            dist/agent-collaboration-os.zip \
+            --title "${GITHUB_REF_NAME}" \
+            --notes-file CHANGELOG.md

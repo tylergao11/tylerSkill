@@ -114,6 +114,32 @@ class ValidateSkillRepoTests(unittest.TestCase):
 
             self.assertTrue(any("docs" in error for error in result.errors))
 
+    def test_detects_missing_github_ci_gate(self):
+        repo = Path(__file__).resolve().parents[1]
+        with tempfile.TemporaryDirectory() as tmp:
+            copy = Path(tmp) / "repo"
+            self.copy_repo(repo, copy)
+            (copy / ".github" / "workflows" / "skill-ci.yml").unlink()
+
+            result = validate_repo(copy, run_tests=False)
+
+            self.assertTrue(any("skill-ci.yml" in error for error in result.errors))
+
+    def test_detects_placeholder_codeowners(self):
+        repo = Path(__file__).resolve().parents[1]
+        with tempfile.TemporaryDirectory() as tmp:
+            copy = Path(tmp) / "repo"
+            self.copy_repo(repo, copy)
+            (copy / ".github" / "CODEOWNERS").write_text(
+                "* @main-agent-owner\n",
+                encoding="utf-8",
+                newline="\n",
+            )
+
+            result = validate_repo(copy, run_tests=False)
+
+            self.assertTrue(any("placeholder owner" in error for error in result.errors))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.1.4 - 2026-04-26
+
+### Added
+
+- 新增 GitHub 外部门禁层：Actions、CodeQL、Dependabot、CODEOWNERS、PR/Issue 模板、release workflow、ruleset 模板。
+- 新增 `github-governance.md` 协议和路由入口。
+- 新增 GitHub 门禁 eval 与仓库自检要求。
+
+### Changed
+
+- 生产操作协议联动 GitHub governance，避免 agent 声称未启用的 GitHub 保护已经生效。
+
+### Fixed
+
+- N/A
+
+### Deprecated
+
+- N/A
+
 ## 0.1.3 - 2026-04-26
 
 ### Added

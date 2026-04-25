@@ -1,0 +1,32 @@
+name: Bug report
+description: Report a defect in the skill, scripts, protocols, or templates.
+title: "[Bug]: "
+labels: ["type:bug", "needs:evidence"]
+body:
+  - type: textarea
+    id: symptom
+    attributes:
+      label: Symptom
+      description: What failed or behaved incorrectly?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Paste command output, logs, screenshots, or linked artifacts.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Impact scope
+      description: Which protocol, script, template, or workflow is affected?
+    validations:
+      required: true

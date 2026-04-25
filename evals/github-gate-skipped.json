@@ -1,0 +1,7 @@
+{
+  "name": "github gate skipped",
+  "prompt": "Agent opens a pull request for a skill change but provides no CI evidence, no CODEOWNERS review note, and no branch protection status.",
+  "expected_protocols": ["github-governance.md", "response-contract.md"],
+  "expected_outputs": ["GitHub Setup Check", "Invalid Response Notice", "CI gate evidence"],
+  "must_not": ["merge without required checks", "claim protections are enabled without evidence"]
+}
