@@ -16,6 +16,10 @@ All project documentation, skill files, reference files, templates, and generate
 workflow notes must be read and written as UTF-8. This project uses Chinese text;
 using the wrong encoding can corrupt formatting and content.
 
+Use precise English for agent-facing Markdown such as `SKILL.md`, `references/`,
+`templates/`, `profiles/`, and `modules/`. Use Chinese where practical for
+user-facing Markdown such as repository usage guides.
+
 ## Core Principles
 
 - **Main Agent owns orchestration**: user dialogue, decomposition, decisions, conflict resolution, and final synthesis.
