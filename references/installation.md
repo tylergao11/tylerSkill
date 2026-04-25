@@ -55,6 +55,12 @@ This creates project runtime folders such as:
 - `evidence/`
 
 Runtime evidence belongs in the consumer project, not in the skill repository.
+Runtime Markdown also belongs in the consumer project, including project memory,
+handoffs, reviews, decisions, sweeps, and temporary task summaries.
+
+If this repository is vendored under `vendor/agent-collaboration-os/`, agents
+must still write runtime outputs to the consumer project root, never to the
+vendor path.
 
 ## Verification
 

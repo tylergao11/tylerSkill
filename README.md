@@ -72,6 +72,8 @@ game-project/
 
 临时讨论、缓存、Python 字节码、真机截图、录屏、大型日志不应该进入这个 Skill 仓库。大型 evidence 通常属于具体项目、构建产物或发布证据归档。
 
+Skill 路径必须始终保持干净：agent 工作中生成的 `project-memory.md`、handoff、review、decision、截图说明、日志摘要等运行态 Markdown，都应该写入消费者项目，而不是写进已安装或 vendored 的 Skill 目录。
+
 ## 工具维护规则
 
 小型单文件 CLI 放在 `scripts/`。

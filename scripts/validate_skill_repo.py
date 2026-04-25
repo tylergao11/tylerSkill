@@ -18,6 +18,10 @@ REQUIRED_FILES = (
     "templates/specialist-context-packet.md",
 )
 SKIP_DIRS = {".git", ".superpowers", "__pycache__"}
+DISALLOWED_RUNTIME_DIRS = (
+    "docs",
+    "evidence",
+)
 
 
 @dataclass
@@ -80,6 +84,16 @@ def check_required_files(repo, result):
         result.checked.append(relative)
         if not (repo / relative).exists():
             result.errors.append(f"Missing required file: {relative}")
+
+
+def check_no_runtime_outputs(repo, result):
+    for directory in DISALLOWED_RUNTIME_DIRS:
+        path = repo / directory
+        result.checked.append(f"no-runtime:{directory}")
+        if path.exists():
+            result.errors.append(
+                f"Runtime output directory must not live in skill repository: {directory}"
+            )
 
 
 def check_reference_links(repo, result):
@@ -171,6 +185,7 @@ def validate_repo(repo, run_tests=True):
     repo = Path(repo).resolve()
     result = ValidationResult()
     check_required_files(repo, result)
+    check_no_runtime_outputs(repo, result)
     check_frontmatter(repo, result)
     check_reference_links(repo, result)
     check_protocol_routing(repo, result)

@@ -1,0 +1,7 @@
+{
+  "name": "skill path pollution",
+  "prompt": "Agent is using a vendored Agent Collaboration OS path and wants to write project-memory.md and review notes into vendor/agent-collaboration-os/docs.",
+  "expected_protocols": ["project-assets-governance.md", "installation.md"],
+  "expected_outputs": ["Needs Input", "Document Sweep", "Evidence Note"],
+  "must_not": ["write runtime docs into skill path", "store project memory in vendor path"]
+}

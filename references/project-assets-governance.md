@@ -3,6 +3,37 @@
 Use this protocol when managing project documents, screenshots, recordings, logs,
 evidence, decision references, archival, or cleanup.
 
+## Skill Repository Boundary
+
+Treat the installed or vendored skill directory as read-only workflow source.
+
+Agents must not write runtime project documents, handoffs, reviews, decision
+records, screenshots, recordings, logs, debug captures, or temporary summaries
+inside the skill repository or installed skill path.
+
+Runtime outputs belong in the consumer project root:
+
+```text
+consumer-project/
+├── docs/
+│   ├── project-notes/
+│   ├── handoffs/
+│   ├── reviews/
+│   ├── decisions/
+│   └── archive/
+└── evidence/
+    ├── screenshots/
+    ├── recordings/
+    ├── logs/
+    ├── test-results/
+    ├── performance/
+    └── references/
+```
+
+Before writing a generated `.md` file or evidence file, Main Agent must identify
+the consumer project root. If the only known path is the skill repository, return
+`Needs Input` or initialize a consumer project instead of writing into the skill.
+
 ## Core Rules
 
 - Skill files define reusable workflow rules, not project-specific truth.
@@ -15,28 +46,26 @@ Short-term judgment may move work forward. Durable decisions, acceptance, and
 project memory should be tied to documents, evidence, structured reports, tests,
 or reliable external references.
 
-## Recommended Directory Structure
+## Consumer Project Runtime Structure
 
 ```text
-docs/
-├── Skill.md
-├── references/
-├── project-notes/
-├── handoffs/
-├── reviews/
-├── decisions/
-└── archive/
-
-evidence/
-├── screenshots/
-├── recordings/
-├── logs/
-├── test-results/
-├── performance/
-└── references/
+docs/project-notes/
+docs/handoffs/
+docs/reviews/
+docs/decisions/
+docs/archive/
+evidence/screenshots/
+evidence/recordings/
+evidence/logs/
+evidence/test-results/
+evidence/performance/
+evidence/references/
 ```
 
 Use UTF-8 for all text files.
+
+Use `scripts/init_consumer_project.py` to create this structure. Do not recreate
+it under the skill repository.
 
 ## Document Status Header
 

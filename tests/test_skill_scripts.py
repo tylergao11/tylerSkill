@@ -101,6 +101,19 @@ class ValidateSkillRepoTests(unittest.TestCase):
 
             self.assertTrue(any("missing-protocol.md" in error for error in result.errors))
 
+    def test_detects_runtime_docs_in_skill_repository(self):
+        repo = Path(__file__).resolve().parents[1]
+        with tempfile.TemporaryDirectory() as tmp:
+            copy = Path(tmp) / "repo"
+            self.copy_repo(repo, copy)
+            runtime_docs = copy / "docs" / "handoffs"
+            runtime_docs.mkdir(parents=True)
+            (runtime_docs / "task.md").write_text("# Runtime Handoff\n", encoding="utf-8")
+
+            result = validate_repo(copy, run_tests=False)
+
+            self.assertTrue(any("docs" in error for error in result.errors))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.1.3 - 2026-04-26
+
+### Added
+
+- 新增 Skill 路径清洁边界：运行态 Markdown 与 evidence 必须写入消费者项目。
+- 新增自检规则，禁止 Skill 仓库根目录出现运行态 `docs/` 或 `evidence/`。
+- 新增 Skill 路径污染 eval 场景。
+
+### Changed
+
+- 更新项目资产治理与安装协议，明确 vendored Skill 路径不能承载项目运行产物。
+
+### Fixed
+
+- N/A
+
+### Deprecated
+
+- N/A
+
 ## 0.1.2 - 2026-04-26
 
 ### Added

@@ -32,6 +32,9 @@ user-facing Markdown such as repository usage guides.
 - **Blocked is a state, not an ending**: every blocker must include evidence, fallback options, and a recommended recovery path.
 - **Small is allowed, silent shrink is not**: scoped-down delivery requires explicit approval and recorded tradeoffs.
 - **The skill must evolve**: recurring failures become skill improvement notes.
+- **Keep the skill path clean**: generated project Markdown, evidence, logs, and
+  handoffs belong in the consumer project, never in the installed or vendored
+  skill directory.
 
 ## Reuse Architecture
 
