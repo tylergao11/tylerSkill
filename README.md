@@ -10,7 +10,31 @@
 
 普通用户只需要安装这个 Skill。
 
+最短安装口令：
+
+```text
+装这个skill：https://github.com/tylergao11/tylerSkill.git
+```
+
+也可以说：
+
+```text
+安装这个skill：https://github.com/tylergao11/tylerSkill.git
+```
+
 安装后，在项目中告诉主 agent 使用 Agent Collaboration OS，它会按需读取 `SKILL.md` 和 `references/` 中的协议，并在需要时调用 `scripts/` 里的工具。
+
+最短使用口令：
+
+```text
+使用协作OS
+```
+
+第一次使用时也可以说得更明确：
+
+```text
+使用 Agent Collaboration OS 管理这个项目
+```
 
 这些工具主要面向 agent：
 
