@@ -153,7 +153,6 @@ Load only what is needed:
 - `references/asset-provenance.md`: when creating, importing, reviewing, or shipping art/audio/assets with source or license concerns.
 - `references/runtime-versioning-budget.md`: when tracking skill/runtime versions, loaded protocols, task budgets, package budgets, context budgets, or performance budgets.
 - `references/evolution.md`: when a process failure or reusable workflow improvement should update the skill.
-- `references/full-draft.md`: archive of the full design draft; use only when recovering details not yet split into references.
 
 ## Context Policy
 

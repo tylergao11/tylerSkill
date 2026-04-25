@@ -43,24 +43,28 @@ class InstallSkillTests(unittest.TestCase):
             self.assertIn("SKILL.md", relative_sources)
             self.assertIn("references/protocol-routing.md", relative_sources)
             self.assertIn("scripts/debug_bisection.py", relative_sources)
-            self.assertNotIn("docs/references/full-draft.md", relative_sources)
+            self.assertNotIn("references/full-draft.md", relative_sources)
             self.assertEqual(plan.skill_dir, destination / "agent-collaboration-os")
 
 
 class ValidateSkillRepoTests(unittest.TestCase):
+    def copy_repo(self, repo, destination):
+        ignore = shutil.ignore_patterns(".git", ".superpowers", "__pycache__", "docs")
+        shutil.copytree(repo, destination, ignore=ignore)
+
     def test_current_repo_validates(self):
         repo = Path(__file__).resolve().parents[1]
         result = validate_repo(repo, run_tests=False)
 
         self.assertEqual(result.errors, [])
         self.assertIn("SKILL.md", result.checked)
+        self.assertFalse((repo / "docs" / "Skill.md").exists())
 
     def test_detects_missing_reference_from_skill_index(self):
         repo = Path(__file__).resolve().parents[1]
         with tempfile.TemporaryDirectory() as tmp:
             copy = Path(tmp) / "repo"
-            ignore = shutil.ignore_patterns(".git", ".superpowers", "__pycache__")
-            shutil.copytree(repo, copy, ignore=ignore)
+            self.copy_repo(repo, copy)
             skill = copy / "SKILL.md"
             skill.write_text(
                 skill.read_text(encoding="utf-8")
@@ -77,8 +81,7 @@ class ValidateSkillRepoTests(unittest.TestCase):
         repo = Path(__file__).resolve().parents[1]
         with tempfile.TemporaryDirectory() as tmp:
             copy = Path(tmp) / "repo"
-            ignore = shutil.ignore_patterns(".git", ".superpowers", "__pycache__")
-            shutil.copytree(repo, copy, ignore=ignore)
+            self.copy_repo(repo, copy)
             eval_file = copy / "evals" / "bad.json"
             eval_file.write_text(
                 json.dumps(

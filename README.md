@@ -8,8 +8,7 @@ All text files must be UTF-8.
 ## Directory Map
 
 ```text
-docs/
-  Skill.md                         Skill entry point and protocol index
+SKILL.md                           Skill entry point and protocol index
 references/                        Detailed protocols loaded on demand
 agents/                            Codex UI metadata
 
@@ -24,7 +23,7 @@ tests/                             Automated tests for scripts and tools
 
 ## Loading Model
 
-`docs/Skill.md` is the short kernel. It should stay compact.
+`SKILL.md` is the short kernel. It should stay compact.
 
 Detailed protocols live in `references/` and are loaded only when needed.
 This keeps the main agent and specialist agents from carrying unnecessary

@@ -133,8 +133,6 @@ def check_evals(repo, result):
 
 def check_forbidden_placeholders(repo, result):
     for path in iter_text_files(repo):
-        if path.name == "full-draft.md":
-            continue
         text = path.read_text(encoding="utf-8", errors="ignore")
         for pattern in FORBIDDEN_PATTERNS:
             if pattern.lower() in text.lower():

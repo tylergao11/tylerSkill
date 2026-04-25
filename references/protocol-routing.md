@@ -32,7 +32,5 @@ Use this table to decide which protocol to load for a situation.
 
 - Load the smallest protocol that handles the current situation.
 - Prefer a reference file over the full draft.
-- Use `full-draft.md` only to recover old design details that have not been
-  split into references.
 - When multiple protocols apply, load the one that controls state transition
   first, then load role-specific detail.
