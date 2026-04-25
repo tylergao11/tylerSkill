@@ -119,6 +119,7 @@ Load only what is needed:
 - `references/context-packets.md`: when delegating to any specialist or resuming long work.
 - `references/response-contract.md`: when a role response may drive automation, completion, handoff, or state transition.
 - `references/blocker-recovery.md`: when a task stalls, fails, lacks tools, lacks permissions, or cannot complete normally.
+- `references/debug-bisection.md`: when a bug has many hypotheses, fixes have failed, or an agent wants to guess-and-change code.
 - `references/role-development.md`: when planning or reviewing architecture, implementation, cloud/server work, readability, or game engineering.
 - `references/role-art.md`: when handling visuals, UI/UX, motion, audio, assets, experience review, or art vetoes.
 - `references/role-testing.md`: when designing tests, risk maps, code review, numeric balance, observability, release blocks, or release confidence.

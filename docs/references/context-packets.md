@@ -10,6 +10,41 @@ for their role, task, and decision point.
 Do not send full history by default. Send only context that changes the specialist's
 work or acceptance criteria.
 
+Use this memory split:
+
+```text
+Raw Trace -> Project Memory -> Skill Evolution
+```
+
+- **Raw Trace**: chat history, temporary screenshots, failed attempts, logs,
+  drafts, and old feedback. Archive it; do not load by default.
+- **Project Memory**: short current truth for this project. Load and slice it
+  when assigning work.
+- **Skill Evolution**: reusable protocols promoted from repeated or general
+  lessons. Do not store project-specific facts here.
+
+Core distinction:
+
+```text
+Skill = reusable protocols
+Project Memory = active project truth
+Evidence Archive = proof and history
+Raw Chat = not a source of truth unless summarized
+```
+
+## Context Budget Rule
+
+A context item is included only if it changes the specialist's decision, output,
+risk handling, or acceptance criteria.
+
+Before adding context, ask:
+
+- Would this change the role's output?
+- Is it still current?
+- Is it within this role's responsibility?
+- Has it already been replaced by a shorter active decision?
+- Is the source reliable enough for the decision being made?
+
 ## Working Context Pack
 
 Main Agent maintains this across the whole project:
@@ -30,6 +65,29 @@ Next Required Decision:
 Update it after major decisions, blockers, scope changes, acceptance locks,
 release decisions, and skill evolution notes.
 
+## Project Memory
+
+Use this as the compact source of current project truth:
+
+```markdown
+## Project Memory
+
+Status: Active
+Last Updated:
+Active Decisions:
+Accepted Assumptions:
+Current Architecture:
+Art Direction:
+Testing Bar:
+Known Risks:
+Open Questions:
+Do Not Repeat:
+Source Documents:
+```
+
+Project Memory should stay short. If it grows too long, split by domain and keep
+only the active slice in specialist packets.
+
 ## Specialist Context Packet
 
 Use this when assigning work to a responsibility agent:
@@ -39,6 +97,9 @@ Use this when assigning work to a responsibility agent:
 
 Role:
 Task ID:
+Context Version:
+Source Documents:
+Last Updated:
 Goal:
 Mode:
 Relevant Decisions:

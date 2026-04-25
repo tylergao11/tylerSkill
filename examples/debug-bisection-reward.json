@@ -1,0 +1,55 @@
+{
+  "bug": "Reward popup appears, but coins are not added to the player balance.",
+  "hypotheses": [
+    {
+      "id": "H1",
+      "group": "ui",
+      "statement": "Claim button handler is not firing."
+    },
+    {
+      "id": "H2",
+      "group": "client-state",
+      "statement": "Client reward state is overwritten after claim."
+    },
+    {
+      "id": "H3",
+      "group": "cloud",
+      "statement": "Cloud claimReward function is not called."
+    },
+    {
+      "id": "H4",
+      "group": "cloud",
+      "statement": "Cloud claimReward function returns an error."
+    },
+    {
+      "id": "H5",
+      "group": "database",
+      "statement": "Database write permission denies the balance update."
+    },
+    {
+      "id": "H6",
+      "group": "presentation",
+      "statement": "Balance is updated but the UI does not refresh."
+    }
+  ],
+  "probes": [
+    {
+      "id": "P1",
+      "question": "Does the cloud claimReward function receive the request?",
+      "eliminates_if_yes": ["H1", "H3"],
+      "eliminates_if_no": ["H4", "H5", "H6"]
+    },
+    {
+      "id": "P2",
+      "question": "Does the server-side balance change after the claim?",
+      "eliminates_if_yes": ["H4", "H5"],
+      "eliminates_if_no": ["H6"]
+    },
+    {
+      "id": "P3",
+      "question": "Does the local balance state change before the next render?",
+      "eliminates_if_yes": ["H1"],
+      "eliminates_if_no": ["H2", "H6"]
+    }
+  ]
+}

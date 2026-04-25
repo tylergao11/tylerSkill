@@ -67,6 +67,104 @@ For games:
 - Centralize resource paths.
 - Make scene lifecycle explicit.
 
+## Human-Readable Code Protocol
+
+Prefer boring, explicit, local code until repetition or volatility proves the
+need for abstraction.
+
+For most game and mini game projects, a simple MVC-style separation is enough:
+
+- **Model/Data**: state, config, save data, numeric data, server/cloud DTOs.
+- **Controller/System**: gameplay rules, orchestration, input handling, service calls.
+- **View/Presentation**: UI, animation playback, audio cues, visual feedback.
+
+Use this as the default architecture unless the Engineering Plan explains why a
+different pattern is necessary.
+
+### Abstraction Rules
+
+- First occurrence: write direct code.
+- Second similar occurrence: allow a local helper if it improves clarity.
+- Third repeated occurrence with a stable variation point: consider abstraction.
+- Do not create framework-like base classes, factories, managers, registries, or
+  generic adapters unless the Pattern Fit Check justifies them.
+- From entry point to core logic, default to no more than three conceptual jumps.
+- Prefer parameters, return values, and explicit state over hidden globals,
+  implicit event chains, auto-registration, or magic lifecycle hooks.
+- Prefer business verbs over pattern nouns.
+
+Good names:
+
+```text
+claimReward
+grantCoins
+showRewardPopup
+loadRewardConfig
+```
+
+Suspicious names:
+
+```text
+RewardProcessingStrategyFactory
+RewardExecutionContextAdapter
+RewardLifecycleCoordinator
+GenericDataProvider
+```
+
+Small local duplication is cheaper than the wrong abstraction.
+
+### Abstraction Justification
+
+Require this before adding a non-trivial abstraction, generic layer, interface,
+base class, manager, factory, registry, or reusable framework component:
+
+```markdown
+## Abstraction Justification
+
+Name:
+Problem Removed:
+Call Sites:
+What Reader No Longer Needs To Know:
+What Complexity It Adds:
+Why Simpler Code Is Worse:
+```
+
+If this cannot be answered clearly, keep the code direct.
+
+### Abstraction Budget
+
+Per normal task, default budget:
+
+- New interfaces: 0-1
+- New helpers: 0-2
+- New framework-like base classes: 0
+- New generic infrastructure: 0
+
+Exceeding the budget requires an Abstraction Justification and Main Agent
+approval.
+
+### Over-Abstraction Block
+
+Testing Agent or Main Agent may block code that is technically organized but hard
+for humans to read.
+
+```markdown
+## Over-Abstraction Block
+
+Target:
+Issue:
+Why It Hurts Readability:
+Simpler Alternative:
+Required Simplification:
+Acceptance Criteria:
+```
+
+Human readability priority:
+
+```text
+business clarity > small duplication > local helper > stable abstraction > generic framework
+```
+
 ## Engineering Feasibility Block
 
 ```markdown
