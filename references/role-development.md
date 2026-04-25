@@ -33,6 +33,11 @@ Test Strategy:
 Readability Rules:
 ```
 
+For routine implementation gates, also load `development-daily-tools.md`.
+Development Agent must use the tool gates there when a task has feature
+placement risk, changed-path regression risk, or a completion claim after code
+changes.
+
 ```markdown
 ## Pattern Fit Check
 

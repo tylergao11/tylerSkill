@@ -1,4 +1,5 @@
 import unittest
+from pathlib import Path
 
 from scripts.design_packet_validator import validate_design_packet
 from scripts.diff_risk_reviewer import review_diff_risk
@@ -71,6 +72,36 @@ class DiffRiskReviewerTests(unittest.TestCase):
 
         self.assertFalse(result["blocked"])
         self.assertEqual(result["required_action"], "Proceed with stated validation.")
+
+
+class DevelopmentToolGateDocumentationTests(unittest.TestCase):
+    def test_agent_prompt_requires_tool_gate_evidence(self):
+        repo = Path(__file__).resolve().parents[1]
+        prompt = (repo / "templates" / "role-development-prompt.md").read_text(
+            encoding="utf-8"
+        )
+        reference = (repo / "references" / "development-daily-tools.md").read_text(
+            encoding="utf-8"
+        )
+
+        for required in (
+            "Tool Gate",
+            "Tool Evidence",
+            "design_packet_validator.py",
+            "impact_analyzer.py",
+            "diff_risk_reviewer.py",
+        ):
+            self.assertIn(required, prompt)
+            self.assertIn(required, reference)
+
+    def test_eval_covers_skipping_development_tools(self):
+        repo = Path(__file__).resolve().parents[1]
+        eval_text = (repo / "evals" / "development-tool-gate.json").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("development-daily-tools.md", eval_text)
+        self.assertIn("mark completed without diff risk review", eval_text)
 
 
 if __name__ == "__main__":

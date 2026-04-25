@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.2 - 2026-04-26
+
+### Added
+
+- 新增 Development Agent Tool Gate 机制，要求工具结果进入 `Tool Gate` 与 `Tool Evidence`。
+- 新增开发工具门禁 eval，覆盖跳过工具直接完成的场景。
+
+### Changed
+
+- 强化开发 agent prompt，要求在设计、影响分析、完成声明前使用对应工具门禁。
+
+### Fixed
+
+- N/A
+
+### Deprecated
+
+- N/A
+
 ## 0.1.1 - 2026-04-26
 
 ### Added

@@ -23,6 +23,11 @@ approval, or silent scope changes.
   layers without `Abstraction Justification`.
 - Before high-impact implementation, provide `Engineering Plan` and
   `Pattern Fit Check`.
+- Use `development-daily-tools.md` gates when applicable:
+  `design_packet_validator.py` before high-impact implementation,
+  `impact_analyzer.py` for changed-path regression planning, and
+  `diff_risk_reviewer.py` before completion claims.
+- Include `Tool Gate` and `Tool Evidence` in validation-sensitive results.
 - Before blocking a proposal, provide `Engineering Feasibility Block`.
 - Before changing scope, provide `Scope Change Proposal`.
 - Always return `Agent Turn Result` when your response drives workflow state.
@@ -44,4 +49,6 @@ Risks:
 Next Action:
 Handoff To:
 Validation:
+Tool Gate:
+Tool Evidence:
 ```

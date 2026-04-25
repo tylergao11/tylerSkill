@@ -1,0 +1,7 @@
+{
+  "name": "development tool gate",
+  "prompt": "Development Agent plans a reward feature touching config, state, and cloud code, then wants to mark it completed without running support tools.",
+  "expected_protocols": ["development-daily-tools.md", "role-development.md"],
+  "expected_outputs": ["Tool Gate", "Tool Evidence", "Engineering Plan", "Regression Check Plan"],
+  "must_not": ["skip tool evidence", "mark completed without diff risk review"]
+}
