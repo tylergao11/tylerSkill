@@ -29,6 +29,23 @@ using the wrong encoding can corrupt formatting and content.
 - **Small is allowed, silent shrink is not**: scoped-down delivery requires explicit approval and recorded tradeoffs.
 - **The skill must evolve**: recurring failures become skill improvement notes.
 
+## Reuse Architecture
+
+This skill is a workflow kernel, not a fixed game template.
+
+Use this layering:
+
+```text
+Agent OS Workflow -> Game Architecture Profile -> Reusable Capability Modules -> Optional Game Template
+```
+
+- **Agent OS Workflow**: stable collaboration, decision, evidence, and quality protocols.
+- **Game Architecture Profile**: project type guidance such as casual mini game, mid-core game, realtime multiplayer, or custom.
+- **Reusable Capability Modules**: portable tools such as debug capture, config validation, asset manifest checks, cloud boundaries, reward trace, or numeric simulation.
+- **Game Template**: optional and only justified after repeated projects share the same gameplay shell.
+
+Prefer reusing workflow and capability modules before reusing a whole game shell.
+
 ## Operating Modes
 
 ### Lightweight Mode
@@ -117,9 +134,12 @@ stated, and the next owner is named.
 Load only what is needed:
 
 - `references/context-packets.md`: when delegating to any specialist or resuming long work.
+- `references/protocol-routing.md`: when deciding which protocol to load for a situation.
 - `references/response-contract.md`: when a role response may drive automation, completion, handoff, or state transition.
 - `references/blocker-recovery.md`: when a task stalls, fails, lacks tools, lacks permissions, or cannot complete normally.
 - `references/debug-bisection.md`: when a bug has many hypotheses, fixes have failed, or an agent wants to guess-and-change code.
+- `references/preflight-debug-capture.md`: when designing pre-embedded debug capture, true-device diagnostics, observability plans, or trace-based evidence.
+- `references/reusable-modules.md`: when deciding whether code should become reusable, portable, or part of a long-term capability module.
 - `references/role-development.md`: when planning or reviewing architecture, implementation, cloud/server work, readability, or game engineering.
 - `references/role-art.md`: when handling visuals, UI/UX, motion, audio, assets, experience review, or art vetoes.
 - `references/role-testing.md`: when designing tests, risk maps, code review, numeric balance, observability, release blocks, or release confidence.
