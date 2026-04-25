@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.8 - 2026-04-26
+
+### Added
+
+- 根级 `SKILL.md` 新增 Specialist Context Packet 最小格式，明确隔离模式、允许上下文和 withheld context。
+
+### Changed
+
+- 根级 `SKILL.md` 的 Task Brief 和 Agent Turn Result 与模板同步，补齐协议、门禁、影响层、权限、信任边界、工具证据字段。
+- 开发工具门禁 eval 扩展为多层功能场景，覆盖开发、测试、权限、信任边界与多层预编码门禁。
+
+### Fixed
+
+- 修复根入口格式落后于模板和 response contract，导致新安装 Skill 的 agent 可能漏掉工具门禁的问题。
+
+### Deprecated
+
+- N/A
+
 ## 0.1.7 - 2026-04-26
 
 ### Added

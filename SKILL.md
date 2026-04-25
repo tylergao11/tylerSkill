@@ -109,6 +109,12 @@ Mode:
 Task ID:
 Goal:
 Context Packet:
+Required Protocols:
+Pre-Code Gates:
+Affected Layers:
+Environment:
+Trust Boundary:
+Implementation Permission:
 Inputs:
 Constraints:
 Expected Output:
@@ -134,11 +140,37 @@ Risks:
 Next Action:
 Handoff To:
 Validation:
+Tool Gate:
+Tool Evidence:
 ```
 
 Workflow state may advance only when the response is valid, the status is explicit,
 required fields are present, artifacts are present or not applicable, validation is
-stated, and the next owner is named.
+stated, required tool gates are declared with evidence, and the next owner is named.
+
+### Specialist Context Packet
+
+When delegating work, include enough context for the specialist to act without
+leaking unrelated decisions:
+
+```markdown
+## Specialist Context Packet
+
+Role:
+Task ID:
+Context Version:
+Isolation Mode:
+Source Documents:
+Goal:
+Allowed Context:
+Withheld Context:
+Relevant Decisions:
+Relevant Constraints:
+Inputs and Artifacts:
+Acceptance Criteria:
+Out of Scope:
+Required Output Format:
+```
 
 ## Protocol Index
 

@@ -123,6 +123,29 @@ class DevelopmentToolGateDocumentationTests(unittest.TestCase):
 
         self.assertIn("development-daily-tools.md", eval_text)
         self.assertIn("mark completed without diff risk review", eval_text)
+        self.assertIn("multi-layer-feature-gate.md", eval_text)
+        self.assertIn("permission-environment.md", eval_text)
+        self.assertIn("data-privacy-trust-boundary.md", eval_text)
+        self.assertIn("Test Strategy Rationale", eval_text)
+
+    def test_root_skill_required_formats_match_workflow_contracts(self):
+        repo = Path(__file__).resolve().parents[1]
+        skill = (repo / "SKILL.md").read_text(encoding="utf-8")
+
+        for required in (
+            "Required Protocols:",
+            "Pre-Code Gates:",
+            "Affected Layers:",
+            "Trust Boundary:",
+            "Implementation Permission:",
+            "Tool Gate:",
+            "Tool Evidence:",
+            "Specialist Context Packet",
+            "Isolation Mode:",
+            "Allowed Context:",
+            "Withheld Context:",
+        ):
+            self.assertIn(required, skill)
 
 
 if __name__ == "__main__":
