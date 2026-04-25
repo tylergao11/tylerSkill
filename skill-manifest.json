@@ -1,6 +1,6 @@
 {
   "name": "agent-collaboration-os",
-  "version": "0.1.11",
+  "version": "0.1.13",
   "entry": "SKILL.md",
   "language_policy": {
     "agent_facing_markdown": "precise English",
@@ -20,15 +20,35 @@
     "submodule"
   ],
   "protocols": [
-    "references/context-packets.md",
     "references/agent-context-isolation.md",
-    "references/completion-trust-boundary.md",
+    "references/asset-provenance.md",
+    "references/blocker-recovery.md",
     "references/compatibility-registry.md",
+    "references/completion-trust-boundary.md",
+    "references/context-packets.md",
+    "references/data-privacy-trust-boundary.md",
+    "references/debug-bisection.md",
     "references/dependency-asset-audit.md",
+    "references/development-daily-tools.md",
+    "references/evolution.md",
+    "references/github-governance.md",
+    "references/installation.md",
     "references/layer-map-governance.md",
     "references/multi-layer-feature-gate.md",
-    "references/github-governance.md",
-    "references/role-audit.md"
+    "references/permission-environment.md",
+    "references/preflight-debug-capture.md",
+    "references/production-operations.md",
+    "references/project-assets-governance.md",
+    "references/protocol-routing.md",
+    "references/regression-iteration.md",
+    "references/release-rollback.md",
+    "references/response-contract.md",
+    "references/reusable-modules.md",
+    "references/role-art.md",
+    "references/role-audit.md",
+    "references/role-development.md",
+    "references/role-testing.md",
+    "references/runtime-versioning-budget.md"
   ],
   "github_templates": [
     ".github/CODEOWNERS",
@@ -46,6 +66,7 @@
     "scripts/design_packet_validator.py",
     "scripts/impact_analyzer.py",
     "scripts/diff_risk_reviewer.py",
-    "scripts/debug_bisection.py"
+    "scripts/debug_bisection.py",
+    "scripts/run_evals.py"
   ]
 }

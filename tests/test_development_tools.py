@@ -19,15 +19,22 @@ Public Interfaces: claimReward(userId).
 Risk Points: reward duplication and save failure.
 Test Strategy: unit test claim rules and save failure.
 Readability Rules: keep code direct and avoid generic managers.
+
+## Multi-Layer Pre-Code Gate
+
+Feature: Daily reward claim.
 Affected Layers: config, state, view, cloud.
-Layer Ownership: config owns reward values; state owns claim status; view owns popup; cloud owns persistence.
-Config Schema: reward id, amount, cooldown, eligibility.
-State Transitions: unclaimed -> claiming -> claimed or failed.
-Cloud or Service Boundary: claimReward cloud function.
-Environment and Permissions: development cloud environment, no production writes.
-Trust Boundary: client displays; cloud validates.
-UI Acceptance: popup shows reward, failure, and duplicate claim state.
-Per-Layer Tests: config schema, state transition, cloud validation, UI smoke.
+Required Protocols: role-development, development-daily-tools, layer-map-governance, permission-environment, data-privacy-trust-boundary, role-testing, response-contract.
+Engineering Plan: Present in this packet.
+Pattern Fit Check: Present in this packet.
+Layer Placement Review: config, state, view, and cloud files are separated.
+Environment Declaration: development cloud environment, no production writes.
+Permission Gate: no privileged production action.
+Trust Boundary Review: client displays; cloud validates.
+Test Strategy or Test Case Plan: config schema, state transition, cloud validation, UI smoke.
+Implementation Allowed: Yes.
+Blocking Evidence: None.
+Next Owner: Development Agent.
 
 ## Pattern Fit Check
 
@@ -58,6 +65,42 @@ class DesignPacketValidatorTests(unittest.TestCase):
         self.assertFalse(result["ok"])
         self.assertTrue(
             any("Chosen Architecture" in error for error in result["errors"])
+        )
+
+    def test_rejects_missing_multi_layer_gate_section(self):
+        packet = VALID_PACKET.replace(
+            "## Multi-Layer Pre-Code Gate",
+            "## Not The Multi-Layer Gate",
+        )
+
+        result = validate_design_packet(packet, require_multi_layer=True)
+
+        self.assertFalse(result["ok"])
+        self.assertTrue(
+            any("Multi-Layer Pre-Code Gate" in error for error in result["errors"])
+        )
+
+    def test_rejects_missing_multi_layer_implementation_decision(self):
+        packet = VALID_PACKET.replace("Implementation Allowed: Yes.\n", "")
+
+        result = validate_design_packet(packet, require_multi_layer=True)
+
+        self.assertFalse(result["ok"])
+        self.assertTrue(
+            any("Implementation Allowed" in error for error in result["errors"])
+        )
+
+    def test_rejects_missing_multi_layer_testing_evidence(self):
+        packet = VALID_PACKET.replace(
+            "Test Strategy or Test Case Plan: config schema, state transition, cloud validation, UI smoke.\n",
+            "",
+        )
+
+        result = validate_design_packet(packet, require_multi_layer=True)
+
+        self.assertFalse(result["ok"])
+        self.assertTrue(
+            any("Test Strategy or Test Case Plan" in error for error in result["errors"])
         )
 
 
@@ -229,6 +272,18 @@ class CompletionTrustBoundaryDocumentationTests(unittest.TestCase):
         self.assertIn("github-governance.md", eval_text)
         self.assertIn("Completion Audit Report", eval_text)
         self.assertIn("treat main agent self-check as proof", eval_text)
+
+    def test_eval_blocks_release_confidence_without_evidence(self):
+        repo = Path(__file__).resolve().parents[1]
+        eval_text = (
+            repo / "evals" / "release-confidence-without-evidence.json"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("role-testing.md", eval_text)
+        self.assertIn("completion-trust-boundary.md", eval_text)
+        self.assertIn("role-audit.md", eval_text)
+        self.assertIn("Release Confidence", eval_text)
+        self.assertIn("accept release confidence without evidence", eval_text)
 
 
 if __name__ == "__main__":

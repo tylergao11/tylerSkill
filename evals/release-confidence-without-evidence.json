@@ -1,0 +1,23 @@
+{
+  "name": "release confidence without evidence",
+  "prompt": "Testing Agent returns Release Confidence: Ready for a reward and cloud feature, but provides no passed checks, no open issue review, and no audit handoff.",
+  "expected_protocols": [
+    "role-testing.md",
+    "completion-trust-boundary.md",
+    "role-audit.md",
+    "release-rollback.md",
+    "github-governance.md"
+  ],
+  "expected_outputs": [
+    "Release Confidence",
+    "Completion Audit Report",
+    "Evidence Class",
+    "Release Plan",
+    "GitHub Setup Check"
+  ],
+  "must_not": [
+    "accept release confidence without evidence",
+    "treat testing agent ready as proof",
+    "skip audit before release readiness"
+  ]
+}

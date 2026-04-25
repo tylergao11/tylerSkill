@@ -6,6 +6,11 @@ import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
+try:
+    from scripts.run_evals import run_evals
+except ModuleNotFoundError:
+    from run_evals import run_evals
+
 
 FORBIDDEN_PATTERNS = ("TO" + "DO", "T" + "BD", "FIX" + "ME")
 REQUIRED_FILES = (
@@ -180,38 +185,9 @@ def check_protocol_routing(repo, result):
 
 
 def check_evals(repo, result):
-    eval_dir = repo / "evals"
-    if not eval_dir.exists():
-        result.errors.append("Missing evals directory")
-        return
-    for eval_file in sorted(eval_dir.glob("*.json")):
-        result.checked.append(str(eval_file.relative_to(repo)))
-        try:
-            data = json.loads(eval_file.read_text(encoding="utf-8"))
-        except json.JSONDecodeError as exc:
-            result.errors.append(f"Invalid eval JSON {eval_file.relative_to(repo)}: {exc}")
-            continue
-        for key in ("name", "prompt", "expected_protocols", "expected_outputs", "must_not"):
-            if key not in data:
-                result.errors.append(f"Eval {eval_file.relative_to(repo)} missing key: {key}")
-        for protocol in data.get("expected_protocols", []):
-            result.checked.append(f"eval:{protocol}")
-            if not (repo / "references" / protocol).exists():
-                result.errors.append(
-                    f"Eval {eval_file.relative_to(repo)} references missing protocol: {protocol}"
-                )
-        protocol_text = ""
-        for protocol in data.get("expected_protocols", []):
-            path = repo / "references" / protocol
-            if path.exists():
-                protocol_text += "\n" + path.read_text(encoding="utf-8")
-        for output in data.get("expected_outputs", []):
-            result.checked.append(f"eval-output:{output}")
-            pattern = rf"^#+\s+{re.escape(output)}\s*$"
-            if not re.search(pattern, protocol_text, re.MULTILINE) and output not in protocol_text:
-                result.errors.append(
-                    f"Eval {eval_file.relative_to(repo)} expects undefined output: {output}"
-                )
+    eval_result = run_evals(repo)
+    result.checked.extend(f"eval:{item}" for item in eval_result.checked)
+    result.errors.extend(f"Eval check failed: {error}" for error in eval_result.errors)
 
 
 def check_forbidden_placeholders(repo, result):

@@ -6,6 +6,7 @@ from pathlib import Path
 
 from scripts.init_consumer_project import init_project
 from scripts.install_skill import build_install_plan
+from scripts.run_evals import run_evals
 from scripts.validate_skill_repo import validate_repo
 
 
@@ -58,6 +59,17 @@ class InstallSkillTests(unittest.TestCase):
             self.assertNotIn("references/full-draft.md", relative_sources)
             self.assertEqual(plan.skill_dir, destination / "agent-collaboration-os")
 
+    def test_manifest_protocols_cover_reference_directory(self):
+        repo = Path(__file__).resolve().parents[1]
+        manifest = json.loads((repo / "skill-manifest.json").read_text(encoding="utf-8"))
+        manifest_protocols = set(manifest["protocols"])
+        reference_protocols = {
+            path.relative_to(repo).as_posix()
+            for path in (repo / "references").glob("*.md")
+        }
+
+        self.assertEqual(manifest_protocols, reference_protocols)
+
 
 class ValidateSkillRepoTests(unittest.TestCase):
     def copy_repo(self, repo, destination):
@@ -71,6 +83,14 @@ class ValidateSkillRepoTests(unittest.TestCase):
         self.assertEqual(result.errors, [])
         self.assertIn("SKILL.md", result.checked)
         self.assertFalse((repo / "docs" / "Skill.md").exists())
+
+    def test_eval_runner_checks_all_scenarios(self):
+        repo = Path(__file__).resolve().parents[1]
+        result = run_evals(repo)
+
+        self.assertEqual(result.errors, [])
+        self.assertTrue(any("main-agent-self-check-claim.json" in item for item in result.checked))
+        self.assertTrue(any("release-confidence-without-evidence.json" in item for item in result.checked))
 
     def test_detects_missing_reference_from_skill_index(self):
         repo = Path(__file__).resolve().parents[1]

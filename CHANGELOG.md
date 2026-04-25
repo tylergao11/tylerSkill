@@ -1,5 +1,47 @@
 # Changelog
 
+## 0.1.13 - 2026-04-26
+
+### Added
+
+- 新增 `scripts/run_evals.py`，可单独执行 eval scenario checks，避免 eval 只隐藏在仓库 validator 内部。
+- `validate_skill_repo.py` 复用 eval runner，保证本地验证和独立 eval 命令一致。
+- 新增 eval runner 单元测试，覆盖 main-agent self-check 与 release confidence 场景。
+
+### Changed
+
+- `skill-manifest.json` tools 加入 `scripts/run_evals.py`。
+
+### Fixed
+
+- 修复 Testing Agent 指出的 eval 只有结构检查、缺少独立执行入口的问题。
+
+### Deprecated
+
+- N/A
+
+## 0.1.12 - 2026-04-26
+
+### Added
+
+- 新增 multi-layer gate 与 `design_packet_validator.py` 的 parity tests，覆盖缺少 `Multi-Layer Pre-Code Gate`、`Implementation Allowed`、测试证据的失败场景。
+- 新增 `release-confidence-without-evidence` eval，防止 Testing Agent 用无证据的 `Release Confidence: Ready` 推动发布。
+- 新增 manifest 协议覆盖测试，要求 `skill-manifest.json` 的 protocols 完整覆盖 `references/*.md`。
+
+### Changed
+
+- `design_packet_validator.py --require-multi-layer` 改为校验 `multi-layer-feature-gate.md` 中真实的 `Multi-Layer Pre-Code Gate` 字段。
+- `skill-manifest.json` 的 protocols 扩展为完整 reference 协议索引。
+
+### Fixed
+
+- 修复 Testing Agent 回归发现的 multi-layer protocol 与 validator 字段不一致问题。
+- 修复 manifest 漏报核心协议导致 agent 判断能力不完整的问题。
+
+### Deprecated
+
+- N/A
+
 ## 0.1.11 - 2026-04-26
 
 ### Added

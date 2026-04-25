@@ -30,15 +30,19 @@ PATTERN_FIT_FIELDS = (
 )
 
 MULTI_LAYER_FIELDS = (
+    "Feature",
     "Affected Layers",
-    "Layer Ownership",
-    "Config Schema",
-    "State Transitions",
-    "Cloud or Service Boundary",
-    "Environment and Permissions",
-    "Trust Boundary",
-    "UI Acceptance",
-    "Per-Layer Tests",
+    "Required Protocols",
+    "Engineering Plan",
+    "Pattern Fit Check",
+    "Layer Placement Review",
+    "Environment Declaration",
+    "Permission Gate",
+    "Trust Boundary Review",
+    "Test Strategy or Test Case Plan",
+    "Implementation Allowed",
+    "Blocking Evidence",
+    "Next Owner",
 )
 
 
@@ -75,6 +79,8 @@ def validate_design_packet(text, require_pattern_fit=False, require_multi_layer=
         warnings.append("Pattern Fit Check not present; acceptable only for low-risk direct changes.")
 
     if require_multi_layer:
+        if not _has_heading(text, "Multi-Layer Pre-Code Gate"):
+            errors.append("Missing required section: Multi-Layer Pre-Code Gate")
         for field in MULTI_LAYER_FIELDS:
             if not _field_is_present(text, field):
                 errors.append(f"Multi-layer gate missing or empty field: {field}")
@@ -84,7 +90,8 @@ def validate_design_packet(text, require_pattern_fit=False, require_multi_layer=
         "errors": errors,
         "warnings": warnings,
         "required_sections": ["Engineering Plan"]
-        + (["Pattern Fit Check"] if require_pattern_fit else []),
+        + (["Pattern Fit Check"] if require_pattern_fit else [])
+        + (["Multi-Layer Pre-Code Gate"] if require_multi_layer else []),
         "required_multi_layer_fields": list(MULTI_LAYER_FIELDS) if require_multi_layer else [],
     }
 
