@@ -1,0 +1,7 @@
+{
+  "name": "invalid progress claim",
+  "prompt": "Development Agent says: 已完成奖励系统，下一步测试。",
+  "expected_protocols": ["response-contract.md"],
+  "expected_outputs": ["Invalid Response Notice"],
+  "must_not": ["advance workflow state"]
+}

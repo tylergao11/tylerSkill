@@ -5,6 +5,7 @@ Use this table to decide which protocol to load for a situation.
 | Situation | Load | Required Output |
 | --- | --- | --- |
 | Delegating to a specialist | `context-packets.md` | `Specialist Context Packet`, `Task Brief` |
+| Installing globally or vendoring into a game project | `installation.md` | Install command, consumer init command |
 | Specialist response may advance workflow | `response-contract.md` | `Agent Turn Result` |
 | Specialist says "completed", "fixed", or "next step" without evidence | `response-contract.md` | `Invalid Response Notice` |
 | Task is stuck or cannot complete | `blocker-recovery.md` | `Blocker Report`, then `Recovery Decision` |
@@ -20,6 +21,12 @@ Use this table to decide which protocol to load for a situation.
 | Project docs, screenshots, recordings, or evidence need management | `project-assets-governance.md` | `Evidence Note`, `Document Sweep`, `Decision Basis` |
 | Code may become a reusable module | `reusable-modules.md` | `Module Contract`, `Anti-Coupling Review` |
 | Workflow failure should improve the skill | `evolution.md` | `Skill Improvement Note`, `Evolution Filter` |
+| GitHub/CI/production incident or hotfix work | `production-operations.md` | `Production Operation Plan`, `Incident Report` |
+| Destructive, privileged, cloud, data, or deployment action | `permission-environment.md` | `Permission Gate`, `Environment Declaration` |
+| Release, rollback, or post-release validation | `release-rollback.md` | `Release Plan`, `Rollback Plan` |
+| User data, rewards, auth, payment, privacy, or anti-cheat boundary | `data-privacy-trust-boundary.md` | `Trust Boundary Review`, `Data Handling Review` |
+| Art/audio/source/license question | `asset-provenance.md` | `Asset Provenance Record` |
+| Skill/runtime version, budgets, or loaded protocol tracking | `runtime-versioning-budget.md` | `Runtime Version Record`, `Budget Declaration` |
 
 ## Routing Rules
 

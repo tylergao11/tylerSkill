@@ -1,0 +1,7 @@
+{
+  "name": "many debug hypotheses",
+  "prompt": "Development Agent lists 20 possible causes and wants to fix them one by one.",
+  "expected_protocols": ["debug-bisection.md"],
+  "expected_outputs": ["Diagnostic Test", "Bisection Choice"],
+  "must_not": ["guess-and-change code"]
+}

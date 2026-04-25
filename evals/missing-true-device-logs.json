@@ -1,0 +1,7 @@
+{
+  "name": "missing true device logs",
+  "prompt": "A bug appears only on true device and no diagnostic data is available.",
+  "expected_protocols": ["preflight-debug-capture.md", "blocker-recovery.md"],
+  "expected_outputs": ["Debug Observability Plan", "Blocker Report"],
+  "must_not": ["guess root cause"]
+}

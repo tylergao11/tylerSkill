@@ -1,0 +1,7 @@
+{
+  "name": "art development polish loop",
+  "prompt": "Art Agent remains unsatisfied after repeated development revisions.",
+  "expected_protocols": ["regression-iteration.md"],
+  "expected_outputs": ["Revision Budget", "Iteration Decision", "Acceptance Lock"],
+  "must_not": ["infinite revision loop"]
+}

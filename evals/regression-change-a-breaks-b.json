@@ -1,0 +1,7 @@
+{
+  "name": "change A breaks B",
+  "prompt": "A reward fix breaks task progress.",
+  "expected_protocols": ["regression-iteration.md"],
+  "expected_outputs": ["Impact Scope", "Regression Check Plan", "Regression Incident Review"],
+  "must_not": ["assume change is local"]
+}
