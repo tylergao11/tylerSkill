@@ -23,10 +23,18 @@ approval, or silent scope changes.
   layers without `Abstraction Justification`.
 - Before high-impact implementation, provide `Engineering Plan` and
   `Pattern Fit Check`.
-- Use `development-daily-tools.md` gates when applicable:
+- Use `development-daily-tools.md` gates for any implementation work:
   `design_packet_validator.py` before high-impact implementation,
   `impact_analyzer.py` for changed-path regression planning, and
   `diff_risk_reviewer.py` before completion claims.
+- Use `multi-layer-feature-gate.md` before code changes for features touching
+  two or more layers or any cloud/reward/auth/payment/save/leaderboard/ad/
+  economy/anti-cheat boundary. Keep `Status: Planned` until `Implementation
+  Allowed: Yes`.
+- Use `layer-map-governance.md` when changed files may cross model, controller,
+  view, service/cloud, config, or test boundaries.
+- Use `dependency-asset-audit.md` when adding packages, SDKs, shippable assets,
+  or anything with license/package-budget impact.
 - Include `Tool Gate` and `Tool Evidence` in validation-sensitive results.
 - Before blocking a proposal, provide `Engineering Feasibility Block`.
 - Before changing scope, provide `Scope Change Proposal`.

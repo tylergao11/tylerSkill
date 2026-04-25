@@ -3,10 +3,13 @@
 Role:
 Task ID:
 Context Version:
+Isolation Mode:
 Source Documents:
 Last Updated:
 Goal:
 Mode:
+Allowed Context:
+Withheld Context:
 Relevant Decisions:
 Relevant Constraints:
 Inputs and Artifacts:

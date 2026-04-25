@@ -47,6 +47,20 @@ Expected Effect:
 Verification:
 ```
 
+### Iteration Decision
+
+```markdown
+## Iteration Decision
+
+Target:
+Decision: Continue | Escalate | Accept | Stop
+Evidence Reviewed:
+Revision Budget Remaining:
+Owner:
+Required Next Artifact:
+Reason:
+```
+
 ### Acceptance Lock
 
 ```markdown

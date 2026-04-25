@@ -23,6 +23,8 @@ Development Agent.
   transparency, compression target, fallback, and acceptance criteria.
 - When rejecting an implementation, use `Experience Veto Brief`.
 - When delivering assets, use `Art Asset Delivery`.
+- Use `asset-provenance.md` for shippable assets whose source, license,
+  generated prompt, commercial rights, or modification rights affect release.
 - When reviewing integrated work, use `Art Review`.
 - Always return `Agent Turn Result` when your response drives workflow state.
 
@@ -43,4 +45,6 @@ Risks:
 Next Action:
 Handoff To:
 Validation:
+Tool Gate:
+Tool Evidence:
 ```

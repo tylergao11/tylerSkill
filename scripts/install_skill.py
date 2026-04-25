@@ -7,6 +7,7 @@ from pathlib import Path
 
 SKILL_NAME = "agent-collaboration-os"
 INCLUDE_DIRS = [
+    ".github",
     "agents",
     "examples",
     "modules",

@@ -19,6 +19,15 @@ Public Interfaces: claimReward(userId).
 Risk Points: reward duplication and save failure.
 Test Strategy: unit test claim rules and save failure.
 Readability Rules: keep code direct and avoid generic managers.
+Affected Layers: config, state, view, cloud.
+Layer Ownership: config owns reward values; state owns claim status; view owns popup; cloud owns persistence.
+Config Schema: reward id, amount, cooldown, eligibility.
+State Transitions: unclaimed -> claiming -> claimed or failed.
+Cloud or Service Boundary: claimReward cloud function.
+Environment and Permissions: development cloud environment, no production writes.
+Trust Boundary: client displays; cloud validates.
+UI Acceptance: popup shows reward, failure, and duplicate claim state.
+Per-Layer Tests: config schema, state transition, cloud validation, UI smoke.
 
 ## Pattern Fit Check
 
@@ -34,7 +43,11 @@ Exit Criteria: Tests pass and reward popup reflects saved state.
 
 class DesignPacketValidatorTests(unittest.TestCase):
     def test_accepts_complete_high_impact_packet(self):
-        result = validate_design_packet(VALID_PACKET, require_pattern_fit=True)
+        result = validate_design_packet(
+            VALID_PACKET,
+            require_pattern_fit=True,
+            require_multi_layer=True,
+        )
 
         self.assertTrue(result["ok"])
         self.assertEqual(result["errors"], [])
@@ -56,6 +69,14 @@ class ImpactAnalyzerTests(unittest.TestCase):
         self.assertIn("configuration", result["categories"])
         self.assertIn("state", result["categories"])
         self.assertTrue(any("config schema" in item for item in result["regression_checks"]))
+
+    def test_reward_ui_is_not_misclassified_as_configuration(self):
+        result = analyze_impact(["src/ui/RewardPanel.tsx", "cloud/functions/claimReward/index.ts"])
+
+        self.assertIn("presentation", result["categories"])
+        self.assertIn("cloud", result["categories"])
+        self.assertIn("economy-domain", result["categories"])
+        self.assertNotIn("configuration", result["categories"])
 
 
 class DiffRiskReviewerTests(unittest.TestCase):

@@ -7,7 +7,8 @@ from pathlib import Path
 
 RISK_RULES = (
     ("cloud", ("cloud", "server", "api", "auth", "payment", "database")),
-    ("configuration", ("config", "configs", "balance", "reward", "level", "economy")),
+    ("configuration", ("config", "configs", "settings", "balance")),
+    ("economy-domain", ("reward", "level", "economy", "gacha", "drop")),
     ("state", ("state", "store", "save", "model", "session")),
     ("presentation", ("view", "ui", "scene", "animation", "audio", "asset", "sprite")),
     ("tests", ("test", "tests", "spec", "__tests__")),
@@ -34,13 +35,35 @@ def _changed_files_from_git(repo, base):
 
 def classify_file(path):
     lower = _normalize(path).lower()
+    segments = [segment for segment in lower.split("/") if segment]
+    tokens = set(segments)
+    for segment in segments:
+        stem = segment.rsplit(".", 1)[0]
+        tokens.update(part for part in re_split_path_token(stem) if part)
     labels = []
     for label, needles in RISK_RULES:
-        if any(needle in lower for needle in needles):
+        if label in {"configuration", "presentation", "state", "tests", "tooling"}:
+            matched = any(needle in tokens for needle in needles)
+        else:
+            matched = any(needle in lower for needle in needles)
+        if matched:
             labels.append(label)
     if not labels:
         labels.append("general")
     return labels
+
+
+def re_split_path_token(value):
+    token = ""
+    for char in value:
+        if char.isalnum():
+            token += char.lower()
+        else:
+            if token:
+                yield token
+                token = ""
+    if token:
+        yield token
 
 
 def analyze_impact(files):
@@ -55,6 +78,8 @@ def analyze_impact(files):
         regression_checks.append("Verify cloud/API permission, failure, retry, and trust-boundary behavior.")
     if "configuration" in categories:
         regression_checks.append("Validate config schema, numeric ranges, and representative balance cases.")
+    if "economy-domain" in categories:
+        regression_checks.append("Verify reward/economy outcomes, duplication protection, and player-facing state.")
     if "state" in categories:
         regression_checks.append("Run save/load, lifecycle, and state transition checks.")
     if "presentation" in categories:
@@ -73,7 +98,7 @@ def analyze_impact(files):
 
 
 def risk_level(categories, files):
-    high_risk = {"cloud", "configuration", "state", "tooling"}
+    high_risk = {"cloud", "configuration", "state", "tooling", "economy-domain"}
     if high_risk & set(categories):
         return "high"
     if len(files) >= 5 or "presentation" in categories:

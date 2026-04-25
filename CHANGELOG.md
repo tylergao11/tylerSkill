@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.6 - 2026-04-26
+
+### Added
+
+- 安装包纳入 `.github/` GitHub 门禁模板，避免 installed Skill 缺少外部门禁资源。
+- 通用 `Agent Turn Result` 与角色模板加入 `Tool Gate` / `Tool Evidence` 字段。
+
+### Changed
+
+- 强化开发、测试、美术角色模板对上下文隔离、层级校验、依赖素材审计、素材来源记录的触发。
+
+### Fixed
+
+- 修复 GitHub governance 文件只存在于母仓库、安装 Skill 后不可见的问题。
+
+### Deprecated
+
+- N/A
+
 ## 0.1.5 - 2026-04-26
 
 ### Added

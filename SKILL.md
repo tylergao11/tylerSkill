@@ -93,6 +93,10 @@ Production Team Mode requires:
 7. Delivery: summarize what changed, what was verified, remaining risks, and next owner.
 8. Evolution: record process failures or reusable discoveries as skill improvement notes.
 
+For deterministic logic, Main Agent obtains Testing Agent `Test Strategy
+Rationale` or `Test Case Plan` before Development Agent implementation. If this
+does not apply, the Task Brief must state why.
+
 ## Required Formats
 
 ### Task Brief
@@ -150,6 +154,7 @@ Load only what is needed:
 - `references/debug-bisection.md`: when a bug has many hypotheses, fixes have failed, or an agent wants to guess-and-change code.
 - `references/preflight-debug-capture.md`: when designing pre-embedded debug capture, true-device diagnostics, observability plans, or trace-based evidence.
 - `references/development-daily-tools.md`: when Development Agent needs design packet validation, impact analysis, or diff risk review during routine implementation.
+- `references/multi-layer-feature-gate.md`: when a game feature touches two or more layers or any cloud, reward, auth, payment, save, leaderboard, or anti-cheat boundary.
 - `references/reusable-modules.md`: when deciding whether code should become reusable, portable, or part of a long-term capability module.
 - `references/layer-map-governance.md`: when checking whether changed files respect model/controller/view/service/config/test layer boundaries.
 - `references/role-development.md`: when planning or reviewing architecture, implementation, cloud/server work, readability, or game engineering.

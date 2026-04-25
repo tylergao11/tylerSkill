@@ -15,6 +15,7 @@ Use this table to decide which protocol to load for a situation.
 | True-device diagnostics or pre-embedded logs are needed | `preflight-debug-capture.md` | `Debug Observability Plan`, `Debug Capture Digest` |
 | Development architecture or readability is in question | `role-development.md` | `Engineering Plan`, `Pattern Fit Check` |
 | Development work needs pre-code design validation, impact analysis, or completion risk review | `development-daily-tools.md` | Tool output plus `Regression Check Plan` or `Agent Turn Result` |
+| Game feature touches two or more layers, cloud, reward, auth, payment, save data, leaderboard, ads, economy, or anti-cheat | `multi-layer-feature-gate.md` | `Multi-Layer Pre-Code Gate` |
 | Code seems over-abstracted | `role-development.md` | `Over-Abstraction Block` |
 | Visual, motion, audio, or asset work is needed | `role-art.md` | `Art Asset Delivery`, `Art Review` |
 | Art rejects an implementation | `role-art.md` | `Experience Veto Brief` |

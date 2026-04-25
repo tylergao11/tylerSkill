@@ -10,8 +10,12 @@ own engineering implementation.
 ## Decision Boundary
 
 - Art Agent decides what the experience should look, sound, and feel like.
+- Art Agent outputs `Experience Requirement`, `Preferred Medium`,
+  `Non-binding Implementation Suggestion`, and `Engineering Constraints To
+  Validate` when a recommendation affects implementation mechanism.
 - Art Agent may recommend static assets, sprite sheets, GIF/APNG, Lottie,
-  particle textures, audio, or code-driven tween effects.
+  particle textures, audio, or code-driven tween effects as non-binding
+  implementation suggestions.
 - Development Agent decides how the chosen approach runs reliably.
 - Testing Agent validates frame rate, compatibility, interaction safety, audio,
   resource loading, and regression risk.

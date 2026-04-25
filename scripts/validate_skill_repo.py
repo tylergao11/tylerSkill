@@ -31,6 +31,20 @@ DISALLOWED_RUNTIME_DIRS = (
     "docs",
     "evidence",
 )
+RUNTIME_OUTPUT_PARTS = {
+    "handoffs",
+    "reviews",
+    "decisions",
+    "archive",
+    "evidence",
+    "screenshots",
+    "recordings",
+    "logs",
+    "test-results",
+}
+RUNTIME_OUTPUT_FILENAMES = {
+    "project-memory.md",
+}
 
 
 @dataclass
@@ -106,15 +120,18 @@ def check_skill_manifest(repo, result):
         result.errors.append(f"Invalid skill-manifest.json: {exc}")
         return
 
-    version = (repo / "VERSION").read_text(encoding="utf-8").strip()
+    version_path = repo / "VERSION"
+    if not version_path.exists():
+        return
+    version = version_path.read_text(encoding="utf-8").strip()
     if manifest.get("version") != version:
         result.errors.append("skill-manifest.json version does not match VERSION")
 
-    for key in ("protocols", "tools"):
+    for key in ("protocols", "tools", "github_templates"):
         for item in manifest.get(key, []):
             result.checked.append(f"manifest:{item}")
             if not (repo / item).exists():
-                result.errors.append(f"skill-manifest.json references missing {key[:-1]}: {item}")
+                result.errors.append(f"skill-manifest.json references missing item: {item}")
 
 
 def check_no_runtime_outputs(repo, result):
@@ -125,6 +142,15 @@ def check_no_runtime_outputs(repo, result):
             result.errors.append(
                 f"Runtime output directory must not live in skill repository: {directory}"
             )
+    for path in iter_text_files(repo):
+        relative = path.relative_to(repo)
+        parts = {part.lower() for part in relative.parts}
+        name = relative.name.lower()
+        if parts & RUNTIME_OUTPUT_PARTS or name in RUNTIME_OUTPUT_FILENAMES:
+            if relative.parts[0] not in {".git", ".superpowers"}:
+                result.errors.append(
+                    f"Runtime output path must not live in skill repository: {relative.as_posix()}"
+                )
 
 
 def check_reference_links(repo, result):
@@ -174,6 +200,18 @@ def check_evals(repo, result):
                 result.errors.append(
                     f"Eval {eval_file.relative_to(repo)} references missing protocol: {protocol}"
                 )
+        protocol_text = ""
+        for protocol in data.get("expected_protocols", []):
+            path = repo / "references" / protocol
+            if path.exists():
+                protocol_text += "\n" + path.read_text(encoding="utf-8")
+        for output in data.get("expected_outputs", []):
+            result.checked.append(f"eval-output:{output}")
+            pattern = rf"^#+\s+{re.escape(output)}\s*$"
+            if not re.search(pattern, protocol_text, re.MULTILINE) and output not in protocol_text:
+                result.errors.append(
+                    f"Eval {eval_file.relative_to(repo)} expects undefined output: {output}"
+                )
 
 
 def check_forbidden_placeholders(repo, result):
@@ -216,6 +254,74 @@ def check_codeowners(repo, result):
             result.errors.append(f"CODEOWNERS contains placeholder owner: {item}")
 
 
+def check_github_governance(repo, result):
+    skill_ci = repo / ".github" / "workflows" / "skill-ci.yml"
+    if skill_ci.exists():
+        text = skill_ci.read_text(encoding="utf-8")
+        required = (
+            "python -m unittest discover tests",
+            "python scripts/validate_skill_repo.py",
+            "python scripts/install_skill.py --dry-run",
+        )
+        for command in required:
+            result.checked.append(f"github-ci:{command}")
+            if command not in text:
+                result.errors.append(f"Skill CI missing required command: {command}")
+
+    codeql = repo / ".github" / "workflows" / "codeql.yml"
+    if codeql.exists():
+        text = codeql.read_text(encoding="utf-8")
+        for needle in ("github/codeql-action/init@v3", "github/codeql-action/analyze@v3", "languages: python"):
+            result.checked.append(f"codeql:{needle}")
+            if needle not in text:
+                result.errors.append(f"CodeQL workflow missing required entry: {needle}")
+
+    release = repo / ".github" / "workflows" / "release.yml"
+    if release.exists():
+        text = release.read_text(encoding="utf-8")
+        for needle in ('test "${GITHUB_REF_NAME}" = "v${VERSION_VALUE}"', 'grep -q "## ${VERSION_VALUE} " CHANGELOG.md'):
+            result.checked.append(f"release:{needle}")
+            if needle not in text:
+                result.errors.append(f"Release workflow missing version gate: {needle}")
+
+    ruleset = repo / ".github" / "rulesets" / "main-protection.json"
+    if ruleset.exists():
+        try:
+            data = json.loads(ruleset.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            result.errors.append(f"Invalid ruleset JSON: {exc}")
+            return
+        result.checked.append("ruleset:enforcement")
+        if data.get("enforcement") != "active":
+            result.errors.append("Ruleset enforcement must be active")
+        rules = data.get("rules", [])
+        rule_types = {rule.get("type") for rule in rules}
+        for required_type in ("pull_request", "required_status_checks", "deletion", "non_fast_forward"):
+            result.checked.append(f"ruleset:{required_type}")
+            if required_type not in rule_types:
+                result.errors.append(f"Ruleset missing rule: {required_type}")
+        pr = next((rule for rule in rules if rule.get("type") == "pull_request"), {})
+        params = pr.get("parameters", {})
+        for key in (
+            "dismiss_stale_reviews_on_push",
+            "require_code_owner_review",
+            "require_last_push_approval",
+            "required_review_thread_resolution",
+        ):
+            result.checked.append(f"ruleset-pr:{key}")
+            if params.get(key) is not True:
+                result.errors.append(f"Ruleset pull_request must enable: {key}")
+        checks = next((rule for rule in rules if rule.get("type") == "required_status_checks"), {})
+        contexts = {
+            item.get("context")
+            for item in checks.get("parameters", {}).get("required_status_checks", [])
+        }
+        for context in ("Validate skill repository", "Analyze Python"):
+            result.checked.append(f"ruleset-check:{context}")
+            if context not in contexts:
+                result.errors.append(f"Ruleset missing required status check: {context}")
+
+
 def run_unit_tests(repo, result):
     completed = subprocess.run(
         [sys.executable, "-m", "unittest", "discover", "tests"],
@@ -243,6 +349,7 @@ def validate_repo(repo, run_tests=True):
     check_forbidden_placeholders(repo, result)
     check_pycache_not_tracked(repo, result)
     check_codeowners(repo, result)
+    check_github_governance(repo, result)
     if run_tests:
         run_unit_tests(repo, result)
     return result

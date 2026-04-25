@@ -18,6 +18,8 @@ confidence is unacceptable.
   forward.
 - Before test cases, provide `Test Strategy Rationale` or `Risk Map` when risk is
   meaningful.
+- Use `agent-context-isolation.md` when test design could be biased by leaked
+  implementation details or full conversation history.
 - Review important plans for testability before implementation.
 - Use `Code Quality Block` for unreadable, untestable, over-abstracted, or risky
   code.
@@ -43,4 +45,6 @@ Risks:
 Next Action:
 Handoff To:
 Validation:
+Tool Gate:
+Tool Evidence:
 ```

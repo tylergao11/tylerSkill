@@ -29,6 +29,18 @@ PATTERN_FIT_FIELDS = (
     "Exit Criteria",
 )
 
+MULTI_LAYER_FIELDS = (
+    "Affected Layers",
+    "Layer Ownership",
+    "Config Schema",
+    "State Transitions",
+    "Cloud or Service Boundary",
+    "Environment and Permissions",
+    "Trust Boundary",
+    "UI Acceptance",
+    "Per-Layer Tests",
+)
+
 
 def _has_heading(text, heading):
     pattern = rf"^##\s+{re.escape(heading)}\s*$"
@@ -40,7 +52,7 @@ def _field_is_present(text, field):
     return re.search(pattern, text, re.MULTILINE) is not None
 
 
-def validate_design_packet(text, require_pattern_fit=False):
+def validate_design_packet(text, require_pattern_fit=False, require_multi_layer=False):
     errors = []
     warnings = []
 
@@ -62,12 +74,18 @@ def validate_design_packet(text, require_pattern_fit=False):
     else:
         warnings.append("Pattern Fit Check not present; acceptable only for low-risk direct changes.")
 
+    if require_multi_layer:
+        for field in MULTI_LAYER_FIELDS:
+            if not _field_is_present(text, field):
+                errors.append(f"Multi-layer gate missing or empty field: {field}")
+
     return {
         "ok": not errors,
         "errors": errors,
         "warnings": warnings,
         "required_sections": ["Engineering Plan"]
         + (["Pattern Fit Check"] if require_pattern_fit else []),
+        "required_multi_layer_fields": list(MULTI_LAYER_FIELDS) if require_multi_layer else [],
     }
 
 
@@ -81,6 +99,11 @@ def main(argv=None):
         action="store_true",
         help="Require Pattern Fit Check for high-impact or architecture-changing work.",
     )
+    parser.add_argument(
+        "--require-multi-layer",
+        action="store_true",
+        help="Require multi-layer game feature gate fields.",
+    )
     args = parser.parse_args(argv)
 
     try:
@@ -89,7 +112,11 @@ def main(argv=None):
         print(f"design-packet-validator error: {exc}", file=sys.stderr)
         return 1
 
-    result = validate_design_packet(text, require_pattern_fit=args.require_pattern_fit)
+    result = validate_design_packet(
+        text,
+        require_pattern_fit=args.require_pattern_fit,
+        require_multi_layer=args.require_multi_layer,
+    )
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0 if result["ok"] else 1
 

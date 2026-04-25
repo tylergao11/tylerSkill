@@ -28,6 +28,8 @@ Risks:
 Next Action:
 Handoff To:
 Validation:
+Tool Gate:
+Tool Evidence:
 ```
 
 ## State Transition Rule
@@ -45,6 +47,24 @@ Workflow state may advance only when:
 
 `Completed` requires artifacts, validation, remaining risks or `None`, handoff
 target, and next action.
+
+When a role-specific protocol requires tool evidence, `Tool Gate` and
+`Tool Evidence` are required state-transition fields, not optional decoration.
+
+`Validation` must be evidence-bearing. Use this shape when work is completed,
+vetoed, blocked by quality, or release-relevant:
+
+```markdown
+Validation:
+- Method:
+- Command or Review Source:
+- Result:
+- Artifact Path:
+- Reviewer:
+- Limits:
+```
+
+`Artifacts: Not Applicable` requires a reason and Main Agent acceptance.
 
 `Blocked` requires blocking reason, needed decision or missing input, recommended
 default or workaround, and handoff target.
@@ -75,6 +95,11 @@ Retry Instruction:
 
 Main Agent may normalize useful but malformed specialist content only when doing
 so does not invent facts.
+
+Main Agent must not normalize a malformed response into `Completed`, `Vetoed`,
+`Release Confidence: Ready`, or any other workflow-advancing state unless the
+source response already contains artifacts and validation evidence verbatim.
+Otherwise require specialist confirmation.
 
 ```markdown
 ## Main Agent Normalization

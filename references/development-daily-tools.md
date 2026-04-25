@@ -69,6 +69,11 @@ Agent use:
 2. Copy the reported `risk_level` and `regression_checks` into the plan.
 3. Use the checks to choose focused tests and manual/true-device verification.
 
+## Regression Check Plan
+
+Use the `impact_analyzer.py` result to populate the formal `Regression Check
+Plan` from `regression-iteration.md` whenever changed paths are known.
+
 ## Diff Risk Reviewer
 
 Command:

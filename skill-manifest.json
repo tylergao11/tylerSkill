@@ -1,6 +1,6 @@
 {
   "name": "agent-collaboration-os",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "entry": "SKILL.md",
   "language_policy": {
     "agent_facing_markdown": "precise English",
@@ -25,7 +25,18 @@
     "references/compatibility-registry.md",
     "references/dependency-asset-audit.md",
     "references/layer-map-governance.md",
+    "references/multi-layer-feature-gate.md",
     "references/github-governance.md"
+  ],
+  "github_templates": [
+    ".github/CODEOWNERS",
+    ".github/PULL_REQUEST_TEMPLATE.md",
+    ".github/dependabot.yml",
+    ".github/workflows/skill-ci.yml",
+    ".github/workflows/codeql.yml",
+    ".github/workflows/release.yml",
+    ".github/rulesets/main-protection.json",
+    ".github/repository-settings.md"
   ],
   "tools": [
     "scripts/layer_map_validator.py",

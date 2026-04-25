@@ -26,6 +26,12 @@ jobs:
           python -m unittest discover tests
           python scripts/validate_skill_repo.py
 
+      - name: Verify tag matches VERSION and CHANGELOG
+        run: |
+          VERSION_VALUE="$(cat VERSION)"
+          test "${GITHUB_REF_NAME}" = "v${VERSION_VALUE}"
+          grep -q "## ${VERSION_VALUE} " CHANGELOG.md
+
       - name: Build installable skill directory
         run: |
           python scripts/install_skill.py --dest dist --force

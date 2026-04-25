@@ -10,3 +10,5 @@ Risks:
 Next Action:
 Handoff To:
 Validation:
+Tool Gate:
+Tool Evidence:

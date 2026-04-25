@@ -100,7 +100,9 @@ def init_project(root, profile=None, vendor_path=None, copy_templates=False):
             created.append(rel_posix(keep, root))
 
     profile_name = profile or "custom"
-    vendor_text = str(vendor_path) if vendor_path else ""
+    if vendor_path and not Path(vendor_path).is_absolute():
+        vendor_path = root / vendor_path
+    vendor_text = rel_posix(vendor_path, root) if vendor_path and vendor_path.is_relative_to(root) else (str(vendor_path) if vendor_path else "")
     memory = root / "docs" / "project-notes" / "project-memory.md"
     memory_text = PROJECT_MEMORY.format(
         skill_version=read_version(),
@@ -153,7 +155,7 @@ def main():
 
     root = Path(args.project_dir).resolve()
     root.mkdir(parents=True, exist_ok=True)
-    vendor_path = Path(args.vendor_path).resolve() if args.vendor_path else None
+    vendor_path = Path(args.vendor_path) if args.vendor_path else None
     created = init_project(
         root,
         profile=args.profile,

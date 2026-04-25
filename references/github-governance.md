@@ -54,6 +54,11 @@ Every agent-created pull request must include:
 - Whether `VERSION` and `CHANGELOG.md` changed.
 - Whether runtime files were kept out of the skill path.
 
+## PR gate evidence
+
+Record PR number, required reviewers, CODEOWNERS result, changed checks, and
+links to passing CI before merge.
+
 ## CI Gate
 
 Required checks for this skill repository:
@@ -67,6 +72,11 @@ CodeQL
 
 Do not merge when these checks fail. If a check cannot run, return `Blocked`
 with the missing GitHub permission, failing job, or required setup step.
+
+## CI gate evidence
+
+Record workflow run URL, commit SHA, required check names, conclusion, and any
+accepted limitations.
 
 ## Security Gate
 
