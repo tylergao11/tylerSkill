@@ -8,3 +8,4 @@
 .gitignore text eol=lf
 .gitattributes text eol=lf
 VERSION text eol=lf
+.github/CODEOWNERS text eol=lf
