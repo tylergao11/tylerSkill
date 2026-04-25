@@ -17,9 +17,8 @@ criteria, but not unrelated reasoning that could bias the audit.
 
 ## Required Behavior
 
-- Treat "completed", "fixed", "passed", "ready", and similar wording as claims,
-  not evidence.
-- Classify each claim as `Verified`, `Inferred`, or `Unverified`.
+- Use `completion-trust-boundary.md` for evidence classes and audit decision
+  rules.
 - Check whether required protocols were loaded and followed.
 - Check whether tool output, tests, screenshots, logs, review notes, or other
   artifacts actually support the claim.
@@ -43,7 +42,8 @@ Audit Agent checks:
 
 ## Completion Audit Report
 
-Use this report when auditing state-changing claims:
+Use the report shape from `completion-trust-boundary.md`. Do not invent a
+parallel audit format.
 
 ```markdown
 ## Completion Audit Report
@@ -51,7 +51,7 @@ Use this report when auditing state-changing claims:
 Task ID:
 Claim Audited:
 Claim Source:
-Evidence Class: Verified | Inferred | Unverified
+Evidence Class:
 Evidence Reviewed:
 Required Protocols Checked:
 Missing Evidence:

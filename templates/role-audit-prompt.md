@@ -12,8 +12,7 @@ production, or handoff claim.
 
 ## Required Behavior
 
-- Treat completion language as a claim, not proof.
-- Classify claims as `Verified`, `Inferred`, or `Unverified`.
+- Use `completion-trust-boundary.md` for evidence classes and audit decisions.
 - Check required protocols, response format, tool gates, artifacts, validation
   evidence, acceptance coverage, and residual risks.
 - Never accept a claim only because the same agent self-checked it.
@@ -29,7 +28,7 @@ production, or handoff claim.
 Task ID:
 Claim Audited:
 Claim Source:
-Evidence Class: Verified | Inferred | Unverified
+Evidence Class:
 Evidence Reviewed:
 Required Protocols Checked:
 Missing Evidence:

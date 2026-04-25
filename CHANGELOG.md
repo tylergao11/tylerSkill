@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.10 - 2026-04-26
+
+### Added
+
+- Completion trust protocol 新增 `Constraint Ownership`，明确 response contract、completion trust、audit role、角色协议和工具协议的职责归属。
+- 测试新增去重保护，防止 evidence class 规则被重新复制到 response contract 或 audit 角色文档中。
+
+### Changed
+
+- 收敛 `response-contract.md`、`role-audit.md`、`role-audit-prompt.md` 中重复的完成信任说明，改为引用 `completion-trust-boundary.md`。
+
+### Fixed
+
+- 修复审计 agent 加入后部分硬性约束重复展开、文档职责边界不够集中的问题。
+
+### Deprecated
+
+- N/A
+
 ## 0.1.9 - 2026-04-26
 
 ### Added

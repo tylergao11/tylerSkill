@@ -181,8 +181,28 @@ class CompletionTrustBoundaryDocumentationTests(unittest.TestCase):
             "Request More Evidence",
         ):
             self.assertIn(required, protocol)
+
+        for required in (
+            "completion-trust-boundary.md",
+            "Completion Audit Report",
+            "Tool Gate",
+            "Tool Evidence",
+        ):
             self.assertIn(required, role)
             self.assertIn(required, prompt)
+
+        self.assertNotIn("Evidence Class: Verified | Inferred | Unverified", role)
+        self.assertNotIn("Evidence Class: Verified | Inferred | Unverified", prompt)
+
+    def test_completion_trust_rules_are_not_redefined_in_response_contract(self):
+        repo = Path(__file__).resolve().parents[1]
+        response_contract = (repo / "references" / "response-contract.md").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("completion-trust-boundary.md", response_contract)
+        self.assertNotIn("## Evidence Classes", response_contract)
+        self.assertNotIn("Evidence Class: Verified | Inferred | Unverified", response_contract)
 
     def test_eval_blocks_natural_language_completion_claims(self):
         repo = Path(__file__).resolve().parents[1]

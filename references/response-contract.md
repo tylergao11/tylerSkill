@@ -10,9 +10,6 @@ Natural-language progress claims do not advance workflow state.
 A turn is complete only when required fields, artifacts, validation, and handoff
 are present.
 
-For completion, release, production, or high-risk workflow transitions, the
-completion claim must also satisfy `completion-trust-boundary.md`.
-
 Invalid standalone claims include "completed", "next step", "fixed", "passed",
 "已完成", "下一步", "已修复", "已通过", and similar wording.
 
@@ -54,9 +51,9 @@ target, and next action.
 When a role-specific protocol requires tool evidence, `Tool Gate` and
 `Tool Evidence` are required state-transition fields, not optional decoration.
 
-`Completed` is still only a claim until its evidence class is known. Use
-`Verified`, `Inferred`, and `Unverified` from the completion trust boundary to
-avoid turning reasoning into evidence.
+For completion, release, production, or high-risk workflow transitions,
+`Completed` is only format-valid until `completion-trust-boundary.md` classifies
+the evidence and returns an audit decision.
 
 `Validation` must be evidence-bearing. Use this shape when work is completed,
 vetoed, blocked by quality, or release-relevant:

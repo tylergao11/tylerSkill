@@ -12,6 +12,19 @@ evidence, stated limits, and an audit decision when the work affects code,
 release risk, production state, user data, cloud behavior, payment, rewards,
 assets, or other agents' next actions.
 
+## Constraint Ownership
+
+Keep completion trust rules here. Other protocols should reference this file
+instead of restating the full rule.
+
+| Concern | Owner |
+| --- | --- |
+| Response shape and state transitions | `response-contract.md` |
+| Completion evidence classes and audit decisions | `completion-trust-boundary.md` |
+| Audit Agent authority and scope | `role-audit.md` |
+| Role-specific required evidence | The relevant role protocol |
+| Tool execution and machine-readable outputs | The relevant tool protocol |
+
 ## Evidence Classes
 
 Classify every completion statement into exactly one evidence class:
@@ -35,6 +48,9 @@ Invoke Audit Agent when:
 - Main Agent is about to tell the user that work is complete.
 
 ## Completion Audit Report
+
+`role-audit.md` and `templates/role-audit-prompt.md` should use this report
+shape instead of redefining a different audit format.
 
 ```markdown
 ## Completion Audit Report
