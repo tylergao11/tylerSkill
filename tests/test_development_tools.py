@@ -179,6 +179,9 @@ class CompletionTrustBoundaryDocumentationTests(unittest.TestCase):
             "Unverified",
             "Workflow Decision",
             "Request More Evidence",
+            "Main Agent completion summaries are auditable claims",
+            "project self-check",
+            "GitHub push/tag",
         ):
             self.assertIn(required, protocol)
 
@@ -214,6 +217,18 @@ class CompletionTrustBoundaryDocumentationTests(unittest.TestCase):
         self.assertIn("role-audit.md", eval_text)
         self.assertIn("Completion Audit Report", eval_text)
         self.assertIn("accept natural-language completion", eval_text)
+
+    def test_eval_blocks_main_agent_self_check_claim_without_audit(self):
+        repo = Path(__file__).resolve().parents[1]
+        eval_text = (
+            repo / "evals" / "main-agent-self-check-claim.json"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("completion-trust-boundary.md", eval_text)
+        self.assertIn("role-audit.md", eval_text)
+        self.assertIn("github-governance.md", eval_text)
+        self.assertIn("Completion Audit Report", eval_text)
+        self.assertIn("treat main agent self-check as proof", eval_text)
 
 
 if __name__ == "__main__":

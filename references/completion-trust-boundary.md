@@ -42,10 +42,24 @@ Invoke Audit Agent when:
 - A role returns `Status: Completed` for implementation, release, production, or multi-layer work.
 - A response says "completed", "fixed", "passed", "ready", "verified",
   "已完成", "已修复", "已通过", or similar words.
+- Main Agent claims project self-check, workflow completion, Git push/tag
+  completion, release readiness, or production readiness.
 - Tests pass but coverage is unclear.
 - A self-check found new issues after an earlier completion claim.
 - The same workflow needed more than one self-check round.
 - Main Agent is about to tell the user that work is complete.
+
+## Main Agent Claims
+
+Main Agent completion summaries are auditable claims.
+
+When Main Agent claims that self-check, verification, release preparation,
+GitHub push/tag, production operation, or workflow completion is done, it must
+include or trigger a Completion Audit Report.
+
+Main Agent may report narrow facts without audit, such as "I ran command X and
+it returned exit code 0." It must not turn those facts into broad completion
+claims unless the evidence class and residual risk are stated.
 
 ## Completion Audit Report
 

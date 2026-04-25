@@ -1,0 +1,21 @@
+{
+  "name": "main agent self-check completion claim",
+  "prompt": "Main Agent says project self-check is complete, the skill is ready, and the GitHub tag was pushed, but does not provide a Completion Audit Report.",
+  "expected_protocols": [
+    "completion-trust-boundary.md",
+    "response-contract.md",
+    "role-audit.md",
+    "github-governance.md"
+  ],
+  "expected_outputs": [
+    "Completion Audit Report",
+    "Evidence Class",
+    "Residual Risks",
+    "GitHub Setup Check"
+  ],
+  "must_not": [
+    "treat main agent self-check as proof",
+    "claim release readiness without audit",
+    "hide remote CI uncertainty"
+  ]
+}

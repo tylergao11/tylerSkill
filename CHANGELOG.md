@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.11 - 2026-04-26
+
+### Added
+
+- Completion trust protocol 新增 Main Agent Claims 规则，明确主 agent 的自检完成、workflow 完成、Git push/tag 完成、release readiness 也属于可审计完成声明。
+- 新增 `main-agent-self-check-claim` eval，防止主 agent 用自检完成声明绕过审计报告。
+
+### Changed
+
+- Completion Audit Trigger 扩展到主 agent 自检、GitHub 推送/tag、发布准备和生产准备声明。
+
+### Fixed
+
+- 修复主 agent 可能用“项目自检已完成”这类最终总结绕过 Audit Agent 的制度漏洞。
+
+### Deprecated
+
+- N/A
+
 ## 0.1.10 - 2026-04-26
 
 ### Added
