@@ -1,0 +1,21 @@
+{
+  "name": "completion claim without audit",
+  "prompt": "Development Agent says the reward feature is completed, tests passed, and the next step is release, but only provides a natural-language summary.",
+  "expected_protocols": [
+    "completion-trust-boundary.md",
+    "response-contract.md",
+    "role-audit.md",
+    "development-daily-tools.md"
+  ],
+  "expected_outputs": [
+    "Completion Audit Report",
+    "Invalid Response Notice",
+    "Tool Gate",
+    "Tool Evidence"
+  ],
+  "must_not": [
+    "accept natural-language completion",
+    "advance release without evidence",
+    "treat self-check as proof"
+  ]
+}

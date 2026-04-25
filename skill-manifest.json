@@ -1,6 +1,6 @@
 {
   "name": "agent-collaboration-os",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "entry": "SKILL.md",
   "language_policy": {
     "agent_facing_markdown": "precise English",
@@ -22,11 +22,13 @@
   "protocols": [
     "references/context-packets.md",
     "references/agent-context-isolation.md",
+    "references/completion-trust-boundary.md",
     "references/compatibility-registry.md",
     "references/dependency-asset-audit.md",
     "references/layer-map-governance.md",
     "references/multi-layer-feature-gate.md",
-    "references/github-governance.md"
+    "references/github-governance.md",
+    "references/role-audit.md"
   ],
   "github_templates": [
     ".github/CODEOWNERS",

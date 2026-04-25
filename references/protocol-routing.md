@@ -10,6 +10,7 @@ Use this table to decide which protocol to load for a situation.
 | Publishing, vendoring, or evaluating cross-agent compatibility | `compatibility-registry.md` | `Skill Registry Record` |
 | Specialist response may advance workflow | `response-contract.md` | `Agent Turn Result` |
 | Specialist says "completed", "fixed", or "next step" without evidence | `response-contract.md` | `Invalid Response Notice` |
+| Any agent claims completed, fixed, passed, ready, verified, or shippable | `completion-trust-boundary.md` | `Completion Audit Report` |
 | Task is stuck or cannot complete | `blocker-recovery.md` | `Blocker Report`, then `Recovery Decision` |
 | Bug has many hypotheses | `debug-bisection.md` | `Diagnostic Test`, `Bisection Choice` |
 | True-device diagnostics or pre-embedded logs are needed | `preflight-debug-capture.md` | `Debug Observability Plan`, `Debug Capture Digest` |
@@ -20,6 +21,7 @@ Use this table to decide which protocol to load for a situation.
 | Visual, motion, audio, or asset work is needed | `role-art.md` | `Art Asset Delivery`, `Art Review` |
 | Art rejects an implementation | `role-art.md` | `Experience Veto Brief` |
 | Testing strategy, numeric balance, or release risk is needed | `role-testing.md` | `Risk Map`, `Test Case Plan`, `Release Confidence` |
+| Completion evidence, skipped gates, false confidence, or self-check depth is in question | `role-audit.md` | `Completion Audit Report` |
 | A change may break nearby behavior | `regression-iteration.md` | `Impact Scope`, `Regression Check Plan` |
 | Art/dev revision loop repeats | `regression-iteration.md` | `Revision Budget`, `Iteration Decision`, `Acceptance Lock` |
 | Project docs, screenshots, recordings, or evidence need management | `project-assets-governance.md` | `Evidence Note`, `Document Sweep`, `Decision Basis` |

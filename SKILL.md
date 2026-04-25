@@ -1,6 +1,6 @@
 ---
 name: agent-collaboration-os
-description: A portable Agent Collaboration Operating System workflow for coordinating a main agent, development agent, art/audio agent, and testing agent across game projects or other production work. Use when planning, building, reviewing, or shipping work that benefits from role-based multi-agent collaboration, dual-mode execution, standardized task briefs, quality gates, context packets, and handoff protocols.
+description: A portable Agent Collaboration Operating System workflow for coordinating a main agent, development agent, art/audio agent, testing agent, and audit agent across game projects or other production work. Use when planning, building, reviewing, auditing, or shipping work that benefits from role-based multi-agent collaboration, dual-mode execution, standardized task briefs, quality gates, evidence gates, context packets, and handoff protocols.
 ---
 
 # Agent Collaboration OS
@@ -26,9 +26,11 @@ user-facing Markdown such as repository usage guides.
 - **Development Agent owns engineering**: client, server/cloud, architecture, implementation, build, performance, and maintainability.
 - **Art Agent owns experience intent**: visuals, UI/UX, motion, audio, asset specs, sensory polish, and experience review.
 - **Testing Agent owns quality risk**: test strategy, code review, numeric validation, observability, regression, and release confidence.
+- **Audit Agent owns completion trust**: completion claims, evidence chains, skipped protocol detection, verification coverage, and residual uncertainty.
 - **Explain before producing**: important work follows `Rationale -> Plan -> Output -> Review -> Acceptance`.
 - **Use acceptance and risk as the driver**: tests first for deterministic logic, acceptance first for experiential work, risk map first for high-risk systems.
-- **Progress claims do not advance state**: automation advances only through valid structured results.
+- **Agent completion is not evidence**: completion claims advance only after evidence is audited or explicitly marked unverified.
+- **Progress claims do not advance state**: automation advances only through valid structured results and required evidence gates.
 - **Blocked is a state, not an ending**: every blocker must include evidence, fallback options, and a recommended recovery path.
 - **Small is allowed, silent shrink is not**: scoped-down delivery requires explicit approval and recorded tradeoffs.
 - **The skill must evolve**: recurring failures become skill improvement notes.
@@ -90,8 +92,9 @@ Production Team Mode requires:
 4. Specialist Work: roles return structured, state-bearing responses.
 5. Integration: Main Agent merges outputs and resolves conflicts.
 6. Quality Gate: use the smallest gate that fits the risk.
-7. Delivery: summarize what changed, what was verified, remaining risks, and next owner.
-8. Evolution: record process failures or reusable discoveries as skill improvement notes.
+7. Audit Gate: for risky or release-relevant work, Audit Agent checks whether completion claims are supported by evidence.
+8. Delivery: summarize what changed, what was verified, what was only inferred, what remains unverified, and next owner.
+9. Evolution: record process failures or reusable discoveries as skill improvement notes.
 
 For deterministic logic, Main Agent obtains Testing Agent `Test Strategy
 Rationale` or `Test Case Plan` before Development Agent implementation. If this
@@ -182,6 +185,7 @@ Load only what is needed:
 - `references/installation.md`: when installing this skill globally or vendoring it into a consumer project.
 - `references/protocol-routing.md`: when deciding which protocol to load for a situation.
 - `references/response-contract.md`: when a role response may drive automation, completion, handoff, or state transition.
+- `references/completion-trust-boundary.md`: when any agent claims completion, fixed, passing, ready, verified, or release confidence.
 - `references/blocker-recovery.md`: when a task stalls, fails, lacks tools, lacks permissions, or cannot complete normally.
 - `references/debug-bisection.md`: when a bug has many hypotheses, fixes have failed, or an agent wants to guess-and-change code.
 - `references/preflight-debug-capture.md`: when designing pre-embedded debug capture, true-device diagnostics, observability plans, or trace-based evidence.
@@ -192,6 +196,7 @@ Load only what is needed:
 - `references/role-development.md`: when planning or reviewing architecture, implementation, cloud/server work, readability, or game engineering.
 - `references/role-art.md`: when handling visuals, UI/UX, motion, audio, assets, experience review, or art vetoes.
 - `references/role-testing.md`: when designing tests, risk maps, code review, numeric balance, observability, release blocks, or release confidence.
+- `references/role-audit.md`: when checking completion claims, evidence quality, skipped protocols, false confidence, or self-check depth.
 - `references/regression-iteration.md`: when revisions loop, art/dev disagree repeatedly, or a change may break nearby systems.
 - `references/project-assets-governance.md`: when managing project docs, screenshots, recordings, logs, evidence, decision references, archival, or cleanup.
 - `references/production-operations.md`: when triaging production incidents, GitHub/CI fixes, releases, hotfixes, or rollback decisions.
@@ -218,6 +223,7 @@ Each specialist context packet must include:
 - Acceptance criteria
 - Known risks
 - Out-of-scope items
+- Evidence status and audit scope when completion trust matters
 - Required output format
 
 Do not overload specialist agents with unrelated debate history, other roles'

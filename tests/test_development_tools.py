@@ -148,5 +148,53 @@ class DevelopmentToolGateDocumentationTests(unittest.TestCase):
             self.assertIn(required, skill)
 
 
+class CompletionTrustBoundaryDocumentationTests(unittest.TestCase):
+    def test_root_skill_defines_audit_agent_as_core_role(self):
+        repo = Path(__file__).resolve().parents[1]
+        skill = (repo / "SKILL.md").read_text(encoding="utf-8")
+
+        for required in (
+            "Audit Agent owns completion trust",
+            "Agent completion is not evidence",
+            "Audit Gate",
+            "completion-trust-boundary.md",
+            "role-audit.md",
+        ):
+            self.assertIn(required, skill)
+
+    def test_completion_audit_protocol_and_prompt_exist(self):
+        repo = Path(__file__).resolve().parents[1]
+        protocol = (repo / "references" / "completion-trust-boundary.md").read_text(
+            encoding="utf-8"
+        )
+        role = (repo / "references" / "role-audit.md").read_text(encoding="utf-8")
+        prompt = (repo / "templates" / "role-audit-prompt.md").read_text(
+            encoding="utf-8"
+        )
+
+        for required in (
+            "Completion Audit Report",
+            "Verified",
+            "Inferred",
+            "Unverified",
+            "Workflow Decision",
+            "Request More Evidence",
+        ):
+            self.assertIn(required, protocol)
+            self.assertIn(required, role)
+            self.assertIn(required, prompt)
+
+    def test_eval_blocks_natural_language_completion_claims(self):
+        repo = Path(__file__).resolve().parents[1]
+        eval_text = (
+            repo / "evals" / "completion-claim-without-audit.json"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("completion-trust-boundary.md", eval_text)
+        self.assertIn("role-audit.md", eval_text)
+        self.assertIn("Completion Audit Report", eval_text)
+        self.assertIn("accept natural-language completion", eval_text)
+
+
 if __name__ == "__main__":
     unittest.main()

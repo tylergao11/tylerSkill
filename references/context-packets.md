@@ -159,6 +159,15 @@ criteria, change summary, impact scope, known risks, and required release bar.
 Do not include speculative implementation ideas that were rejected unless they
 explain a current risk.
 
+### Audit Agent
+
+Include the exact claim being audited, the source response, acceptance criteria,
+artifacts, validation evidence, loaded protocols, tool outputs, known limits, and
+the decision that would advance if the audit accepts the claim.
+
+Do not include unrelated conversation history, persuasive summaries, or the
+audited agent's self-confidence unless they are part of the claim being audited.
+
 ## Context Refresh
 
 When a task lasts multiple turns, Main Agent should refresh the specialist packet

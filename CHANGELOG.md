@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.1.9 - 2026-04-26
+
+### Added
+
+- 新增 Audit Agent，专门审计完成声明、证据链、跳过门禁、未验证风险和自检深度。
+- 新增 `completion-trust-boundary.md`，规定 agent completion is not evidence，并要求区分 Verified / Inferred / Unverified。
+- 新增 audit 角色 prompt 与完成声明缺少审计的 eval 场景。
+
+### Changed
+
+- 根级 `SKILL.md` 将审计门禁加入默认工作流和核心角色边界。
+- response contract 要求高风险完成声明进入 completion trust boundary。
+
+### Fixed
+
+- 修复工作流过度依赖 agent 自称完成、缺少独立完成信任审计的问题。
+
+### Deprecated
+
+- N/A
+
 ## 0.1.8 - 2026-04-26
 
 ### Added
