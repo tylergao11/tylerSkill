@@ -171,6 +171,35 @@ class DevelopmentToolGateDocumentationTests(unittest.TestCase):
         self.assertIn("data-privacy-trust-boundary.md", eval_text)
         self.assertIn("Test Strategy Rationale", eval_text)
 
+    def test_skill_growth_loop_requires_project_learning_and_eval(self):
+        repo = Path(__file__).resolve().parents[1]
+        skill = (repo / "SKILL.md").read_text(encoding="utf-8")
+        evolution = (repo / "references" / "evolution.md").read_text(
+            encoding="utf-8"
+        )
+        routing = (repo / "references" / "protocol-routing.md").read_text(
+            encoding="utf-8"
+        )
+        eval_text = (repo / "evals" / "skill-growth-without-eval.json").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertIn("The skill must evolve", skill)
+        for required in (
+            "Growth Loop",
+            "Run Project -> Observe Failure -> Record Note -> Filter -> Patch Skill -> Add Eval/Test -> Version -> Reuse",
+            "Project Learning Log Entry",
+            "docs/project-notes/skill-learning-log.md",
+            "Required Eval or Test",
+            "Growth Review",
+            "The goal is compounding reliability, not a larger rulebook.",
+        ):
+            self.assertIn(required, evolution)
+
+        self.assertIn("Growth Review", routing)
+        self.assertIn("change skill without eval or test", eval_text)
+        self.assertIn("store project learning inside installed skill path", eval_text)
+
     def test_root_skill_required_formats_match_workflow_contracts(self):
         repo = Path(__file__).resolve().parents[1]
         skill = (repo / "SKILL.md").read_text(encoding="utf-8")

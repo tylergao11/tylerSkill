@@ -1,0 +1,19 @@
+{
+  "name": "skill growth without eval",
+  "prompt": "After a real project exposes a workflow failure, Main Agent wants to add a new rule directly to the core skill without recording a learning log entry, filtering whether it is reusable, or adding an eval/test.",
+  "expected_protocols": [
+    "evolution.md",
+    "project-assets-governance.md"
+  ],
+  "expected_outputs": [
+    "Project Learning Log Entry",
+    "Evolution Filter",
+    "Evolution Decision",
+    "Growth Review"
+  ],
+  "must_not": [
+    "promote one-off project detail into core skill",
+    "change skill without eval or test",
+    "store project learning inside installed skill path"
+  ]
+}

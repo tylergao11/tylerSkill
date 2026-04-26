@@ -19,6 +19,61 @@ Evidence Archive = proof and history
 
 Only reusable workflow lessons belong in the skill.
 
+## Growth Loop
+
+Use this loop during real projects. Do not try to perfect the skill by speculation
+alone.
+
+```text
+Run Project -> Observe Failure -> Record Note -> Filter -> Patch Skill -> Add Eval/Test -> Version -> Reuse
+```
+
+Main Agent owns the loop. Testing Agent and Audit Agent may challenge whether a
+lesson is real, reusable, and supported by enough evidence.
+
+Every promoted skill change should include at least one of:
+
+- A new or updated eval scenario.
+- A regression test.
+- A validator rule.
+- A template or protocol check that prevents the same failure.
+
+Do not promote a lesson to the skill when it only describes one project's
+content, taste, file names, assets, or temporary team preference.
+
+## Project Learning Log
+
+During active project work, record raw lessons in the consumer project, not in
+the skill directory.
+
+Recommended path:
+
+```text
+docs/project-notes/skill-learning-log.md
+```
+
+Use this shape:
+
+```markdown
+## Project Learning Log Entry
+
+Date:
+Project:
+Task ID:
+Observed Agent Failure:
+Impact:
+Evidence:
+Current Skill Rule:
+Proposed Improvement:
+Project-Specific Details:
+Reusable Lesson:
+Recommended Destination: Project Memory | Skill Reference | Core Skill | Tool | Eval/Test
+Owner:
+Status: Open | Accepted | Rejected | Promoted | Archived
+```
+
+The learning log is a staging area. It is not automatically part of the skill.
+
 ## Skill Improvement Note
 
 ```markdown
@@ -58,6 +113,7 @@ Would This Help Future Projects:
 Does It Add Context Cost:
 Should Update:
 Target File:
+Required Eval or Test:
 ```
 
 Promote a note only when it helps future projects more than it increases context
@@ -74,6 +130,7 @@ Reason:
 Context Cost:
 Expected Benefit:
 Target Location:
+Required Eval or Test:
 ```
 
 Decision meanings:
@@ -93,3 +150,39 @@ Use three cadences:
 
 When in doubt, prefer Project Memory or a reference file over expanding the core
 `Skill.md`.
+
+## Promotion Rules
+
+- One-off project facts stay in Project Memory.
+- Repeated agent failure patterns become Skill Improvement Notes.
+- A promoted rule must be placed at the narrowest useful level: tool, template,
+  reference protocol, or core skill.
+- Core skill changes require stronger justification than reference changes.
+- Any change that blocks, routes, or advances workflow state needs a matching
+  eval or regression test.
+- If a rule adds process cost, state what failure it prevents.
+- If a rule cannot be verified, mark it experimental and keep it in Project
+  Memory until real evidence exists.
+
+## Growth Review
+
+Run at phase boundaries, after serious blockers, and after release:
+
+```markdown
+## Growth Review
+
+Project:
+Phase:
+Skill Version Used:
+Failures Observed:
+Rules That Helped:
+Rules That Created Friction:
+Missing Tooling:
+Candidate Improvements:
+Rejected Improvements:
+Promotions:
+Required Evals or Tests:
+Next Skill Version:
+```
+
+The goal is compounding reliability, not a larger rulebook.

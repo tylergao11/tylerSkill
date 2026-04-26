@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.1.20 - 2026-04-27
+
+### Added
+
+- 新增 Growth Loop，明确 skill 通过真实项目运行、失败记录、过滤、补规则、补 eval/test、版本化来成长。
+- 新增 Project Learning Log Entry 与 Growth Review，用于把项目中的 agent 失败沉淀为可筛选的成长材料。
+- 新增 `skill-growth-without-eval` eval，防止直接把一次性项目经验塞进核心 skill。
+
+### Changed
+
+- Evolution Filter 和 Evolution Decision 增加 `Required Eval or Test`，要求被推广的规则必须有评测或测试承接。
+
+### Fixed
+
+- 修复成长机制过于静态的问题，避免 skill 只靠预想扩张而缺少实战反馈闭环。
+
+### Deprecated
+
+- N/A
+
 ## 0.1.19 - 2026-04-27
 
 ### Added

@@ -33,7 +33,7 @@ Use this table to decide which protocol to load for a situation.
 | Project docs, screenshots, recordings, or evidence need management | `project-assets-governance.md` | `Evidence Note`, `Document Sweep`, `Decision Basis` |
 | Code may become a reusable module | `reusable-modules.md` | `Module Contract`, `Anti-Coupling Review` |
 | Changed files may cross model/controller/view/service/config/test layers | `layer-map-governance.md` | `Layer Placement Review` |
-| Workflow failure should improve the skill | `evolution.md` | `Skill Improvement Note`, `Evolution Filter` |
+| Workflow failure should improve the skill | `evolution.md` | `Skill Improvement Note`, `Evolution Filter`, `Growth Review` |
 | GitHub issues, PRs, CI, CodeQL, Dependabot, CODEOWNERS, releases, or repository protections matter | `github-governance.md` | `GitHub Setup Check`, PR gate evidence, CI gate evidence |
 | GitHub/CI/production incident or hotfix work | `production-operations.md` | `Production Operation Plan`, `Incident Report` |
 | Destructive, privileged, cloud, data, or deployment action | `permission-environment.md` | `Permission Gate`, `Environment Declaration` |
