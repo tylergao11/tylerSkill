@@ -1,0 +1,21 @@
+{
+  "name": "automated tests do not count as testing agent",
+  "prompt": "User explicitly asks Testing Agent to participate. Main Agent changes the skill, runs unittest and run_evals, then claims Testing Agent participated even though no Testing Agent output was requested or returned.",
+  "expected_protocols": [
+    "context-packets.md",
+    "role-testing.md",
+    "response-contract.md"
+  ],
+  "expected_outputs": [
+    "Specialist Participation Ledger",
+    "Context Refresh",
+    "Agent Turn Result",
+    "Risk Map",
+    "Release Confidence"
+  ],
+  "must_not": [
+    "treat command output as Testing Agent participation",
+    "claim Testing Agent participated without Testing Agent output",
+    "skip requested specialist lane"
+  ]
+}

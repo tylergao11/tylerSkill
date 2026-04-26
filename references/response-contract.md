@@ -68,6 +68,14 @@ Validation:
 - Limits:
 ```
 
+`Reviewer:` must name the role or agent that reviewed the evidence. A command,
+test runner, or script result may be listed as `Command or Review Source`, but
+it is not a Testing Agent or Audit Agent reviewer by itself.
+
+If a user requested Testing Agent or Audit Agent participation, include a
+`Specialist Participation Ledger` before any completion, release, or workflow
+advancement claim.
+
 `Artifacts: Not Applicable` requires a reason and Main Agent acceptance.
 
 `Blocked` requires blocking reason, needed decision or missing input, recommended

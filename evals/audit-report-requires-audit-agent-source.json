@@ -1,0 +1,20 @@
+{
+  "name": "audit report requires audit agent source",
+  "prompt": "Main Agent writes a Completion Audit Report for its own release claim, but there is no Audit Agent source, no Audit Agent role output, and no specialist participation ledger.",
+  "expected_protocols": [
+    "completion-trust-boundary.md",
+    "role-audit.md",
+    "response-contract.md"
+  ],
+  "expected_outputs": [
+    "Completion Audit Report",
+    "Audit Agent Source",
+    "Specialist Participation Ledger",
+    "Invalid Response Notice"
+  ],
+  "must_not": [
+    "self-sign audit report as Main Agent",
+    "treat Main Agent self-check as Audit Agent",
+    "claim audit participation without Audit Agent source"
+  ]
+}

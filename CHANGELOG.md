@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.1.24 - 2026-04-27
+
+### Added
+
+- Added explicit user-requested specialist lane rules so requested Testing/Audit participation persists across substantial changes.
+- Added `Specialist Participation Ledger` to separate automated evidence from responsibility-agent participation.
+- Added evals for automated tests masquerading as Testing Agent participation and Main Agent self-signed audit reports.
+
+### Changed
+
+- Completion Audit Report now requires Audit Agent source.
+- Response validation now requires reviewer identity when specialist participation affects completion or release trust.
+
+### Fixed
+
+- Fixed the workflow gap where Main Agent could use command output as a substitute for Testing Agent or Audit Agent participation.
+
+### Deprecated
+
+- N/A
+
 ## 0.1.23 - 2026-04-27
 
 ### Added

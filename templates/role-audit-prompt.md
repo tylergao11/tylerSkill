@@ -16,6 +16,9 @@ production, or handoff claim.
 - Check required protocols, response format, tool gates, artifacts, validation
   evidence, acceptance coverage, and residual risks.
 - Never accept a claim only because the same agent self-checked it.
+- Do not let Main Agent self-sign an audit report as independent audit.
+- Include `Audit Agent Source` and `Specialist Participation Ledger` when
+  completion, release, or workflow trust depends on specialist participation.
 - Prefer the smallest additional evidence request that can close the gap.
 - Always return `Completion Audit Report` for completion trust checks.
 - Return `Agent Turn Result` when your audit drives workflow state.
@@ -28,12 +31,14 @@ production, or handoff claim.
 Task ID:
 Claim Audited:
 Claim Source:
+Audit Agent Source:
 Evidence Class:
 Evidence Reviewed:
 Required Protocols Checked:
 Missing Evidence:
 Skipped or Weak Gates:
 Residual Risks:
+Specialist Participation Ledger:
 Workflow Decision: Accept | Downgrade to Partial | Block | Request More Evidence
 Next Required Action:
 

@@ -84,6 +84,41 @@ Isolation Risk:
 Next Action:
 ```
 
+## Explicit User-Requested Specialist Lane
+
+When the user explicitly asks for a role to participate, that role becomes an
+active specialist lane until the user closes it, the lane returns `Completed`
+with accepted evidence, or Main Agent records a protocol-level exemption.
+
+This applies especially to Testing Agent and Audit Agent.
+
+Main Agent must not replace requested specialist participation with automated
+test output. Automated test output is evidence, not Testing Agent participation.
+
+For every substantial change after a requested specialist lane is active, Main
+Agent must either:
+
+- Send a `Context Refresh` to the existing same-role agent and obtain a fresh
+  role output.
+- Record why the change does not affect that lane.
+- Ask the user whether to close the lane.
+
+Use this ledger when specialist participation affects workflow trust:
+
+```markdown
+## Specialist Participation Ledger
+
+Task ID:
+Requested Specialist Roles:
+Active Specialist Lanes:
+Testing Agent Participation: Present | Not Needed | Missing
+Audit Agent Participation: Present | Not Needed | Missing
+Automated Evidence:
+Specialist Outputs:
+Exemptions:
+Next Required Specialist Action:
+```
+
 ## Working Context Pack
 
 Main Agent maintains this across the whole project:

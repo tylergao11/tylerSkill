@@ -323,6 +323,33 @@ class DevelopmentToolGateDocumentationTests(unittest.TestCase):
         self.assertIn("Agent Reuse Decision", routing)
         self.assertIn("spawn duplicate same-role agent without reuse check", eval_text)
 
+    def test_requested_specialist_participation_cannot_be_replaced_by_tests(self):
+        repo = Path(__file__).resolve().parents[1]
+        context = (repo / "references" / "context-packets.md").read_text(
+            encoding="utf-8"
+        )
+        testing = (repo / "references" / "role-testing.md").read_text(
+            encoding="utf-8"
+        )
+        response = (repo / "references" / "response-contract.md").read_text(
+            encoding="utf-8"
+        )
+        eval_text = (
+            repo / "evals" / "automated-tests-do-not-count-as-testing-agent.json"
+        ).read_text(encoding="utf-8")
+
+        for required in (
+            "Explicit User-Requested Specialist Lane",
+            "Automated test output is evidence, not Testing Agent participation",
+            "Specialist Participation Ledger",
+            "Testing Agent Participation: Present | Not Needed | Missing",
+        ):
+            self.assertIn(required, context)
+
+        self.assertIn("They do not count as Testing Agent participation", testing)
+        self.assertIn("Specialist Participation Ledger", response)
+        self.assertIn("treat command output as Testing Agent participation", eval_text)
+
     def test_strong_online_games_have_client_server_role_split(self):
         repo = Path(__file__).resolve().parents[1]
         skill = (repo / "SKILL.md").read_text(encoding="utf-8")
@@ -538,6 +565,10 @@ class CompletionTrustBoundaryDocumentationTests(unittest.TestCase):
             "Main Agent completion summaries are auditable claims",
             "project self-check",
             "GitHub push/tag",
+            "Completion Audit Report requires Audit Agent source",
+            "Automated tests are evidence sources, not Testing Agent participation",
+            "Audit Agent Source",
+            "Specialist Participation Ledger",
         ):
             self.assertIn(required, protocol)
 
@@ -546,12 +577,24 @@ class CompletionTrustBoundaryDocumentationTests(unittest.TestCase):
             "Completion Audit Report",
             "Tool Gate",
             "Tool Evidence",
+            "Audit Agent Source",
+            "Specialist Participation Ledger",
         ):
             self.assertIn(required, role)
             self.assertIn(required, prompt)
 
         self.assertNotIn("Evidence Class: Verified | Inferred | Unverified", role)
         self.assertNotIn("Evidence Class: Verified | Inferred | Unverified", prompt)
+
+    def test_audit_report_requires_audit_agent_source_eval(self):
+        repo = Path(__file__).resolve().parents[1]
+        eval_text = (
+            repo / "evals" / "audit-report-requires-audit-agent-source.json"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("Audit Agent Source", eval_text)
+        self.assertIn("Specialist Participation Ledger", eval_text)
+        self.assertIn("self-sign audit report as Main Agent", eval_text)
 
     def test_completion_trust_rules_are_not_redefined_in_response_contract(self):
         repo = Path(__file__).resolve().parents[1]

@@ -57,9 +57,17 @@ When Main Agent claims that self-check, verification, release preparation,
 GitHub push/tag, production operation, or workflow completion is done, it must
 include or trigger a Completion Audit Report.
 
+Completion Audit Report requires Audit Agent source. Main Agent may summarize,
+quote, or route an Audit Agent report, but it must not self-sign an audit report
+as if independent audit occurred.
+
 Main Agent may report narrow facts without audit, such as "I ran command X and
 it returned exit code 0." It must not turn those facts into broad completion
 claims unless the evidence class and residual risk are stated.
+
+Automated tests are evidence sources, not Testing Agent participation. If the
+user requested Testing Agent participation, a completion claim must include a
+Testing Agent output or a recorded exemption.
 
 ## Completion Audit Report
 
@@ -72,12 +80,14 @@ shape instead of redefining a different audit format.
 Task ID:
 Claim Audited:
 Claim Source:
+Audit Agent Source:
 Evidence Class: Verified | Inferred | Unverified
 Evidence Reviewed:
 Required Protocols Checked:
 Missing Evidence:
 Skipped or Weak Gates:
 Residual Risks:
+Specialist Participation Ledger:
 Workflow Decision: Accept | Downgrade to Partial | Block | Request More Evidence
 Next Required Action:
 ```

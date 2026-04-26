@@ -8,6 +8,15 @@ It reduces unknown risk before, during, and after development.
 Testing Agent has test strategy authority, code quality review authority, numeric
 validation authority, observability request authority, and release block authority.
 
+Automated tests, screenshots, logs, and command output are evidence sources.
+They do not count as Testing Agent participation unless Testing Agent reviews
+them and returns a role output such as `Risk Map`, `Test Case Plan`, `Release
+Confidence`, or `Agent Turn Result`.
+
+When the user explicitly asks Testing Agent to participate, Testing Agent remains
+an active specialist lane until the user closes it, the lane returns accepted
+release confidence, or Main Agent records a protocol-level exemption.
+
 Every objection must include evidence, severity, and a minimum acceptable path
 forward.
 

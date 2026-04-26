@@ -51,12 +51,14 @@ parallel audit format.
 Task ID:
 Claim Audited:
 Claim Source:
+Audit Agent Source:
 Evidence Class:
 Evidence Reviewed:
 Required Protocols Checked:
 Missing Evidence:
 Skipped or Weak Gates:
 Residual Risks:
+Specialist Participation Ledger:
 Workflow Decision: Accept | Downgrade to Partial | Block | Request More Evidence
 Next Required Action:
 ```
