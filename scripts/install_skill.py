@@ -10,6 +10,7 @@ INCLUDE_DIRS = [
     ".github",
     "agents",
     "examples",
+    "evals",
     "modules",
     "profiles",
     "references",

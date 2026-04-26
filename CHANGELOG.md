@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.1.18 - 2026-04-26
+
+### Added
+
+- 安装包纳入 `evals/`，确保 installed Skill 的 `scripts/run_evals.py` 有场景语料可运行。
+
+### Changed
+
+- 安装测试新增 eval corpus 覆盖，防止 eval runner 与安装内容脱节。
+
+### Fixed
+
+- 修复 Testing Agent 发现的安装后 eval runner 缺少 `evals/` 导致不可用的问题。
+
+### Deprecated
+
+- N/A
+
 ## 0.1.17 - 2026-04-26
 
 ### Added
