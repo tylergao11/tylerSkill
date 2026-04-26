@@ -157,6 +157,15 @@ Include authority model, room/match requirements, network model, persistence
 needs, trust boundary, security risks, reconnect needs, scaling assumptions,
 client contract needs, and server-side test requirements.
 
+For strong online games, include enough context for
+`Strong Online Server Readiness Plan`: game type, expected concurrency, match or
+room model, economy/reward/ranking risk, anti-cheat expectation, operations
+constraints, and what the user does not understand well enough to review.
+
+For reconnect work, include identity proof assumptions, session token policy,
+room retention rules, recovery mode, sequence/request ID policy, settlement
+safety requirements, and client UX contract needs.
+
 Do not include visual polish debate unless it changes authoritative timing,
 payloads, or server performance.
 

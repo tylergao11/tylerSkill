@@ -1,6 +1,6 @@
 {
   "name": "agent-collaboration-os",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "entry": "SKILL.md",
   "language_policy": {
     "agent_facing_markdown": "precise English",
@@ -40,6 +40,7 @@
     "references/production-operations.md",
     "references/project-assets-governance.md",
     "references/protocol-routing.md",
+    "references/reconnect-session-governance.md",
     "references/regression-iteration.md",
     "references/release-rollback.md",
     "references/response-contract.md",
@@ -50,7 +51,8 @@
     "references/role-development.md",
     "references/role-server-development.md",
     "references/role-testing.md",
-    "references/runtime-versioning-budget.md"
+    "references/runtime-versioning-budget.md",
+    "references/strong-online-server-governance.md"
   ],
   "github_templates": [
     ".github/CODEOWNERS",

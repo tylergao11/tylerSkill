@@ -235,12 +235,14 @@ class DevelopmentToolGateDocumentationTests(unittest.TestCase):
 
         for required in (
             "Server Architecture Plan",
+            "Strong Online Server Readiness Plan",
             "Server Language: Go",
             "Client Language: TypeScript",
             "Concurrency Model",
             "Data Model",
             "Go Concurrency Plan",
             "Data Consistency Plan",
+            "Reconnect and Session Plan",
             "Authoritative Gameplay Contract",
             "TypeScript Request Type",
             "TypeScript Response/Event Type",
@@ -259,10 +261,79 @@ class DevelopmentToolGateDocumentationTests(unittest.TestCase):
 
         self.assertIn("role-client-development.md", eval_text)
         self.assertIn("role-server-development.md", eval_text)
+        self.assertIn("strong-online-server-governance.md", eval_text)
+        self.assertIn("Strong Online Server Readiness Plan", eval_text)
         self.assertIn("Authoritative Gameplay Contract", eval_text)
         self.assertIn("Go Concurrency Plan", eval_text)
         self.assertIn("Data Consistency Plan", eval_text)
+        self.assertIn("Reconnect and Session Plan", eval_text)
         self.assertIn("skip server authority model", eval_text)
+
+    def test_strong_online_server_governance_covers_hidden_server_risks(self):
+        repo = Path(__file__).resolve().parents[1]
+        protocol = (repo / "references" / "strong-online-server-governance.md").read_text(
+            encoding="utf-8"
+        )
+        server = (repo / "references" / "role-server-development.md").read_text(
+            encoding="utf-8"
+        )
+        prompt = (repo / "templates" / "role-server-development-prompt.md").read_text(
+            encoding="utf-8"
+        )
+        eval_text = (
+            repo / "evals" / "strong-online-server-without-readiness-plan.json"
+        ).read_text(encoding="utf-8")
+
+        for required in (
+            "Strong Online Server Readiness Plan",
+            "Identity and Session",
+            "Matchmaking and Room Lifecycle",
+            "State Sync Strategy",
+            "Message Ordering and Idempotency",
+            "Anti-Cheat and Abuse Controls",
+            "Observability and Audit Logs",
+            "Deployment and Config",
+            "Scaling and Capacity",
+            "Operational Runbook",
+            "Testing Matrix",
+        ):
+            self.assertIn(required, protocol)
+
+        self.assertIn("strong-online-server-governance.md", server)
+        self.assertIn("strong-online-server-governance.md", prompt)
+        self.assertIn("wait for user to enumerate server risks", eval_text)
+
+    def test_reconnect_session_governance_is_required_for_server_agent(self):
+        repo = Path(__file__).resolve().parents[1]
+        protocol = (repo / "references" / "reconnect-session-governance.md").read_text(
+            encoding="utf-8"
+        )
+        server = (repo / "references" / "role-server-development.md").read_text(
+            encoding="utf-8"
+        )
+        prompt = (repo / "templates" / "role-server-development-prompt.md").read_text(
+            encoding="utf-8"
+        )
+        eval_text = (repo / "evals" / "reconnect-without-session-plan.json").read_text(
+            encoding="utf-8"
+        )
+
+        for required in (
+            "Reconnect and Session Plan",
+            "Identity Proof",
+            "Session Token",
+            "Room Retention",
+            "State Recovery Mode",
+            "Duplicate Request Strategy",
+            "Out-of-Order Message Strategy",
+            "Reward and Settlement Safety",
+        ):
+            self.assertIn(required, protocol)
+
+        self.assertIn("reconnect-session-governance.md", server)
+        self.assertIn("reconnect-session-governance.md", prompt)
+        self.assertIn("Reconnect and Session Plan", eval_text)
+        self.assertIn("accept reconnect without identity proof", eval_text)
 
 
 class CompletionTrustBoundaryDocumentationTests(unittest.TestCase):

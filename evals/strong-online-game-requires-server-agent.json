@@ -4,15 +4,19 @@
   "expected_protocols": [
     "role-client-development.md",
     "role-server-development.md",
+    "strong-online-server-governance.md",
+    "reconnect-session-governance.md",
     "multi-layer-feature-gate.md",
     "data-privacy-trust-boundary.md",
     "role-testing.md"
   ],
   "expected_outputs": [
     "Client Architecture Plan",
+    "Strong Online Server Readiness Plan",
     "Server Architecture Plan",
     "Go Concurrency Plan",
     "Data Consistency Plan",
+    "Reconnect and Session Plan",
     "Authoritative Gameplay Contract",
     "Multi-Layer Pre-Code Gate",
     "Test Strategy Rationale"
@@ -20,8 +24,10 @@
   "must_not": [
     "let client own authoritative gameplay",
     "merge strong online server work into one generic development role",
+    "wait for user to enumerate server risks",
     "skip server authority model",
     "skip Go concurrency plan",
-    "skip data consistency plan"
+    "skip data consistency plan",
+    "skip reconnect session plan"
   ]
 }

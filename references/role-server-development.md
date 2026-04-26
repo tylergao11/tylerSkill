@@ -7,6 +7,10 @@ Use this role for mahjong, MOBA, battle royale, realtime action, ranked,
 economy, rewards, matchmaking, room state, persistence, reconnect, replay,
 anti-cheat, or any feature where the client must not own final truth.
 
+For strong online games, first load `strong-online-server-governance.md` and
+produce `Strong Online Server Readiness Plan`. Do this even when the user only
+mentions one obvious server need such as reconnect.
+
 ## Authority
 
 Server Development Agent owns:
@@ -42,11 +46,15 @@ Room or Match Model:
 Security Boundary:
 Anti-Cheat Assumptions:
 Reconnect Strategy:
+Reconnect and Session Plan:
 Replay or Audit Log Strategy:
 Scaling Assumption:
 TypeScript Client Contract:
 Testing Strategy:
 ```
+
+For strong online games, `Server Architecture Plan` is not enough by itself.
+It must be preceded by `Strong Online Server Readiness Plan`.
 
 ## Go Concurrency Plan
 
@@ -82,6 +90,10 @@ Migration Strategy:
 Backup or Recovery:
 Privacy and Retention:
 ```
+
+Before implementing login, room join, matchmaking, reconnect, replay, settlement,
+or player return flows, load `reconnect-session-governance.md` and provide
+`Reconnect and Session Plan`.
 
 ## Authoritative Gameplay Contract
 

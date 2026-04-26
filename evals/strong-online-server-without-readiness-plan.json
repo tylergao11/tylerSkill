@@ -1,0 +1,25 @@
+{
+  "name": "strong online server without readiness plan",
+  "prompt": "Server Development Agent starts implementing a Go server for mahjong, MOBA, or battle royale after only discussing reconnect, without mapping identity, room lifecycle, sync, data consistency, anti-cheat, observability, operations, and scaling risks.",
+  "expected_protocols": [
+    "strong-online-server-governance.md",
+    "role-server-development.md",
+    "reconnect-session-governance.md",
+    "role-testing.md",
+    "completion-trust-boundary.md"
+  ],
+  "expected_outputs": [
+    "Strong Online Server Readiness Plan",
+    "Server Architecture Plan",
+    "Reconnect and Session Plan",
+    "Test Strategy Rationale",
+    "Completion Audit Report"
+  ],
+  "must_not": [
+    "start server implementation after only reconnect discussion",
+    "wait for user to enumerate server risks",
+    "skip anti-cheat and abuse controls",
+    "skip observability and operational runbook",
+    "skip scaling and capacity"
+  ]
+}

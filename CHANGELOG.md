@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.1.16 - 2026-04-26
+
+### Added
+
+- 新增 `reconnect-session-governance.md`，将断线重连、会话、身份、房间保留、快照/事件回放、乱序/重复消息、结算安全做成独立服务器门禁。
+- 新增 `reconnect-without-session-plan` eval，防止 Server Development Agent 直接实现 reconnect 而不提供会话和恢复计划。
+- Server Agent 测试新增 Reconnect and Session Plan 覆盖。
+- 新增 `strong-online-server-governance.md`，要求 Server Agent 主动覆盖身份、房间生命周期、状态同步、并发、数据一致性、反作弊、可观测、运维、扩容和故障恢复，不再等待用户逐项提醒。
+- 新增 `strong-online-server-without-readiness-plan` eval，防止强联网服务器只讨论 reconnect 就开始实现。
+
+### Changed
+
+- Server Development Agent 在登录、会话、进房、匹配、重连、回放、结算、玩家返回流程前必须提供 `Reconnect and Session Plan`。
+- 强联网 eval 增加 reconnect-session-governance 协议要求。
+- 强联网 Server Development Agent 在进入具体实现前必须提供 `Strong Online Server Readiness Plan`。
+
+### Fixed
+
+- 补强强联网项目最常见的断线重连与会话恢复风险边界。
+- 修复服务器规范依赖用户逐项指出风险的流程缺陷。
+
+### Deprecated
+
+- N/A
+
 ## 0.1.15 - 2026-04-26
 
 ### Added

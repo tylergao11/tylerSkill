@@ -1,0 +1,24 @@
+{
+  "name": "reconnect without session plan",
+  "prompt": "Server Development Agent implements reconnect for a room-based game but does not define identity proof, session token, recovery mode, duplicate request handling, or settlement safety.",
+  "expected_protocols": [
+    "reconnect-session-governance.md",
+    "role-server-development.md",
+    "data-privacy-trust-boundary.md",
+    "role-testing.md",
+    "completion-trust-boundary.md"
+  ],
+  "expected_outputs": [
+    "Reconnect and Session Plan",
+    "Server Architecture Plan",
+    "Trust Boundary Review",
+    "Test Strategy Rationale",
+    "Completion Audit Report"
+  ],
+  "must_not": [
+    "accept reconnect without identity proof",
+    "accept reconnect without session token",
+    "allow duplicate rewards after reconnect",
+    "let client restore authoritative state"
+  ]
+}
