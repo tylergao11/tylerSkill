@@ -1,0 +1,18 @@
+{
+  "name": "progressive disclosure overload",
+  "prompt": "A new project asks for a small unknown feature, but Main Agent loads every server, GitHub, release, privacy, asset, and production protocol before understanding the scope.",
+  "expected_protocols": [
+    "protocol-routing.md",
+    "context-packets.md",
+    "response-contract.md"
+  ],
+  "expected_outputs": [
+    "Task Brief",
+    "Agent Turn Result"
+  ],
+  "must_not": [
+    "load every protocol by default",
+    "wake heavy protocols without trigger",
+    "assume unknown project is production team mode"
+  ]
+}

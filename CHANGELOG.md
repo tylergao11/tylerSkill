@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.23 - 2026-04-27
+
+### Added
+
+- Added Progressive Disclosure Read Strategy to the skill kernel so Main Agent starts from the lightweight core when project size is unknown.
+- Added `progressive-disclosure-overload` eval to prevent loading heavy protocols without a trigger.
+
+### Changed
+
+- Protocol routing now explicitly keeps heavy protocols dormant until routing triggers appear.
+
+### Fixed
+
+- Fixed the gap where Main Agent could still overload a small or unknown project despite the lightweight profile existing.
+
+### Deprecated
+
+- N/A
+
 ## 0.1.22 - 2026-04-27
 
 ### Added

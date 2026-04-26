@@ -5,6 +5,9 @@ Use this profile as the default for new or uncertain projects.
 The goal is to keep Agent Collaboration OS helpful without waking every heavy
 production protocol.
 
+This profile is the default progressive-disclosure layer for unknown projects.
+It tells Main Agent what to read first and what to keep dormant.
+
 ## Default Mode
 
 Lightweight Mode.

@@ -10,6 +10,46 @@ Use this skill to run a portable multi-agent collaboration workflow.
 The short file is the operating-system kernel. Load detailed protocols from
 `references/` only when the current task needs them.
 
+## Progressive Disclosure Read Strategy
+
+When project size, risk, or workflow strictness is unknown, Main Agent must not
+load every protocol.
+
+Read in this order:
+
+1. Read this `SKILL.md` kernel.
+2. Read `profiles/lightweight.md` unless the project memory names a different
+   active profile.
+3. Read `references/protocol-routing.md` to identify triggers.
+4. Load only the smallest reference files required by the current trigger.
+5. Escalate to heavier protocols only when the user request, project memory,
+   changed files, trust boundary, production action, server need, asset risk, or
+   completion claim triggers them.
+
+Default lightweight core:
+
+- `references/protocol-routing.md`
+- `references/context-packets.md`
+- `references/response-contract.md`
+- `references/completion-trust-boundary.md`
+- `references/role-development.md`
+- `references/role-testing.md`
+- `references/role-audit.md`
+- `references/project-assets-governance.md`
+- `references/evolution.md`
+
+Keep dormant until triggered:
+
+- GitHub, CI, release, rollback, production, and repository-protection protocols.
+- Server, reconnect, strong-online, matchmaking, anti-cheat, and scaling protocols.
+- Privacy, payment, user-data, reward-trust, destructive permission, and
+  production environment protocols.
+- Asset provenance, dependency license, package budget, and commercial rights
+  protocols.
+
+If unsure whether a heavy protocol is needed, ask one narrow question or state a
+short routing assumption instead of loading the whole protocol set.
+
 ## File Encoding
 
 All project documentation, skill files, reference files, templates, and generated
@@ -41,6 +81,8 @@ user-facing Markdown such as repository usage guides.
 - **Keep the skill path clean**: generated project Markdown, evidence, logs, and
   handoffs belong in the consumer project, never in the installed or vendored
   skill directory.
+- **Progressive disclosure by default**: unknown projects start with the
+  lightweight core and load heavy protocols only after a trigger appears.
 
 ## Reuse Architecture
 

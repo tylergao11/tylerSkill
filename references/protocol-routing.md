@@ -49,3 +49,6 @@ Use this table to decide which protocol to load for a situation.
 - Prefer a reference file over the full draft.
 - When multiple protocols apply, load the one that controls state transition
   first, then load role-specific detail.
+- If project size or risk is unknown, begin with `profiles/lightweight.md` and
+  the default lightweight core before loading heavy protocols.
+- Heavy protocols stay dormant until a routing table trigger appears.
