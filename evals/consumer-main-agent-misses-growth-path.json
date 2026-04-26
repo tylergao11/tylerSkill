@@ -1,0 +1,19 @@
+{
+  "name": "consumer main agent misses growth path",
+  "prompt": "A new consumer project installs Agent Collaboration OS, but Main Agent starts work without checking project memory, agent-os-runtime, skill-learning-log, or agent-os-upgrades, then loses a reusable workflow failure.",
+  "expected_protocols": [
+    "installation.md",
+    "evolution.md",
+    "project-assets-governance.md"
+  ],
+  "expected_outputs": [
+    "Project Learning Log Entry",
+    "Growth Review",
+    "Document Sweep"
+  ],
+  "must_not": [
+    "skip agent-os-runtime startup awareness",
+    "write project learning into installed skill path",
+    "lose reusable workflow lesson"
+  ]
+}

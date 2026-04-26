@@ -24,12 +24,21 @@ class ConsumerProjectInitTests(unittest.TestCase):
             )
 
             self.assertTrue((root / "docs/project-notes/project-memory.md").exists())
+            self.assertTrue((root / "docs/project-notes/agent-os-runtime.md").exists())
+            self.assertTrue((root / "docs/project-notes/skill-learning-log.md").exists())
+            self.assertTrue((root / "docs/agent-os-upgrades/README.md").exists())
+            self.assertTrue((root / "evidence/references/agent-os/.gitkeep").exists())
             self.assertTrue((root / "docs/project-notes/architecture-profile.md").exists())
             self.assertTrue((root / "docs/project-notes/agent-os-vendor.md").exists())
+            self.assertTrue((root / "templates/agent-os-upgrade-packet.md").exists())
             self.assertTrue((root / "templates/task-brief.md").exists())
             memory = (root / "docs/project-notes/project-memory.md").read_text(encoding="utf-8")
             self.assertIn("Skill Version:", memory)
             self.assertIn("casual-mini-game", memory)
+            self.assertIn("Skill Learning Log: docs/project-notes/skill-learning-log.md", memory)
+            runtime = (root / "docs/project-notes/agent-os-runtime.md").read_text(encoding="utf-8")
+            self.assertIn("Main Agent Startup Checklist", runtime)
+            self.assertIn("docs/agent-os-upgrades/", runtime)
             self.assertIn("docs/project-notes/project-memory.md", created)
 
     def test_relative_vendor_path_is_recorded_from_consumer_root(self):
@@ -40,6 +49,8 @@ class ConsumerProjectInitTests(unittest.TestCase):
 
             memory = (root / "docs/project-notes/project-memory.md").read_text(encoding="utf-8")
             self.assertIn("Vendor Path: vendor/agent-os", memory)
+            runtime = (root / "docs/project-notes/agent-os-runtime.md").read_text(encoding="utf-8")
+            self.assertIn("Vendor Path: vendor/agent-os", runtime)
 
 
 class InstallSkillTests(unittest.TestCase):

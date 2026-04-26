@@ -52,6 +52,19 @@ Recommended path:
 docs/project-notes/skill-learning-log.md
 ```
 
+Consumer project initialization should also create:
+
+```text
+docs/project-notes/agent-os-runtime.md
+docs/agent-os-upgrades/
+evidence/references/agent-os/
+```
+
+`agent-os-runtime.md` is the startup reminder for the consumer project's Main
+Agent. It should point to the learning log, upgrade packet directory, runtime
+evidence path, and the rule that project outputs must not be written into the
+skill path.
+
 Use this shape:
 
 ```markdown

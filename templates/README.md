@@ -15,3 +15,7 @@ Role prompt templates:
 - `role-art-prompt.md`
 - `role-testing-prompt.md`
 - `role-audit-prompt.md`
+
+Growth template:
+
+- `agent-os-upgrade-packet.md`

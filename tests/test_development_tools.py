@@ -200,6 +200,35 @@ class DevelopmentToolGateDocumentationTests(unittest.TestCase):
         self.assertIn("change skill without eval or test", eval_text)
         self.assertIn("store project learning inside installed skill path", eval_text)
 
+    def test_consumer_main_agent_gets_growth_startup_awareness(self):
+        repo = Path(__file__).resolve().parents[1]
+        installation = (repo / "references" / "installation.md").read_text(
+            encoding="utf-8"
+        )
+        evolution = (repo / "references" / "evolution.md").read_text(
+            encoding="utf-8"
+        )
+        template = (repo / "templates" / "agent-os-upgrade-packet.md").read_text(
+            encoding="utf-8"
+        )
+        eval_text = (
+            repo / "evals" / "consumer-main-agent-misses-growth-path.json"
+        ).read_text(encoding="utf-8")
+
+        for required in (
+            "docs/project-notes/agent-os-runtime.md",
+            "docs/project-notes/skill-learning-log.md",
+            "docs/agent-os-upgrades/",
+            "evidence/references/agent-os/",
+        ):
+            self.assertIn(required, installation)
+            self.assertIn(required, evolution)
+
+        self.assertIn("Main Agent should read `agent-os-runtime.md`", installation)
+        self.assertIn("Agent OS Upgrade Packet", template)
+        self.assertIn("Required Eval or Test", template)
+        self.assertIn("skip agent-os-runtime startup awareness", eval_text)
+
     def test_root_skill_required_formats_match_workflow_contracts(self):
         repo = Path(__file__).resolve().parents[1]
         skill = (repo / "SKILL.md").read_text(encoding="utf-8")

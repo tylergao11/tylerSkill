@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.1.21 - 2026-04-27
+
+### Added
+
+- Consumer project initialization now creates `agent-os-runtime.md`, `skill-learning-log.md`, `docs/agent-os-upgrades/`, and `evidence/references/agent-os/`.
+- Added `agent-os-upgrade-packet.md` template so reusable lessons can be staged before being brought back to the skill repository.
+- Added `consumer-main-agent-misses-growth-path` eval to ensure a consumer project's Main Agent notices the growth path.
+
+### Changed
+
+- Project Memory now points Main Agent to runtime awareness, learning log, and upgrade packet locations.
+- Installation and evolution protocols now describe startup awareness files for consumer projects.
+
+### Fixed
+
+- Fixed the gap where a new project's Main Agent could install the skill but fail to notice where reusable workflow lessons should be recorded.
+
+### Deprecated
+
+- N/A
+
 ## 0.1.20 - 2026-04-27
 
 ### Added

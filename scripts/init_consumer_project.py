@@ -5,6 +5,7 @@ from pathlib import Path
 
 DIRECTORIES = [
     "docs/project-notes",
+    "docs/agent-os-upgrades",
     "docs/handoffs",
     "docs/reviews",
     "docs/decisions",
@@ -15,6 +16,7 @@ DIRECTORIES = [
     "evidence/test-results",
     "evidence/performance",
     "evidence/references",
+    "evidence/references/agent-os",
 ]
 
 
@@ -31,6 +33,10 @@ Do Not Use For: Historical raw trace or superseded decisions.
 Skill Version: {skill_version}
 Architecture Profile: {profile}
 Vendor Path: {vendor_path}
+
+Agent OS Runtime Record: docs/project-notes/agent-os-runtime.md
+Skill Learning Log: docs/project-notes/skill-learning-log.md
+Upgrade Packet Directory: docs/agent-os-upgrades/
 
 ## Active Decisions
 
@@ -49,6 +55,112 @@ Vendor Path: {vendor_path}
 ## Do Not Repeat
 
 ## Source Documents
+
+## Agent OS Growth
+
+- Record workflow failures in `docs/project-notes/skill-learning-log.md`.
+- Promote reusable lessons through `docs/agent-os-upgrades/<date-topic>/`.
+- Do not write runtime notes into the installed or vendored skill path.
+- A skill upgrade candidate needs evidence plus a proposed eval, test, or validator.
+"""
+
+AGENT_OS_RUNTIME = """Status: Active
+Owner:
+Last Updated:
+Supersedes:
+Superseded By:
+Use For: Startup awareness for Agent Collaboration OS in this consumer project.
+Do Not Use For: Project-specific feature requirements or raw evidence.
+
+# Agent OS Runtime
+
+Skill Version: {skill_version}
+Architecture Profile: {profile}
+Vendor Path: {vendor_path}
+
+## Main Agent Startup Checklist
+
+- Load `docs/project-notes/project-memory.md` before planning work.
+- Check whether this project has active entries in `docs/project-notes/skill-learning-log.md`.
+- Check `docs/agent-os-upgrades/` for open upgrade packets before claiming workflow completion.
+- Keep generated Markdown, evidence, logs, reviews, and handoffs in this project, not in the skill path.
+- When a workflow failure repeats or generalizes, create a Project Learning Log Entry.
+- When a lesson is reusable, create an Upgrade Packet with evidence and a proposed eval/test.
+
+## Growth Paths
+
+- Learning Log: `docs/project-notes/skill-learning-log.md`
+- Upgrade Packets: `docs/agent-os-upgrades/<date-topic>/`
+- Agent OS Evidence: `evidence/references/agent-os/`
+
+## Upgrade Packet Minimum Contents
+
+- `learning-note.md`
+- `evidence.md`
+- `proposed-rule.md`
+- `proposed-eval.json` or `proposed-test.md`
+- `target-files.md`
+"""
+
+SKILL_LEARNING_LOG = """Status: Active
+Owner:
+Last Updated:
+Supersedes:
+Superseded By:
+Use For: Project-local observations that may improve Agent Collaboration OS.
+Do Not Use For: Stable skill rules or project feature requirements.
+
+# Skill Learning Log
+
+Use this file to record real workflow failures and reusable lessons discovered
+while running Agent Collaboration OS in this project.
+
+Do not edit the installed or vendored skill directly from here. Convert reusable
+lessons into upgrade packets under `docs/agent-os-upgrades/`.
+
+## Project Learning Log Entry
+
+Date:
+Project:
+Task ID:
+Observed Agent Failure:
+Impact:
+Evidence:
+Current Skill Rule:
+Proposed Improvement:
+Project-Specific Details:
+Reusable Lesson:
+Recommended Destination: Project Memory | Skill Reference | Core Skill | Tool | Eval/Test
+Owner:
+Status: Open | Accepted | Rejected | Promoted | Archived
+"""
+
+UPGRADE_PACKET_README = """Status: Active
+Owner:
+Last Updated:
+Supersedes:
+Superseded By:
+Use For: Staging reusable Agent Collaboration OS upgrade candidates from this project.
+Do Not Use For: Runtime feature notes, raw logs, or installed skill edits.
+
+# Agent OS Upgrade Packets
+
+Create one folder per candidate:
+
+```text
+docs/agent-os-upgrades/YYYYMMDD-short-topic/
+```
+
+Each packet should contain:
+
+- `learning-note.md`: what failed and why it matters.
+- `evidence.md`: links to logs, screenshots, reviews, tests, or agent outputs.
+- `proposed-rule.md`: the smallest reusable rule or tool change.
+- `proposed-eval.json` or `proposed-test.md`: how the skill will prevent repeat failure.
+- `target-files.md`: likely files to update in the skill repository.
+
+Main Agent should review this directory during phase reviews, release reviews,
+and before claiming workflow completion.
 """
 
 
@@ -111,6 +223,23 @@ def init_project(root, profile=None, vendor_path=None, copy_templates=False):
     )
     if write_if_missing(memory, memory_text):
         created.append(rel_posix(memory, root))
+
+    runtime = root / "docs" / "project-notes" / "agent-os-runtime.md"
+    runtime_text = AGENT_OS_RUNTIME.format(
+        skill_version=read_version(),
+        profile=profile_name,
+        vendor_path=vendor_text,
+    )
+    if write_if_missing(runtime, runtime_text):
+        created.append(rel_posix(runtime, root))
+
+    learning_log = root / "docs" / "project-notes" / "skill-learning-log.md"
+    if write_if_missing(learning_log, SKILL_LEARNING_LOG):
+        created.append(rel_posix(learning_log, root))
+
+    upgrade_readme = root / "docs" / "agent-os-upgrades" / "README.md"
+    if write_if_missing(upgrade_readme, UPGRADE_PACKET_README):
+        created.append(rel_posix(upgrade_readme, root))
 
     if profile:
         profile_source = REPO_ROOT / "profiles" / f"{profile}.md"

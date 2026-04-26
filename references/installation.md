@@ -49,6 +49,7 @@ python vendor\agent-collaboration-os\scripts\init_consumer_project.py . --profil
 This creates project runtime folders such as:
 
 - `docs/project-notes/`
+- `docs/agent-os-upgrades/`
 - `docs/handoffs/`
 - `docs/reviews/`
 - `docs/decisions/`
@@ -57,6 +58,18 @@ This creates project runtime folders such as:
 Runtime evidence belongs in the consumer project, not in the skill repository.
 Runtime Markdown also belongs in the consumer project, including project memory,
 handoffs, reviews, decisions, sweeps, and temporary task summaries.
+
+Initialization also creates startup awareness files for the consumer project's
+Main Agent:
+
+- `docs/project-notes/agent-os-runtime.md`
+- `docs/project-notes/skill-learning-log.md`
+- `docs/agent-os-upgrades/README.md`
+- `evidence/references/agent-os/`
+
+The Main Agent should read `agent-os-runtime.md` with project memory at project
+startup. Reusable workflow lessons should be staged as upgrade packets under
+`docs/agent-os-upgrades/` before they are brought back to the skill repository.
 
 If this repository is vendored under `vendor/agent-collaboration-os/`, agents
 must still write runtime outputs to the consumer project root, never to the
