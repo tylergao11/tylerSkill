@@ -11,6 +11,8 @@
   "expected_outputs": [
     "Client Architecture Plan",
     "Server Architecture Plan",
+    "Go Concurrency Plan",
+    "Data Consistency Plan",
     "Authoritative Gameplay Contract",
     "Multi-Layer Pre-Code Gate",
     "Test Strategy Rationale"
@@ -18,6 +20,8 @@
   "must_not": [
     "let client own authoritative gameplay",
     "merge strong online server work into one generic development role",
-    "skip server authority model"
+    "skip server authority model",
+    "skip Go concurrency plan",
+    "skip data consistency plan"
   ]
 }

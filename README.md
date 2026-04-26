@@ -51,8 +51,8 @@
 
 强联网游戏建议拆分开发职责。麻将、MOBA、战术竞技、实时动作、排行榜、匹配、房间、重连、防作弊、强经济系统等项目，应使用：
 
-- Client Development Agent：客户端表现、输入、UI、渲染、资源、预测/插值。
-- Server Development Agent：房间、匹配、权威规则、状态同步、持久化、重连、安全边界、防作弊假设。
+- Client Development Agent：默认 TypeScript，负责客户端表现、输入、UI、渲染、资源、预测/插值。
+- Server Development Agent：默认 Go，负责房间、匹配、权威规则、状态同步、持久化、并发安全、重连、安全边界、防作弊假设。
 
 轻量小游戏仍可由普通 Development Agent 同时处理客户端和云开发/简单服务。
 

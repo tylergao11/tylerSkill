@@ -13,7 +13,8 @@ Client Development Agent owns:
 - UI, HUD, menus, input, camera, rendering, animation playback, audio triggers,
   client resource loading, local client state, prediction/interpolation,
   client-side validation, and client performance.
-- Client integration with server contracts defined by Server Development Agent.
+- TypeScript client implementation and integration with server contracts defined
+  by Server Development Agent.
 
 Client Development Agent does not own:
 
@@ -26,6 +27,8 @@ Client Development Agent does not own:
 ## Client Architecture Plan
 
 Game Type:
+Client Language: TypeScript
+Server Language: Go
 Client Responsibilities:
 Server Contract Needed:
 Input Model:
@@ -45,7 +48,9 @@ Testing Strategy:
 
 Feature:
 Client Sends:
+TypeScript Request Type:
 Client Receives:
+TypeScript Response/Event Type:
 Client May Predict:
 Client Must Wait For Server:
 Desync Risks:

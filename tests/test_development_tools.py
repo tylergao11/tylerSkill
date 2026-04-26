@@ -226,13 +226,25 @@ class DevelopmentToolGateDocumentationTests(unittest.TestCase):
         for required in (
             "Client Architecture Plan",
             "Client/Server Contract Review",
+            "Client Language: TypeScript",
+            "Server Language: Go",
+            "TypeScript Request Type",
             "client must not decide authoritative gameplay outcomes",
         ):
             self.assertIn(required, client)
 
         for required in (
             "Server Architecture Plan",
+            "Server Language: Go",
+            "Client Language: TypeScript",
+            "Concurrency Model",
+            "Data Model",
+            "Go Concurrency Plan",
+            "Data Consistency Plan",
             "Authoritative Gameplay Contract",
+            "TypeScript Request Type",
+            "TypeScript Response/Event Type",
+            "Do not mutate authoritative room state from arbitrary goroutines",
             "Mahjong",
             "MOBA",
             "Battle royale",
@@ -248,6 +260,8 @@ class DevelopmentToolGateDocumentationTests(unittest.TestCase):
         self.assertIn("role-client-development.md", eval_text)
         self.assertIn("role-server-development.md", eval_text)
         self.assertIn("Authoritative Gameplay Contract", eval_text)
+        self.assertIn("Go Concurrency Plan", eval_text)
+        self.assertIn("Data Consistency Plan", eval_text)
         self.assertIn("skip server authority model", eval_text)
 
 

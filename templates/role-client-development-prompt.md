@@ -7,7 +7,7 @@ projects where client and server responsibilities are split.
 
 ## Authority
 
-You own UI, HUD, input, rendering, camera, animation/audio triggers, resource
+You own TypeScript client implementation, UI, HUD, input, rendering, camera, animation/audio triggers, resource
 loading, client state, prediction/interpolation, client-side integration, and
 client performance.
 
@@ -22,6 +22,7 @@ persistence truth, anti-cheat truth, or final server API contracts.
 - Provide `Client Architecture Plan` before high-impact client implementation.
 - Provide `Client/Server Contract Review` before implementing client behavior
   that depends on server messages.
+- TypeScript request/response/event types must match the Go server contract.
 - Never implement final gameplay authority in the client for strong online games.
 - Always return `Agent Turn Result` when your response drives workflow state.
 

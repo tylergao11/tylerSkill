@@ -13,8 +13,10 @@ Server Development Agent owns:
 
 - Authority model, room/match state, matchmaking, authoritative gameplay rules,
   state synchronization, persistence, reconnect, replay/logs, security
-  boundaries, anti-cheat assumptions, server performance, and scaling model.
-- Server API and event contracts consumed by Client Development Agent.
+  boundaries, anti-cheat assumptions, concurrency safety, data consistency,
+  server performance, and scaling model.
+- Go server implementation and server API/event contracts consumed by the
+  TypeScript client.
 
 Server Development Agent does not own:
 
@@ -27,18 +29,58 @@ Server Development Agent does not own:
 ## Server Architecture Plan
 
 Game Type:
+Server Language: Go
+Client Language: TypeScript
 Authority Model:
 State Ownership:
 Network Model:
+Concurrency Model:
 Persistence Model:
+Data Model:
+Consistency Model:
 Room or Match Model:
 Security Boundary:
 Anti-Cheat Assumptions:
 Reconnect Strategy:
 Replay or Audit Log Strategy:
 Scaling Assumption:
-Client Contract:
+TypeScript Client Contract:
 Testing Strategy:
+```
+
+## Go Concurrency Plan
+
+```markdown
+## Go Concurrency Plan
+
+Runtime Boundary:
+Goroutine Ownership:
+Room or Match Loop:
+Shared State:
+Locking Strategy:
+Channel Strategy:
+Backpressure Strategy:
+Timeout and Cancellation:
+Race Detection Plan:
+Failure Recovery:
+```
+
+## Data Consistency Plan
+
+```markdown
+## Data Consistency Plan
+
+Data Stores:
+Authoritative Records:
+Volatile State:
+Persistent State:
+Transaction Boundaries:
+Idempotency Keys:
+Versioning or CAS:
+Retry Strategy:
+Migration Strategy:
+Backup or Recovery:
+Privacy and Retention:
 ```
 
 ## Authoritative Gameplay Contract
@@ -48,9 +90,11 @@ Testing Strategy:
 
 Feature:
 Client Request:
+TypeScript Request Type:
 Server Validation:
 Authoritative State Change:
 Server Response or Event:
+TypeScript Response/Event Type:
 Rejected Request Behavior:
 Idempotency or Replay Safety:
 Persistence Impact:
@@ -58,17 +102,34 @@ Anti-Cheat Signal:
 Test Evidence:
 ```
 
+## Server Responsibility Rules
+
+- Prefer one owner for mutable room or match state: a room/match loop, actor, or
+  equivalent serialized command processor.
+- Do not mutate authoritative room state from arbitrary goroutines.
+- Use `context.Context` for request lifetime, cancellation, deadlines, and
+  shutdown propagation.
+- Treat every client message as untrusted input.
+- Make persistence writes idempotent where retries can occur.
+- Separate transport DTOs, domain state, persistence models, and presentation
+  payloads.
+- Define TypeScript request/response/event contracts before client integration.
+- Use race detection, concurrency tests, and load-oriented tests for shared or
+  realtime server behavior.
+- Never store final gameplay truth only on the client.
+
 ## Strong Online Game Defaults
 
 Mahjong:
 
 - Server owns deck/shuffle, deal, turn order, chi/pong/kong/win rules, scoring,
-  settlement, reconnect, replay, and anti-cheat evidence.
+  settlement, reconnect, replay, idempotent actions, and anti-cheat evidence.
 
 MOBA:
 
 - Server owns match state, hero selection truth, skill cooldowns, hit/damage
-  authority, buffs, economy, objectives, reconnect, and anti-cheat assumptions.
+  authority, buffs, economy, objectives, tick/state sync policy, reconnect, and
+  anti-cheat assumptions.
 
 Battle royale:
 

@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.1.15 - 2026-04-26
+
+### Added
+
+- Server Development Agent 新增 Go 服务器默认语言、Go Concurrency Plan、Data Consistency Plan。
+- Client Development Agent 新增 TypeScript 客户端默认语言，并要求 TS request/response/event types 与 Go server contract 对齐。
+- 强联网 eval 增加 Go 并发计划与数据一致性计划要求。
+
+### Changed
+
+- Server Architecture Plan 扩展并发模型、数据模型、一致性模型、TypeScript Client Contract。
+- Authoritative Gameplay Contract 扩展 TypeScript request/response/event type 字段。
+
+### Fixed
+
+- 补强 Server Agent 对并发、数据一致性、幂等、房间状态所有权和客户端契约的职责边界。
+
+### Deprecated
+
+- N/A
+
 ## 0.1.14 - 2026-04-26
 
 ### Added
