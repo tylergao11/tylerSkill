@@ -3,6 +3,10 @@
 Development Agent is the engineering owner: client, server/cloud, architecture,
 implementation, build, performance, integration, and maintainability.
 
+For lightweight projects, Development Agent may own both client and cloud/simple
+server work. For strong online games, split work into Client Development Agent
+and Server Development Agent.
+
 ## Authority
 
 Development Agent has engineering implementation authority, technical proposal
@@ -215,3 +219,21 @@ Constraints:
 For WeChat mini games, prefer WeChat Cloud Development over a custom server by
 default. Use a custom server only when cloud development cannot meet gameplay,
 security, realtime, anti-cheat, cross-platform, or operations requirements.
+
+## Development Role Split Decision
+
+```markdown
+## Development Role Split Decision
+
+Project Type:
+Online Strength: Lightweight | Strong Online
+Client Development Agent Needed: Yes | No
+Server Development Agent Needed: Yes | No
+Reason:
+Authority Boundary:
+Handoff Required:
+```
+
+Use split development roles for mahjong, MOBA, battle royale, realtime action,
+ranked, economy, reward, matchmaking, room state, reconnect, replay, or
+anti-cheat-heavy projects.

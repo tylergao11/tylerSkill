@@ -1,0 +1,23 @@
+{
+  "name": "strong online game requires server agent",
+  "prompt": "Main Agent plans mahjong, MOBA, or battle royale as client plus server, but tries to assign all engineering to a single Development Agent.",
+  "expected_protocols": [
+    "role-client-development.md",
+    "role-server-development.md",
+    "multi-layer-feature-gate.md",
+    "data-privacy-trust-boundary.md",
+    "role-testing.md"
+  ],
+  "expected_outputs": [
+    "Client Architecture Plan",
+    "Server Architecture Plan",
+    "Authoritative Gameplay Contract",
+    "Multi-Layer Pre-Code Gate",
+    "Test Strategy Rationale"
+  ],
+  "must_not": [
+    "let client own authoritative gameplay",
+    "merge strong online server work into one generic development role",
+    "skip server authority model"
+  ]
+}

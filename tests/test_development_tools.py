@@ -190,6 +190,66 @@ class DevelopmentToolGateDocumentationTests(unittest.TestCase):
         ):
             self.assertIn(required, skill)
 
+    def test_strong_online_games_have_client_server_role_split(self):
+        repo = Path(__file__).resolve().parents[1]
+        skill = (repo / "SKILL.md").read_text(encoding="utf-8")
+        development = (repo / "references" / "role-development.md").read_text(
+            encoding="utf-8"
+        )
+        client = (repo / "references" / "role-client-development.md").read_text(
+            encoding="utf-8"
+        )
+        server = (repo / "references" / "role-server-development.md").read_text(
+            encoding="utf-8"
+        )
+        prompt = (repo / "templates" / "role-development-prompt.md").read_text(
+            encoding="utf-8"
+        )
+
+        for required in (
+            "Client Development Agent owns client runtime",
+            "Server Development Agent owns authoritative backend",
+            "role-client-development.md",
+            "role-server-development.md",
+        ):
+            self.assertIn(required, skill)
+
+        for required in (
+            "Development Role Split Decision",
+            "Strong Online",
+            "Client Development Agent Needed",
+            "Server Development Agent Needed",
+        ):
+            self.assertIn(required, development)
+            self.assertIn(required, prompt)
+
+        for required in (
+            "Client Architecture Plan",
+            "Client/Server Contract Review",
+            "client must not decide authoritative gameplay outcomes",
+        ):
+            self.assertIn(required, client)
+
+        for required in (
+            "Server Architecture Plan",
+            "Authoritative Gameplay Contract",
+            "Mahjong",
+            "MOBA",
+            "Battle royale",
+        ):
+            self.assertIn(required, server)
+
+    def test_eval_requires_server_agent_for_strong_online_games(self):
+        repo = Path(__file__).resolve().parents[1]
+        eval_text = (
+            repo / "evals" / "strong-online-game-requires-server-agent.json"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("role-client-development.md", eval_text)
+        self.assertIn("role-server-development.md", eval_text)
+        self.assertIn("Authoritative Gameplay Contract", eval_text)
+        self.assertIn("skip server authority model", eval_text)
+
 
 class CompletionTrustBoundaryDocumentationTests(unittest.TestCase):
     def test_root_skill_defines_audit_agent_as_core_role(self):

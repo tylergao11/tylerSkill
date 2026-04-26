@@ -49,6 +49,13 @@
 
 用户不需要记住这些命令。它们是 Skill 的内部能力，主 agent 和责任 agent 会在合适的协议中调用。
 
+强联网游戏建议拆分开发职责。麻将、MOBA、战术竞技、实时动作、排行榜、匹配、房间、重连、防作弊、强经济系统等项目，应使用：
+
+- Client Development Agent：客户端表现、输入、UI、渲染、资源、预测/插值。
+- Server Development Agent：房间、匹配、权威规则、状态同步、持久化、重连、安全边界、防作弊假设。
+
+轻量小游戏仍可由普通 Development Agent 同时处理客户端和云开发/简单服务。
+
 本仓库也内置 GitHub 门禁模板：Actions、CodeQL、Dependabot、CODEOWNERS、PR/Issue 模板、release workflow 和 ruleset 模板。分支保护、secret scanning、environment approval 仍需要在 GitHub 仓库设置中启用。
 
 `skill-manifest.json` 记录当前 Skill 的版本、兼容性、协议和工具清单，便于 agent 在不同项目或不同 agent 平台中判断可用能力。

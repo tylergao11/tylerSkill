@@ -15,6 +15,8 @@ Use this table to decide which protocol to load for a situation.
 | Bug has many hypotheses | `debug-bisection.md` | `Diagnostic Test`, `Bisection Choice` |
 | True-device diagnostics or pre-embedded logs are needed | `preflight-debug-capture.md` | `Debug Observability Plan`, `Debug Capture Digest` |
 | Development architecture or readability is in question | `role-development.md` | `Engineering Plan`, `Pattern Fit Check` |
+| Strong online game needs dedicated client runtime owner | `role-client-development.md` | `Client Architecture Plan`, `Client/Server Contract Review` |
+| Strong online game needs authoritative backend owner | `role-server-development.md` | `Server Architecture Plan`, `Authoritative Gameplay Contract` |
 | Development work needs pre-code design validation, impact analysis, or completion risk review | `development-daily-tools.md` | Tool output plus `Regression Check Plan` or `Agent Turn Result` |
 | Game feature touches two or more layers, cloud, reward, auth, payment, save data, leaderboard, ads, economy, or anti-cheat | `multi-layer-feature-gate.md` | `Multi-Layer Pre-Code Gate` |
 | Code seems over-abstracted | `role-development.md` | `Over-Abstraction Block` |

@@ -142,6 +142,24 @@ and regression hotspots.
 
 Do not include unrelated aesthetic debate unless it changes implementation.
 
+### Client Development Agent
+
+Include player-facing behavior, UI/HUD requirements, input model, rendering and
+asset constraints, local state limits, performance budget, accepted server
+contract, and desync/reconnect risks.
+
+Do not include private server implementation details unless they affect the
+client contract or debugging evidence.
+
+### Server Development Agent
+
+Include authority model, room/match requirements, network model, persistence
+needs, trust boundary, security risks, reconnect needs, scaling assumptions,
+client contract needs, and server-side test requirements.
+
+Do not include visual polish debate unless it changes authoritative timing,
+payloads, or server performance.
+
 ### Art Agent
 
 Include experience goal, audience, style decisions, platform/resource constraints,

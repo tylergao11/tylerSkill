@@ -1,7 +1,7 @@
 interface:
   display_name: "Agent Collaboration OS"
-  short_description: "Multi-agent game production workflow"
-  default_prompt: "Use $agent-collaboration-os to coordinate a game feature from planning through specialist handoffs, testing, and release confidence."
+  short_description: "Multi-agent game workflow with client/server role splits"
+  default_prompt: "Use $agent-collaboration-os to coordinate a game feature from planning through client/server handoffs, specialist review, testing, audit, and release confidence."
 
 policy:
   allow_implicit_invocation: true

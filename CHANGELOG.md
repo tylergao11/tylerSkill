@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.1.14 - 2026-04-26
+
+### Added
+
+- 新增 Client Development Agent 与 Server Development Agent，用于麻将、MOBA、战术竞技、实时动作等强联网游戏。
+- 新增 `role-client-development.md`、`role-server-development.md` 与对应角色 prompt。
+- 新增 `strong-online-game-requires-server-agent` eval，防止强联网项目被单一 Development Agent 吞掉。
+- 新增 Development Role Split Decision，要求多人/强服务器项目先判断是否拆分客户端与服务器开发职责。
+
+### Changed
+
+- `SKILL.md`、protocol routing、context packets、README、OpenAI metadata 更新为支持 client/server role split。
+- Development Agent 保留为轻量项目或通用工程入口；强联网项目转为 Client Development Agent + Server Development Agent。
+
+### Fixed
+
+- 修复强服务器游戏缺少独立服务器开发责任人的流程风险。
+
+### Deprecated
+
+- N/A
+
 ## 0.1.13 - 2026-04-26
 
 ### Added

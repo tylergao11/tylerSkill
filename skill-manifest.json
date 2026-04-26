@@ -1,6 +1,6 @@
 {
   "name": "agent-collaboration-os",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "entry": "SKILL.md",
   "language_policy": {
     "agent_facing_markdown": "precise English",
@@ -46,7 +46,9 @@
     "references/reusable-modules.md",
     "references/role-art.md",
     "references/role-audit.md",
+    "references/role-client-development.md",
     "references/role-development.md",
+    "references/role-server-development.md",
     "references/role-testing.md",
     "references/runtime-versioning-budget.md"
   ],

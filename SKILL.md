@@ -1,6 +1,6 @@
 ---
 name: agent-collaboration-os
-description: A portable Agent Collaboration Operating System workflow for coordinating a main agent, development agent, art/audio agent, testing agent, and audit agent across game projects or other production work. Use when planning, building, reviewing, auditing, or shipping work that benefits from role-based multi-agent collaboration, dual-mode execution, standardized task briefs, quality gates, evidence gates, context packets, and handoff protocols.
+description: A portable Agent Collaboration Operating System workflow for coordinating a main agent, development agents, art/audio agent, testing agent, and audit agent across game projects or other production work. Use when planning, building, reviewing, auditing, or shipping work that benefits from role-based multi-agent collaboration, client/server role splits, standardized task briefs, quality gates, evidence gates, context packets, and handoff protocols.
 ---
 
 # Agent Collaboration OS
@@ -23,7 +23,9 @@ user-facing Markdown such as repository usage guides.
 ## Core Principles
 
 - **Main Agent owns orchestration**: user dialogue, decomposition, decisions, conflict resolution, and final synthesis.
-- **Development Agent owns engineering**: client, server/cloud, architecture, implementation, build, performance, and maintainability.
+- **Development Agent owns engineering**: lightweight or non-split client/server/cloud architecture, implementation, build, performance, and maintainability.
+- **Client Development Agent owns client runtime**: UI, input, rendering, prediction, presentation integration, resource loading, client state, and client performance.
+- **Server Development Agent owns authoritative backend**: rooms, matchmaking, state sync, authoritative rules, persistence, security boundaries, anti-cheat assumptions, reconnect, scaling, and server performance.
 - **Art Agent owns experience intent**: visuals, UI/UX, motion, audio, asset specs, sensory polish, and experience review.
 - **Testing Agent owns quality risk**: test strategy, code review, numeric validation, observability, regression, and release confidence.
 - **Audit Agent owns completion trust**: completion claims, evidence chains, skipped protocol detection, verification coverage, and residual uncertainty.
@@ -194,6 +196,8 @@ Load only what is needed:
 - `references/reusable-modules.md`: when deciding whether code should become reusable, portable, or part of a long-term capability module.
 - `references/layer-map-governance.md`: when checking whether changed files respect model/controller/view/service/config/test layer boundaries.
 - `references/role-development.md`: when planning or reviewing architecture, implementation, cloud/server work, readability, or game engineering.
+- `references/role-client-development.md`: when strong online games need a dedicated client runtime owner.
+- `references/role-server-development.md`: when gameplay requires authoritative server, matchmaking, room state, sync, persistence, reconnect, or anti-cheat boundaries.
 - `references/role-art.md`: when handling visuals, UI/UX, motion, audio, assets, experience review, or art vetoes.
 - `references/role-testing.md`: when designing tests, risk maps, code review, numeric balance, observability, release blocks, or release confidence.
 - `references/role-audit.md`: when checking completion claims, evidence quality, skipped protocols, false confidence, or self-check depth.

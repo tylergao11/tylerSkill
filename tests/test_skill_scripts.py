@@ -54,6 +54,8 @@ class InstallSkillTests(unittest.TestCase):
             self.assertIn(".github/workflows/skill-ci.yml", relative_sources)
             self.assertIn("references/protocol-routing.md", relative_sources)
             self.assertIn("references/completion-trust-boundary.md", relative_sources)
+            self.assertIn("templates/role-client-development-prompt.md", relative_sources)
+            self.assertIn("templates/role-server-development-prompt.md", relative_sources)
             self.assertIn("templates/role-audit-prompt.md", relative_sources)
             self.assertIn("scripts/debug_bisection.py", relative_sources)
             self.assertNotIn("references/full-draft.md", relative_sources)

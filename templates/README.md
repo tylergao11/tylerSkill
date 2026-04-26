@@ -10,6 +10,8 @@ editing the shared template or writing runtime files into the skill directory.
 Role prompt templates:
 
 - `role-development-prompt.md`
+- `role-client-development-prompt.md`
+- `role-server-development-prompt.md`
 - `role-art-prompt.md`
 - `role-testing-prompt.md`
 - `role-audit-prompt.md`
