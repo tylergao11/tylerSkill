@@ -1,0 +1,18 @@
+{
+  "name": "duplicate specialist agent spawn",
+  "prompt": "Main Agent already has an active Testing Agent and Audit Agent for the lane, but starts new same-role agents for another self-check without explaining why.",
+  "expected_protocols": [
+    "context-packets.md",
+    "response-contract.md"
+  ],
+  "expected_outputs": [
+    "Agent Reuse Decision",
+    "Context Refresh",
+    "Agent Turn Result"
+  ],
+  "must_not": [
+    "spawn duplicate same-role agent without reuse check",
+    "split audit authority across multiple audit agents",
+    "ignore existing specialist context"
+  ]
+}

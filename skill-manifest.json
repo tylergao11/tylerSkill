@@ -1,6 +1,6 @@
 {
   "name": "agent-collaboration-os",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "entry": "SKILL.md",
   "language_policy": {
     "agent_facing_markdown": "precise English",

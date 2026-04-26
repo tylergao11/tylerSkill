@@ -190,6 +190,39 @@ class DevelopmentToolGateDocumentationTests(unittest.TestCase):
         ):
             self.assertIn(required, skill)
 
+    def test_main_agent_reuses_existing_same_role_specialists(self):
+        repo = Path(__file__).resolve().parents[1]
+        skill = (repo / "SKILL.md").read_text(encoding="utf-8")
+        context = (repo / "references" / "context-packets.md").read_text(
+            encoding="utf-8"
+        )
+        routing = (repo / "references" / "protocol-routing.md").read_text(
+            encoding="utf-8"
+        )
+        eval_text = (
+            repo / "evals" / "duplicate-specialist-agent-spawn.json"
+        ).read_text(encoding="utf-8")
+
+        for required in (
+            "Reuse active specialist agents",
+            "Agent Reuse Decision",
+        ):
+            self.assertIn(required, skill)
+
+        for required in (
+            "Specialist Agent Lifecycle",
+            "agent reuse check",
+            "Reuse Decision: Reuse Existing | Create New | Close Duplicate",
+            "close the duplicate",
+            "Authoritative Agent",
+            "Context Refresh",
+        ):
+            self.assertIn(required, context)
+
+        self.assertIn("Same-role specialist may already exist", routing)
+        self.assertIn("Agent Reuse Decision", routing)
+        self.assertIn("spawn duplicate same-role agent without reuse check", eval_text)
+
     def test_strong_online_games_have_client_server_role_split(self):
         repo = Path(__file__).resolve().parents[1]
         skill = (repo / "SKILL.md").read_text(encoding="utf-8")

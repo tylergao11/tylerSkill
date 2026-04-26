@@ -45,6 +45,45 @@ Before adding context, ask:
 - Has it already been replaced by a shorter active decision?
 - Is the source reliable enough for the decision being made?
 
+## Specialist Agent Lifecycle
+
+Before creating or spawning a specialist agent, Main Agent must perform an
+agent reuse check.
+
+Reuse an existing same-role specialist when:
+
+- The role is the same.
+- The task lane is still active or related.
+- The existing agent has useful context that should not be fragmented.
+- The agent is not blocked by stale assumptions, bad context, or a closed task.
+
+Create a new specialist only when:
+
+- No same-role agent exists.
+- The existing same-role agent is closed, unavailable, or context-polluted.
+- Isolation requires a fresh reviewer who has not seen biased information.
+- Parallel work is genuinely independent and write scopes or review scopes do
+  not overlap.
+
+If Main Agent accidentally creates a duplicate same-role agent, it must close the duplicate, record which agent remains authoritative, and continue the lane with a Context Refresh.
+
+## Agent Reuse Decision
+
+Use this before delegation when any same-role specialist may already exist:
+
+```markdown
+## Agent Reuse Decision
+
+Role Needed:
+Existing Same-Role Agents:
+Reuse Decision: Reuse Existing | Create New | Close Duplicate
+Authoritative Agent:
+Reason:
+Context Refresh Needed: Yes | No
+Isolation Risk:
+Next Action:
+```
+
 ## Working Context Pack
 
 Main Agent maintains this across the whole project:

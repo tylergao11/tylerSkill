@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.19 - 2026-04-27
+
+### Added
+
+- 新增 Specialist Agent Lifecycle 与 `Agent Reuse Decision`，要求主 agent 创建责任 agent 前先复用已有同职责 agent。
+- 新增 `duplicate-specialist-agent-spawn` eval，防止同职责测试/审计 agent 被重复拉起导致审计链分裂。
+
+### Changed
+
+- Default Workflow 增加 agent reuse 决策步骤，重复创建同角色 agent 必须关闭重复实例并刷新上下文。
+
+### Fixed
+
+- 修复流程漏洞：已有同功能 agent 时，主 agent 仍重复创建新 agent，造成上下文分裂和证据链混乱。
+
+### Deprecated
+
+- N/A
+
 ## 0.1.18 - 2026-04-26
 
 ### Added

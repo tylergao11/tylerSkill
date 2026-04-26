@@ -30,6 +30,7 @@ user-facing Markdown such as repository usage guides.
 - **Art Agent owns experience intent**: visuals, UI/UX, motion, audio, asset specs, sensory polish, and experience review.
 - **Testing Agent owns quality risk**: test strategy, code review, numeric validation, observability, regression, and release confidence.
 - **Audit Agent owns completion trust**: completion claims, evidence chains, skipped protocol detection, verification coverage, and residual uncertainty.
+- **Reuse active specialist agents**: before spawning a specialist, Main Agent checks whether an existing same-role agent can continue the lane.
 - **Explain before producing**: important work follows `Rationale -> Plan -> Output -> Review -> Acceptance`.
 - **Use acceptance and risk as the driver**: tests first for deterministic logic, acceptance first for experiential work, risk map first for high-risk systems.
 - **Agent completion is not evidence**: completion claims advance only after evidence is audited or explicitly marked unverified.
@@ -91,13 +92,14 @@ Production Team Mode requires:
 
 1. Intake: clarify goal, audience, success criteria, constraints, current context, risk, and mode.
 2. Decomposition: Main Agent explains why the selected task split is correct.
-3. Context Packet: Main Agent sends each specialist only the context needed for that role.
-4. Specialist Work: roles return structured, state-bearing responses.
-5. Integration: Main Agent merges outputs and resolves conflicts.
-6. Quality Gate: use the smallest gate that fits the risk.
-7. Audit Gate: for risky or release-relevant work, Audit Agent checks whether completion claims are supported by evidence.
-8. Delivery: summarize what changed, what was verified, what was only inferred, what remains unverified, and next owner.
-9. Evolution: record process failures or reusable discoveries as skill improvement notes.
+3. Agent Reuse Decision: Main Agent reuses an active same-role specialist when possible, or records why a new specialist is required.
+4. Context Packet: Main Agent sends each specialist only the context needed for that role.
+5. Specialist Work: roles return structured, state-bearing responses.
+6. Integration: Main Agent merges outputs and resolves conflicts.
+7. Quality Gate: use the smallest gate that fits the risk.
+8. Audit Gate: for risky or release-relevant work, Audit Agent checks whether completion claims are supported by evidence.
+9. Delivery: summarize what changed, what was verified, what was only inferred, what remains unverified, and next owner.
+10. Evolution: record process failures or reusable discoveries as skill improvement notes.
 
 For deterministic logic, Main Agent obtains Testing Agent `Test Strategy
 Rationale` or `Test Case Plan` before Development Agent implementation. If this
