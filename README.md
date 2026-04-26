@@ -56,6 +56,8 @@
 
 轻量小游戏仍可由普通 Development Agent 同时处理客户端和云开发/简单服务。
 
+当责任 agent 输出复杂图、服务器计划、测试报告或审计报告时，主 agent 应负责翻译成用户能决策的语言：这是什么意思、你要拍板什么、风险在哪里、下一步谁验证。用户不需要直接读懂 Go 并发、状态同步、幂等、锁、通道或运维细节。
+
 本仓库也内置 GitHub 门禁模板：Actions、CodeQL、Dependabot、CODEOWNERS、PR/Issue 模板、release workflow 和 ruleset 模板。分支保护、secret scanning、environment approval 仍需要在 GitHub 仓库设置中启用。
 
 `skill-manifest.json` 记录当前 Skill 的版本、兼容性、协议和工具清单，便于 agent 在不同项目或不同 agent 平台中判断可用能力。

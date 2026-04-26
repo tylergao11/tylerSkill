@@ -1,6 +1,6 @@
 {
   "name": "agent-collaboration-os",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "entry": "SKILL.md",
   "language_policy": {
     "agent_facing_markdown": "precise English",
@@ -34,6 +34,7 @@
     "references/github-governance.md",
     "references/installation.md",
     "references/layer-map-governance.md",
+    "references/main-agent-decision-review.md",
     "references/multi-layer-feature-gate.md",
     "references/permission-environment.md",
     "references/preflight-debug-capture.md",

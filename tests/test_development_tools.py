@@ -303,6 +303,41 @@ class DevelopmentToolGateDocumentationTests(unittest.TestCase):
         self.assertIn("strong-online-server-governance.md", prompt)
         self.assertIn("wait for user to enumerate server risks", eval_text)
 
+    def test_main_agent_translates_specialist_outputs_for_user_decisions(self):
+        repo = Path(__file__).resolve().parents[1]
+        skill = (repo / "SKILL.md").read_text(encoding="utf-8")
+        protocol = (repo / "references" / "main-agent-decision-review.md").read_text(
+            encoding="utf-8"
+        )
+        server_governance = (
+            repo / "references" / "strong-online-server-governance.md"
+        ).read_text(encoding="utf-8")
+        eval_text = (
+            repo / "evals" / "specialist-output-needs-main-agent-review.json"
+        ).read_text(encoding="utf-8")
+
+        for required in (
+            "Main Agent owns translation",
+            "main-agent-decision-review.md",
+        ):
+            self.assertIn(required, skill)
+
+        for required in (
+            "Main Agent Specialist Review",
+            "User Decision Brief",
+            "User Decisions Needed",
+            "Risks I See",
+            "Questions For Specialist",
+            "Testing Required",
+            "Audit Required",
+            "Do not require the user to understand Go internals",
+        ):
+            self.assertIn(required, protocol)
+
+        self.assertIn("main-agent-decision-review.md", server_governance)
+        self.assertIn("pass specialist diagram directly to user", eval_text)
+        self.assertIn("skip user decision translation", eval_text)
+
     def test_reconnect_session_governance_is_required_for_server_agent(self):
         repo = Path(__file__).resolve().parents[1]
         protocol = (repo / "references" / "reconnect-session-governance.md").read_text(

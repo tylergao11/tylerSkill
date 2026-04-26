@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.17 - 2026-04-26
+
+### Added
+
+- 新增 `main-agent-decision-review.md`，要求主 agent 将责任 agent 的复杂图、计划、报告翻译成用户决策语言。
+- 新增 `specialist-output-needs-main-agent-review` eval，防止主 agent 把复杂服务器图原样甩给用户。
+
+### Changed
+
+- 当用户缺少专业背景时，Main Agent 必须提供 `Main Agent Specialist Review` 或 `User Decision Brief`。
+
+### Fixed
+
+- 修复复杂 specialist 输出缺少主 agent 翻译、质疑和建议层的问题。
+
+### Deprecated
+
+- N/A
+
 ## 0.1.16 - 2026-04-26
 
 ### Added

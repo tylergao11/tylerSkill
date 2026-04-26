@@ -5,6 +5,7 @@ Use this table to decide which protocol to load for a situation.
 | Situation | Load | Required Output |
 | --- | --- | --- |
 | Delegating to a specialist | `context-packets.md` | `Specialist Context Packet`, `Task Brief` |
+| Specialist output needs user-facing interpretation or approval | `main-agent-decision-review.md` | `Main Agent Specialist Review`, `User Decision Brief` |
 | Role context may bias tests, implementation, refactor, or art review | `agent-context-isolation.md` | `Context Isolation Packet`, `Leakage Block` |
 | Installing globally or vendoring into a game project | `installation.md` | Install command, consumer init command |
 | Publishing, vendoring, or evaluating cross-agent compatibility | `compatibility-registry.md` | `Skill Registry Record` |

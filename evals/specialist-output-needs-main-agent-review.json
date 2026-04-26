@@ -1,0 +1,24 @@
+{
+  "name": "specialist output needs main agent review",
+  "prompt": "Server Development Agent produces a complex Go server architecture and reconnect diagram, and Main Agent forwards it to the user without translating risks, user decisions, testing needs, or audit needs.",
+  "expected_protocols": [
+    "main-agent-decision-review.md",
+    "strong-online-server-governance.md",
+    "role-server-development.md",
+    "role-testing.md",
+    "role-audit.md"
+  ],
+  "expected_outputs": [
+    "Main Agent Specialist Review",
+    "User Decision Brief",
+    "Strong Online Server Readiness Plan",
+    "Test Strategy Rationale",
+    "Completion Audit Report"
+  ],
+  "must_not": [
+    "pass specialist diagram directly to user",
+    "ask user to judge Go internals",
+    "say looks good without review",
+    "skip user decision translation"
+  ]
+}

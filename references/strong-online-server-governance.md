@@ -99,3 +99,7 @@ If the user is not a server engineer, Main Agent should summarize the plan as:
 
 Do not require the user to understand Go internals before blocking unsafe server
 work.
+
+For user-facing approval, Main Agent must use
+`main-agent-decision-review.md` and produce `Main Agent Specialist Review` or
+`User Decision Brief`.

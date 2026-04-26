@@ -23,6 +23,7 @@ user-facing Markdown such as repository usage guides.
 ## Core Principles
 
 - **Main Agent owns orchestration**: user dialogue, decomposition, decisions, conflict resolution, and final synthesis.
+- **Main Agent owns translation**: specialist diagrams, plans, reviews, and audits must become user-decision language before the user is asked to approve.
 - **Development Agent owns engineering**: lightweight or non-split client/server/cloud architecture, implementation, build, performance, and maintainability.
 - **Client Development Agent owns client runtime**: UI, input, rendering, prediction, presentation integration, resource loading, client state, and client performance.
 - **Server Development Agent owns authoritative backend**: rooms, matchmaking, state sync, authoritative rules, persistence, security boundaries, anti-cheat assumptions, reconnect, scaling, and server performance.
@@ -182,6 +183,7 @@ Required Output Format:
 Load only what is needed:
 
 - `references/context-packets.md`: when delegating to any specialist or resuming long work.
+- `references/main-agent-decision-review.md`: when specialist output must be translated into user decisions, risks, questions, tests, audits, or recommendations.
 - `references/agent-context-isolation.md`: when role context must be isolated to prevent biased tests, leaked implementation answers, or circular review.
 - `references/compatibility-registry.md`: when publishing, installing, vendoring, or evaluating this skill across agent platforms or project repositories.
 - `references/installation.md`: when installing this skill globally or vendoring it into a consumer project.
