@@ -11,6 +11,27 @@ from scripts.validate_skill_repo import validate_repo
 
 
 class ConsumerProjectInitTests(unittest.TestCase):
+    def test_defaults_to_lightweight_profile(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "game"
+
+            init_project(root)
+
+            memory = (root / "docs/project-notes/project-memory.md").read_text(
+                encoding="utf-8"
+            )
+            runtime = (root / "docs/project-notes/agent-os-runtime.md").read_text(
+                encoding="utf-8"
+            )
+            profile = (root / "docs/project-notes/architecture-profile.md").read_text(
+                encoding="utf-8"
+            )
+
+            self.assertIn("Architecture Profile: lightweight", memory)
+            self.assertIn("Architecture Profile: lightweight", runtime)
+            self.assertIn("Lightweight Profile", profile)
+            self.assertIn("Keep Dormant Until Triggered", profile)
+
     def test_initializes_profile_vendor_and_templates(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp) / "game"
@@ -69,6 +90,7 @@ class InstallSkillTests(unittest.TestCase):
             self.assertIn("templates/role-client-development-prompt.md", relative_sources)
             self.assertIn("templates/role-server-development-prompt.md", relative_sources)
             self.assertIn("templates/role-audit-prompt.md", relative_sources)
+            self.assertIn("profiles/lightweight.md", relative_sources)
             self.assertIn("scripts/debug_bisection.py", relative_sources)
             self.assertIn("scripts/run_evals.py", relative_sources)
             self.assertNotIn("references/full-draft.md", relative_sources)

@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.1.22 - 2026-04-27
+
+### Added
+
+- 新增 `profiles/lightweight.md`，把默认运行模式收敛为轻量核心，重型协议按触发条件唤醒。
+
+### Changed
+
+- Consumer project initialization now defaults to the `lightweight` profile.
+- Runtime startup checklist now reminds Main Agent to start from the selected profile's default protocol set.
+
+### Fixed
+
+- Fixed the risk that small projects automatically inherit production, GitHub, server, privacy, and asset-governance ceremony.
+
+### Deprecated
+
+- N/A
+
 ## 0.1.21 - 2026-04-27
 
 ### Added

@@ -43,7 +43,14 @@ The consumer project should record the vendor path and skill version in
 ## Initialize a Consumer Project
 
 ```powershell
-python vendor\agent-collaboration-os\scripts\init_consumer_project.py . --profile casual-mini-game --vendor-path vendor\agent-collaboration-os --copy-templates
+python vendor\agent-collaboration-os\scripts\init_consumer_project.py . --vendor-path vendor\agent-collaboration-os --copy-templates
+```
+
+The default profile is `lightweight`. Use a heavier profile only when the
+project shape is already known:
+
+```powershell
+python vendor\agent-collaboration-os\scripts\init_consumer_project.py . --profile realtime-multiplayer --vendor-path vendor\agent-collaboration-os --copy-templates
 ```
 
 This creates project runtime folders such as:
@@ -70,6 +77,8 @@ Main Agent:
 The Main Agent should read `agent-os-runtime.md` with project memory at project
 startup. Reusable workflow lessons should be staged as upgrade packets under
 `docs/agent-os-upgrades/` before they are brought back to the skill repository.
+The Main Agent should start from the selected profile's default protocol set and
+load heavier protocols only when their trigger appears.
 
 If this repository is vendored under `vendor/agent-collaboration-os/`, agents
 must still write runtime outputs to the consumer project root, never to the

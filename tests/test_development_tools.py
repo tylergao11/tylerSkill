@@ -229,6 +229,27 @@ class DevelopmentToolGateDocumentationTests(unittest.TestCase):
         self.assertIn("Required Eval or Test", template)
         self.assertIn("skip agent-os-runtime startup awareness", eval_text)
 
+    def test_lightweight_profile_keeps_heavy_protocols_dormant(self):
+        repo = Path(__file__).resolve().parents[1]
+        profile = (repo / "profiles" / "lightweight.md").read_text(encoding="utf-8")
+        installation = (repo / "references" / "installation.md").read_text(
+            encoding="utf-8"
+        )
+
+        for required in (
+            "Lightweight Profile",
+            "Default Protocol Set",
+            "Keep Dormant Until Triggered",
+            "Trigger Heavy Protocols When",
+            "GitHub, CI, release, rollback, production",
+            "Server, reconnect, strong-online",
+            "Completion claims need evidence",
+        ):
+            self.assertIn(required, profile)
+
+        self.assertIn("default profile is `lightweight`", installation)
+        self.assertIn("load heavier protocols only when their trigger appears", installation)
+
     def test_root_skill_required_formats_match_workflow_contracts(self):
         repo = Path(__file__).resolve().parents[1]
         skill = (repo / "SKILL.md").read_text(encoding="utf-8")
