@@ -21,44 +21,6 @@
 
 - N/A
 
-## 0.1.23 - 2026-04-27
-
-### Added
-
-- Added Progressive Disclosure Read Strategy to the skill kernel so Main Agent starts from the lightweight core when project size is unknown.
-- Added `progressive-disclosure-overload` eval to prevent loading heavy protocols without a trigger.
-
-### Changed
-
-- Protocol routing now explicitly keeps heavy protocols dormant until routing triggers appear.
-
-### Fixed
-
-- Fixed the gap where Main Agent could still overload a small or unknown project despite the lightweight profile existing.
-
-### Deprecated
-
-- N/A
-
-## 0.1.22 - 2026-04-27
-
-### Added
-
-- 新增 `profiles/lightweight.md`，把默认运行模式收敛为轻量核心，重型协议按触发条件唤醒。
-
-### Changed
-
-- Consumer project initialization now defaults to the `lightweight` profile.
-- Runtime startup checklist now reminds Main Agent to start from the selected profile's default protocol set.
-
-### Fixed
-
-- Fixed the risk that small projects automatically inherit production, GitHub, server, privacy, and asset-governance ceremony.
-
-### Deprecated
-
-- N/A
-
 ## 0.1.21 - 2026-04-27
 
 ### Added
@@ -214,7 +176,7 @@
 ### Changed
 
 - `SKILL.md`、protocol routing、context packets、README、OpenAI metadata 更新为支持 client/server role split。
-- Development Agent 保留为轻量项目或通用工程入口；强联网项目转为 Client Development Agent + Server Development Agent。
+- Development Agent 保留为非拆分项目或通用工程入口；强联网项目转为 Client Development Agent + Server Development Agent。
 
 ### Fixed
 

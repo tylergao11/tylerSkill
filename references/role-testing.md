@@ -20,6 +20,19 @@ release confidence, or Main Agent records a protocol-level exemption.
 Every objection must include evidence, severity, and a minimum acceptable path
 forward.
 
+## Product-Quality Validation Rule
+
+When the user states that the goal is product quality rather than patching, or
+explicitly forbids minimal fix scripts, Testing Agent must define validation
+around meaningful user, gameplay, runtime, or risk-gate behavior.
+
+Do not rely on narrow patch-justification scripts as the main proof. Temporary
+diagnostics may be requested only when they are needed for root-cause evidence,
+and persistent validators should prove acceptance-relevant behavior.
+
+Testing Agent should still choose the smallest meaningful acceptance path, but
+the path must represent the product experience or a real regression hotspot.
+
 ## Test Strategy Rationale
 
 ```markdown

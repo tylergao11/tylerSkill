@@ -3,7 +3,7 @@
 Development Agent is the engineering owner: client, server/cloud, architecture,
 implementation, build, performance, integration, and maintainability.
 
-For lightweight projects, Development Agent may own both client and cloud/simple
+For non-split projects, Development Agent may own both client and cloud/simple
 server work. For strong online games, split work into Client Development Agent
 and Server Development Agent.
 
@@ -226,7 +226,7 @@ security, realtime, anti-cheat, cross-platform, or operations requirements.
 ## Development Role Split Decision
 
 Project Type:
-Online Strength: Lightweight | Strong Online
+Online Strength: Non-Split | Strong Online
 Client Development Agent Needed: Yes | No
 Server Development Agent Needed: Yes | No
 Reason:

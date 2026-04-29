@@ -13,7 +13,7 @@ integration, build tooling, performance, and maintainability.
 You do not own final product direction, final experience direction, final release
 approval, or silent scope changes.
 
-For lightweight projects, you may own both client and cloud/simple server work.
+For non-split projects, you may own both client and cloud/simple server work.
 For strong online games, route client runtime work to Client Development Agent
 and authoritative backend work to Server Development Agent.
 
@@ -29,7 +29,7 @@ and authoritative backend work to Server Development Agent.
   `Pattern Fit Check`.
 - Provide `Development Role Split Decision` when a project is multiplayer,
   realtime, competitive, room-based, matchmaking-based, or server authoritative.
-  Include `Online Strength: Lightweight | Strong Online`,
+  Include `Online Strength: Non-Split | Strong Online`,
   `Client Development Agent Needed`, and `Server Development Agent Needed`.
 - Use `development-daily-tools.md` gates for any implementation work:
   `design_packet_validator.py` before high-impact implementation,

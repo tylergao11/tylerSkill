@@ -10,23 +10,24 @@ Use this skill to run a portable multi-agent collaboration workflow.
 The short file is the operating-system kernel. Load detailed protocols from
 `references/` only when the current task needs them.
 
-## Progressive Disclosure Read Strategy
+## Strict Collaboration Read Strategy
 
-When project size, risk, or workflow strictness is unknown, Main Agent must not
-load every protocol.
+When project size, risk, or workflow strictness is unknown, Main Agent defaults
+to Strict Collaboration Mode. Do not silently downgrade process to a smaller
+mode. Load enough protocol context to support development, testing, audit,
+handoff, and evidence gates.
 
 Read in this order:
 
 1. Read this `SKILL.md` kernel.
-2. Read `profiles/lightweight.md` unless the project memory names a different
-   active profile.
-3. Read `references/protocol-routing.md` to identify triggers.
-4. Load only the smallest reference files required by the current trigger.
-5. Escalate to heavier protocols only when the user request, project memory,
+2. Read `references/protocol-routing.md` to identify required protocols and triggers.
+4. Read the role and evidence protocols required for Development, Testing, and
+   Audit lanes before declaring implementation progress.
+5. Load extra specialized protocols whenever the user request, project memory,
    changed files, trust boundary, production action, server need, asset risk, or
-   completion claim triggers them.
+   completion claim touches that surface.
 
-Default lightweight core:
+Default strict core:
 
 - `references/protocol-routing.md`
 - `references/context-packets.md`
@@ -38,7 +39,7 @@ Default lightweight core:
 - `references/project-assets-governance.md`
 - `references/evolution.md`
 
-Keep dormant until triggered:
+Also load when relevant to the work:
 
 - GitHub, CI, release, rollback, production, and repository-protection protocols.
 - Server, reconnect, strong-online, matchmaking, anti-cheat, and scaling protocols.
@@ -47,8 +48,8 @@ Keep dormant until triggered:
 - Asset provenance, dependency license, package budget, and commercial rights
   protocols.
 
-If unsure whether a heavy protocol is needed, ask one narrow question or state a
-short routing assumption instead of loading the whole protocol set.
+If unsure whether a specialized protocol is needed, state the routing assumption
+and bias toward loading the protocol rather than skipping review.
 
 ## File Encoding
 
@@ -64,7 +65,7 @@ user-facing Markdown such as repository usage guides.
 
 - **Main Agent owns orchestration**: user dialogue, decomposition, decisions, conflict resolution, and final synthesis.
 - **Main Agent owns translation**: specialist diagrams, plans, reviews, and audits must become user-decision language before the user is asked to approve.
-- **Development Agent owns engineering**: lightweight or non-split client/server/cloud architecture, implementation, build, performance, and maintainability.
+- **Development Agent owns engineering**: non-split client/server/cloud architecture, implementation, build, performance, and maintainability.
 - **Client Development Agent owns client runtime**: UI, input, rendering, prediction, presentation integration, resource loading, client state, and client performance.
 - **Server Development Agent owns authoritative backend**: rooms, matchmaking, state sync, authoritative rules, persistence, security boundaries, anti-cheat assumptions, reconnect, scaling, and server performance.
 - **Art Agent owns experience intent**: visuals, UI/UX, motion, audio, asset specs, sensory polish, and experience review.
@@ -81,8 +82,8 @@ user-facing Markdown such as repository usage guides.
 - **Keep the skill path clean**: generated project Markdown, evidence, logs, and
   handoffs belong in the consumer project, never in the installed or vendored
   skill directory.
-- **Progressive disclosure by default**: unknown projects start with the
-  lightweight core and load heavy protocols only after a trigger appears.
+- **Strict collaboration by default**: unknown projects start with Development,
+  Testing, Audit, evidence gates, and handoff discipline active.
 
 ## Reuse Architecture
 
@@ -101,34 +102,19 @@ Agent OS Workflow -> Game Architecture Profile -> Reusable Capability Modules ->
 
 Prefer reusing workflow and capability modules before reusing a whole game shell.
 
-## Operating Modes
+## Operating Mode
 
-### Lightweight Mode
+### Strict Collaboration Mode
 
-Default for small, exploratory, or low-risk work.
-
-- Main Agent handles most work directly.
-- Specialist roles are invoked only when their expertise changes the outcome.
-- Keep artifacts short but still structured when they affect state.
-
-### Production Team Mode
-
-Use when the user asks for strict process, high quality, full review, or complex production.
-
-Trigger phrases may include:
-
-- "进入制作组模式"
-- "全流程审查"
-- "严格模式"
-- "用完整 agent 流程"
-
-Production Team Mode requires:
+Default for all projects and all unknown contexts. This mode requires:
 
 - Task briefs before specialist work
 - Role-specific rationale and plans
 - Context packets for each specialist
 - Quality gates before delivery
 - Final synthesis with decisions, risks, and verification status
+- Evidence-labeled claims: `Verified`, `Inferred`, or `Unverified`
+- Explicit handoff notes for unresolved bugs, blockers, or runtime gaps
 
 ## Default Workflow
 

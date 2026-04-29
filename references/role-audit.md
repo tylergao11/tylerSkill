@@ -39,6 +39,13 @@ Audit Agent checks:
 - Production, permission, trust-boundary, asset, dependency, and release gates.
 - Whether the final user-facing summary separates verified, inferred, and
   unverified claims.
+- Whether evidence relies on narrow patch-style scripts after the user requested
+  product-quality validation or forbade minimal fix scripts.
+
+When the accepted bar is product quality, Audit Agent should downgrade or block
+completion claims supported only by symptom-level proof. Completion evidence
+must cover the meaningful user, gameplay, runtime, or risk-gate path selected by
+Testing Agent.
 
 ## Completion Audit Report
 

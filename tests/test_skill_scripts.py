@@ -11,7 +11,7 @@ from scripts.validate_skill_repo import validate_repo
 
 
 class ConsumerProjectInitTests(unittest.TestCase):
-    def test_defaults_to_lightweight_profile(self):
+    def test_defaults_to_strict_collaboration_mode(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp) / "game"
 
@@ -23,14 +23,13 @@ class ConsumerProjectInitTests(unittest.TestCase):
             runtime = (root / "docs/project-notes/agent-os-runtime.md").read_text(
                 encoding="utf-8"
             )
-            profile = (root / "docs/project-notes/architecture-profile.md").read_text(
-                encoding="utf-8"
-            )
 
-            self.assertIn("Architecture Profile: lightweight", memory)
-            self.assertIn("Architecture Profile: lightweight", runtime)
-            self.assertIn("Lightweight Profile", profile)
-            self.assertIn("Keep Dormant Until Triggered", profile)
+            self.assertIn("Architecture Profile: strict-collaboration", memory)
+            self.assertIn("Architecture Profile: strict-collaboration", runtime)
+            self.assertIn("Strict Collaboration Mode", runtime)
+            self.assertFalse(
+                (root / "docs/project-notes/architecture-profile.md").exists()
+            )
 
     def test_initializes_profile_vendor_and_templates(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -90,7 +89,7 @@ class InstallSkillTests(unittest.TestCase):
             self.assertIn("templates/role-client-development-prompt.md", relative_sources)
             self.assertIn("templates/role-server-development-prompt.md", relative_sources)
             self.assertIn("templates/role-audit-prompt.md", relative_sources)
-            self.assertIn("profiles/lightweight.md", relative_sources)
+            self.assertIn("profiles/casual-mini-game.md", relative_sources)
             self.assertIn("scripts/debug_bisection.py", relative_sources)
             self.assertIn("scripts/run_evals.py", relative_sources)
             self.assertNotIn("references/full-draft.md", relative_sources)

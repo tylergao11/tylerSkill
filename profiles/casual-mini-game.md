@@ -5,7 +5,7 @@
 - Simple scene management
 - MVC-style separation
 - Config-driven numeric data
-- Lightweight cloud/service layer when needed
+- Simple cloud/service layer when needed
 - Minimal state machines
 
 ## Default Constraints

@@ -46,8 +46,9 @@ The consumer project should record the vendor path and skill version in
 python vendor\agent-collaboration-os\scripts\init_consumer_project.py . --vendor-path vendor\agent-collaboration-os --copy-templates
 ```
 
-The default profile is `lightweight`. Use a heavier profile only when the
-project shape is already known:
+The default mode is Strict Collaboration Mode. Use a project profile only to add
+domain guidance; profiles must not reduce Development, Testing, Audit, or
+evidence-gate requirements:
 
 ```powershell
 python vendor\agent-collaboration-os\scripts\init_consumer_project.py . --profile realtime-multiplayer --vendor-path vendor\agent-collaboration-os --copy-templates

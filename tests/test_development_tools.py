@@ -229,47 +229,36 @@ class DevelopmentToolGateDocumentationTests(unittest.TestCase):
         self.assertIn("Required Eval or Test", template)
         self.assertIn("skip agent-os-runtime startup awareness", eval_text)
 
-    def test_lightweight_profile_keeps_heavy_protocols_dormant(self):
+    def test_strict_collaboration_is_default_mode(self):
         repo = Path(__file__).resolve().parents[1]
         skill = (repo / "SKILL.md").read_text(encoding="utf-8")
-        profile = (repo / "profiles" / "lightweight.md").read_text(encoding="utf-8")
         routing = (repo / "references" / "protocol-routing.md").read_text(
             encoding="utf-8"
         )
         installation = (repo / "references" / "installation.md").read_text(
             encoding="utf-8"
         )
-        eval_text = (
-            repo / "evals" / "progressive-disclosure-overload.json"
-        ).read_text(encoding="utf-8")
 
         for required in (
-            "Progressive Disclosure Read Strategy",
-            "Read in this order",
-            "Default lightweight core",
-            "Keep dormant until triggered",
-            "Progressive disclosure by default",
-            "profiles/lightweight.md",
+            "Strict Collaboration Read Strategy",
+            "Default strict core",
+            "Strict Collaboration Mode",
+            "Testing, Audit, evidence gates, and handoff discipline active",
         ):
             self.assertIn(required, skill)
 
         for required in (
-            "Lightweight Profile",
-            "Default Protocol Set",
-            "Keep Dormant Until Triggered",
-            "Trigger Heavy Protocols When",
-            "default progressive-disclosure layer",
-            "GitHub, CI, release, rollback, production",
-            "Server, reconnect, strong-online",
-            "Completion claims need evidence",
+            "Strict Collaboration Mode",
+            "Development, Testing, Audit, evidence gates, and handoff discipline active",
+            "strict collaboration",
         ):
-            self.assertIn(required, profile)
+            self.assertIn(required, routing)
 
-        self.assertIn("Heavy protocols stay dormant", routing)
-        self.assertIn("load every protocol by default", eval_text)
-        self.assertIn("wake heavy protocols without trigger", eval_text)
-        self.assertIn("default profile is `lightweight`", installation)
-        self.assertIn("load heavier protocols only when their trigger appears", installation)
+        self.assertIn("default mode is Strict Collaboration Mode", installation)
+        retired_mode = "light" + "weight"
+        self.assertNotIn(retired_mode, skill.lower())
+        self.assertNotIn(retired_mode, routing.lower())
+        self.assertNotIn(retired_mode, installation.lower())
 
     def test_root_skill_required_formats_match_workflow_contracts(self):
         repo = Path(__file__).resolve().parents[1]

@@ -84,7 +84,8 @@ Vendor Path: {vendor_path}
 - Load `docs/project-notes/architecture-profile.md` when it exists.
 - Check whether this project has active entries in `docs/project-notes/skill-learning-log.md`.
 - Check `docs/agent-os-upgrades/` for open upgrade packets before claiming workflow completion.
-- Start with the profile's default protocol set. Do not load heavy protocols unless their trigger appears.
+- Start in Strict Collaboration Mode: Development, Testing, Audit, evidence gates, and handoff discipline are active by default.
+- Use `docs/project-notes/architecture-profile.md` only as domain guidance when it exists.
 - Keep generated Markdown, evidence, logs, reviews, and handoffs in this project, not in the skill path.
 - When a workflow failure repeats or generalizes, create a Project Learning Log Entry.
 - When a lesson is reusable, create an Upgrade Packet with evidence and a proposed eval/test.
@@ -204,7 +205,7 @@ def copy_tree_files(source, destination):
     return created
 
 
-def init_project(root, profile="lightweight", vendor_path=None, copy_templates=False):
+def init_project(root, profile=None, vendor_path=None, copy_templates=False):
     created = []
     for directory in DIRECTORIES:
         path = root / directory
@@ -213,7 +214,7 @@ def init_project(root, profile="lightweight", vendor_path=None, copy_templates=F
         if write_if_missing(keep, ""):
             created.append(rel_posix(keep, root))
 
-    profile_name = profile or "lightweight"
+    profile_name = profile or "strict-collaboration"
     if vendor_path and not Path(vendor_path).is_absolute():
         vendor_path = root / vendor_path
     vendor_text = rel_posix(vendor_path, root) if vendor_path and vendor_path.is_relative_to(root) else (str(vendor_path) if vendor_path else "")
@@ -279,7 +280,11 @@ def main():
         description="Initialize Agent Collaboration OS folders in a consumer project."
     )
     parser.add_argument("project_dir", help="Path to the consumer game project.")
-    parser.add_argument("--profile", default="lightweight", help="Architecture profile name, defaults to lightweight.")
+    parser.add_argument(
+        "--profile",
+        default=None,
+        help="Optional architecture profile name. Omit to use strict collaboration mode without a project profile.",
+    )
     parser.add_argument("--vendor-path", help="Path where this skill is vendored in the consumer project.")
     parser.add_argument("--copy-templates", action="store_true", help="Copy shared templates into the consumer project.")
     args = parser.parse_args()
